@@ -128,3 +128,21 @@
     @apply font-sans;
   }
 }
+/* Banner shown when /api/site-edits refuses a save (see editable/storage.ts). */
+.site-edits-warning {
+  position: fixed;
+  z-index: 100000;
+  top: 1rem;
+  left: 50%;
+  max-width: min(40rem, calc(100vw - 2rem));
+  padding: 0.875rem 1.125rem;
+  border: 1px solid #f59e0b;
+  border-radius: 0.75rem;
+  background: #1f1503;
+  color: #fde68a;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  box-shadow: 0 0.5rem 2rem rgb(0 0 0 / 50%);
+  transform: translateX(-50%);
+  cursor: pointer;
+}

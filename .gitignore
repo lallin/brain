@@ -47,3 +47,13 @@ next-env.d.ts
 
 # Local temp files
 temp/
+
+# Playwright MCP tool output (screenshots/snapshots written during testing)
+.playwright-mcp/
+
+# Disk-openable copy (scripts/build-html.mjs)
+/site-html/
+/.next-html/
+/open-site.html
+/braindeck-site.zip
+/.html-build/

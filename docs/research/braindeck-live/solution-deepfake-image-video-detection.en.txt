@@ -1,0 +1,92 @@
+URL: https://www.braindeck.net/#/solutions/deepfake-media-detection
+
+Solutions
+Voucher
+Company
+Demo
+KO
+BACK TO SOLUTIONS
+Watch Tutorial
+Demo
+content
+Deepfake Image/Video Detection
+IRIS - 6
+
+Prevents the spread of false information by detecting AI-manipulated images and videos in real time
+
+PROBLEM & SOLUTION
+What it Solves
+
+Deepfake videos and images are being abused as a major means of spreading false information on social media and news platforms. This solution secures the reliability of the platform by automatically detecting AI-manipulated content.
+
+KEY FEATURES
+
+Simultaneous detection of image and video deepfakes
+
+Face swap, Face reenactment pattern recognition
+
+Frame-by-frame precision analysis
+
+GPU-accelerated high-volume-processing
+
+Manipulation area visualization report
+
+HOW IT WORKS
+
+The CNN-based video analysis model inspects the face area, boundary artifacts, and temporal consistency for each frame. It determines whether it has been manipulated by analyzing GAN-based generation patterns and compression traces.
+
+Use Cases
+01
+
+Content moderation for social media platforms
+
+02
+
+Fact-checking system for news organizations
+
+03
+
+Brand protection for corporate PR teams
+
+04
+
+Authenticity verification of legal/evidence materials
+
+Security & Data Handling
+
+Uploaded media is processed in a dedicated isolated environment for analysis and automatically deleted after analysis is complete. It supports end-to-end encryption.
+
+FAQ
+Frequently Asked Questions
+01
+Can it also analyze real-time video streams?
+02
+What deepfake techniques does it detect?
+03
+Is high-resolution video also processed quickly?
+Contact Us
+Experience this solution firsthand
+
+Test in a real environment for 24 hours after approval and evaluate business suitability
+
+Demo
+Watch Tutorial
+Braindeck
+
+Providing enterprise solutions that innovate the boundary
+between humans and AI with AI technology
+
+© 2026 Braindeck. All rights reserved.
+
+Solutions
+Media & Content
+Health Care
+Industrial AX
+Contact
+braindeck@braindeck.net
++82-2-2088-7522
+2F, 33 Yangjaecheon-ro 11-gil
+Seocho-gu, Seoul, Republic of Korea
+Privacy PolicyTerms of ServiceCookie Policy
+
+Braindeck

@@ -1,0 +1,149 @@
+/*
+ * New feature, not part of the live boilerlab.ai site: for a product with
+ * more than one image, a peek-preview carousel of *whole boxes* (copy +
+ * visual together, not just the image) — modeled on mercury.com's
+ * "Command" feature carousel (ProductsSlide/ProductBoxCarousel). Kept in
+ * its own file rather than boilerlab.css, which documents itself as a
+ * verbatim extraction of the live site's CSS.
+ */
+
+.product-visual {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+/* The active box sits centered at 84% of the card's width, with a sliver
+ * of the previous/next box's own copy+visual visible at each edge. */
+.product-card-boxes {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.product-card-box {
+  display: flex;
+  flex: 0 0 84%;
+  align-items: flex-start;
+  gap: 1.25rem;
+  height: 100%;
+  margin: 0 3%;
+}
+.product-card-box .product-visual-image {
+  border-radius: 0.5rem;
+}
+
+/* Wraps `.product-heading-above` + `.product-copy` so they stack in a
+ * column while still occupying `.product-copy`'s original single slot in
+ * `.product-card-box`'s row (copy column beside the visual column) — see
+ * ProductBoxCarousel's comment. */
+.product-copy-column {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-self: stretch;
+}
+/* Identical to `.product-heading` (same class is applied alongside this
+ * one) — only the placement differs: above `.product-copy`'s top border
+ * instead of inside it. */
+.product-heading-above {
+  margin-bottom: 1.25rem;
+}
+
+/* The per-box topic title + the counter/arrows both live in their own
+ * column alongside the image (not overlapping it) — each is inside the
+ * same sliding `.product-card-box`, so all three move together with the
+ * rest of that box when the gallery advances to the next image. */
+.product-visual-column {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: 0.75rem;
+  width: min(41.5rem, 49.405%);
+}
+.product-visual-column .product-visual {
+  width: 100%;
+  flex-shrink: 0;
+}
+.product-visual-label {
+  margin: 0;
+  color: #fff;
+  font-family: var(--mono-font);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.product-visual-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@media (width <= 1000px) {
+  .product-visual-column {
+    width: min(25rem, 44%);
+  }
+}
+.product-visual-counter {
+  border-radius: 999rem;
+  background: #00000080;
+  padding: 0.375rem 0.75rem;
+  color: #fff;
+  font-family: var(--mono-font);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(0.375rem);
+}
+.product-visual-arrows {
+  display: flex;
+  gap: 0.625rem;
+}
+.product-visual-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0;
+  border-radius: 999rem;
+  background: #ffffffd9;
+  color: #040404;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-out, background-color 0.2s ease-out;
+}
+.product-visual-arrow:hover {
+  background: #fff;
+  transform: scale(1.06);
+}
+.product-visual-arrow:active {
+  transform: scale(0.94);
+}
+.product-visual-arrow:focus-visible {
+  box-shadow: 0 0 0 0.0625rem #ffffff7f, 0 0.125rem 0.875rem #fff6;
+}
+
+.product-visual-dots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  z-index: 4;
+  display: flex;
+  gap: 0.375rem;
+  transform: translateX(-50%);
+}
+.product-visual-dots span {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 999rem;
+  background: #ffffff4d;
+  transition: background-color 0.2s ease-out, transform 0.2s ease-out;
+}
+.product-visual-dots span.is-active {
+  background: #fff;
+  transform: scale(1.3);
+}

@@ -1,0 +1,92 @@
+URL: https://www.braindeck.net/#/solutions/music-generation
+
+Solutions
+Voucher
+Company
+Demo
+KO
+BACK TO SOLUTIONS
+Watch Tutorial
+Demo
+content
+AI Music Generation
+LUCY - 7
+
+Automatically generates music of the desired genre and mood with a text prompt
+
+PROBLEM & SOLUTION
+What it Solves
+
+Video producers and creators spend a lot of time looking for background music that is free of copyright concerns. This solution increases creative efficiency by instantly generating the desired music with just a text description.
+
+KEY FEATURES
+
+Text-based music generation
+
+Fine-tuning of genre, tempo, and instruments
+
+Free length setting from 30 seconds to 5 minutes
+
+Generation of loopable background music
+
+Includes commercial use license
+
+HOW IT WORKS
+
+The Transformer-based music generation model converts text prompts into musical elements (melody, harmony, rhythm). It is automatically arranged according to the user-specified genre and mood, and supports smooth looping by automatically detecting loop points.
+
+Use Cases
+01
+
+YouTube video background music
+
+02
+
+Advertising and promotion music
+
+03
+
+Game and app background music
+
+04
+
+Prototype music sketch
+
+Security & Data Handling
+
+The copyright of the generated music belongs to the user, and the prompt data is deleted after generation is complete.
+
+FAQ
+Frequently Asked Questions
+01
+Are there any copyright issues?
+02
+How long does it take to generate?
+03
+Can it imitate a specific artist's style?
+Contact Us
+Experience this solution firsthand
+
+Test in a real environment for 24 hours after approval and evaluate business suitability
+
+Demo
+Watch Tutorial
+Braindeck
+
+Providing enterprise solutions that innovate the boundary
+between humans and AI with AI technology
+
+© 2026 Braindeck. All rights reserved.
+
+Solutions
+Media & Content
+Health Care
+Industrial AX
+Contact
+braindeck@braindeck.net
++82-2-2088-7522
+2F, 33 Yangjaecheon-ro 11-gil
+Seocho-gu, Seoul, Republic of Korea
+Privacy PolicyTerms of ServiceCookie Policy
+
+Braindeck

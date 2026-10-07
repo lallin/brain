@@ -12,6 +12,12 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // scripts/build-html.mjs output (static export + its work copy).
+    "site-html/**",
+    ".html-build/**",
+    ".next-html/**",
+    // Downloaded copy of the live site's bundle (research input, not our code).
+    "docs/research/braindeck-live/bundle.js",
   ]),
 ]);
 

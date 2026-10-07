@@ -1,0 +1,92 @@
+URL: https://www.braindeck.net/#/solutions/aac-voice-communication
+
+Solutions
+Voucher
+Company
+Demo
+KO
+BACK TO SOLUTIONS
+Watch Tutorial
+Demo
+medical
+AAC Voice Communication
+BLINGS (AAC)
+
+Converts disordered speech into normal speech in real time
+
+PROBLEM & SOLUTION
+What it Solves
+
+Patients with speech disorders experience great inconvenience in daily conversation. This solution supports smooth communication by converting disordered speech into clear speech in real time.
+
+KEY FEATURES
+
+Real-time voice conversion (latency less than 0.3 seconds)
+
+Support for various types of speech disorders
+
+Personalized voice profile
+
+Support for mobile apps and wearable devices
+
+Offline mode support
+
+HOW IT WORKS
+
+The AI speech recognition engine converts unclear speech into text, and a personalized TTS model regenerates it into a natural voice. It maximizes clarity while preserving the user's original tone of voice.
+
+Use Cases
+01
+
+Communication support for ALS patients
+
+02
+
+Rehabilitation after laryngeal cancer surgery
+
+03
+
+Assistant for stroke patients with language disorders
+
+04
+
+Communication training for children with developmental disabilities
+
+Security & Data Handling
+
+All voice data is processed on the device (on-device AI) and is not transmitted to an external server. It is preparing for medical device standard (FDA, MFDS) certification.
+
+FAQ
+Frequently Asked Questions
+01
+What types of speech impairments are supported?
+02
+Can the user's original voice be maintained?
+03
+How is sensitive medical and personal information secured?
+Contact Us
+Experience this solution firsthand
+
+Test in a real environment for 24 hours after approval and evaluate business suitability
+
+Demo
+Watch Tutorial
+Braindeck
+
+Providing enterprise solutions that innovate the boundary
+between humans and AI with AI technology
+
+© 2026 Braindeck. All rights reserved.
+
+Solutions
+Media & Content
+Health Care
+Industrial AX
+Contact
+braindeck@braindeck.net
++82-2-2088-7522
+2F, 33 Yangjaecheon-ro 11-gil
+Seocho-gu, Seoul, Republic of Korea
+Privacy PolicyTerms of ServiceCookie Policy
+
+Braindeck

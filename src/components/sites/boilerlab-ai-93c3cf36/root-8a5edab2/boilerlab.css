@@ -1,0 +1,2627 @@
+/*
+ * boilerlab.ai clone — page-scoped styles.
+ * Adapted verbatim from the live site's bundled CSS (see
+ * docs/research/boilerlab-ai-93c3cf36/root-8a5edab2/SOURCE_CUSTOM_CSS.css
+ * for the untouched source). Font-face declarations are handled by
+ * next/font/local in src/app/layout.tsx instead of manual @font-face here.
+ * Scoped to this page only — never imported from globals.css.
+ */
+
+.boilerlab-root {
+  --bg: #000;
+  --panel: rgb(5 5 10 / 94%);
+  --line: rgb(134 143 162 / 22%);
+  --muted: #8b8f9e;
+  --text: #d8dce8;
+  --accent: #eef2ff;
+  --mono-font: var(--font-jetbrains-mono), "Courier New", monospace;
+  --header-height-desktop: 4.25rem;
+  --footer-height-desktop: 4.25rem;
+  --header-height-mobile: 3.625rem;
+  --footer-height-mobile: 3.75rem;
+  --transition-wheel: 0.68s;
+  --transition-horizontal: 1.15s;
+  --transition-vertical: 1.3s;
+  --transition-vertical-move: 1.18s;
+  --transition-vertical-enter-delay: 0.12s;
+  --transition-partners-products-fade-delay: 0.68s;
+  --transition-partners-products-fade: 0.54s;
+  --transition-stars-fade-in: 0.12s;
+  --transition-stars-fade-out: 0.52s;
+
+  color-scheme: dark;
+  font-family: var(--font-overused-grotesk), Inter, "Helvetica Neue", Arial, sans-serif;
+  position: fixed;
+  inset: 0;
+  background: #000;
+  overflow: hidden;
+}
+
+.boilerlab-root * {
+  box-sizing: border-box;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.boilerlab-root *::-webkit-scrollbar {
+  display: none;
+  width: 0;
+}
+
+.boilerlab-root[data-loading] .site-header .logo-link,
+.boilerlab-root[data-loading] .site-footer,
+.boilerlab-root[data-loading] .reveal {
+  opacity: 0;
+  pointer-events: none;
+}
+.boilerlab-root .site-header .logo-link,
+.boilerlab-root .site-footer,
+.boilerlab-root .reveal {
+  transition: opacity 0.6s ease-out;
+}
+
+/* ---------- Header / footer chrome ---------- */
+.site-header,
+.site-footer {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  padding: 1.25rem;
+}
+.site-header {
+  top: 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  height: var(--header-height-desktop);
+}
+.site-footer {
+  bottom: 0;
+  height: var(--footer-height-desktop);
+}
+.logo-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Logo sits at the left edge (it used to be centered in column 2). */
+.site-header .logo-link {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+  /* About one letter in from the edge (user request). */
+  margin-left: 1.5rem;
+}
+.logo-link img {
+  display: block;
+  width: 13.75rem;
+  height: auto;
+}
+.logo-text {
+  display: block;
+  color: #fff;
+  font-family: var(--font-overused-grotesk), Inter, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  white-space: nowrap;
+}
+@media (width <= 760px) {
+  .logo-text {
+    font-size: 1.0625rem;
+  }
+}
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  grid-column: 3;
+  justify-self: end;
+}
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+}
+.header-nav-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #ccc;
+  font-family: var(--font-overused-grotesk), Inter, "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.15s ease-out;
+}
+@media (hover: hover) and (pointer: fine) {
+  .header-nav-link:hover {
+    color: #fff;
+  }
+}
+@media (width <= 900px) {
+  .header-nav {
+    gap: 1.25rem;
+  }
+  .header-nav-link {
+    font-size: 0.8125rem;
+  }
+}
+@media (width <= 640px) {
+  .header-nav {
+    gap: 0.875rem;
+  }
+  .header-nav-link {
+    font-size: 0.75rem;
+  }
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+.header-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.25rem;
+  padding: 0 1.125rem;
+  border: 0.0625rem solid #ffffff1f;
+  border-radius: 999rem;
+  background: #ffffff14;
+  color: #fff;
+  font-family: var(--mono-font);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease-out;
+}
+@media (hover: hover) and (pointer: fine) {
+  .header-pill:hover {
+    background: #ffffff22;
+  }
+}
+@media (width <= 760px) {
+  .header-pill {
+    height: 2rem;
+    padding: 0 0.875rem;
+    font-size: 0.75rem;
+  }
+}
+.footer-nav {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) auto;
+  gap: 0.625rem;
+  align-items: center;
+  user-select: none;
+}
+.footer-nav a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  color: #dde1ecad;
+  font-weight: 400;
+  font-family: var(--mono-font);
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.footer-nav a span {
+  display: inline-block;
+  transform-origin: center;
+}
+.footer-nav.is-ready a {
+  transition: color 0.3s ease-out, font-size 0.3s ease-out;
+}
+.footer-nav.is-ready a span {
+  transition: transform 0.3s ease-out;
+}
+.footer-nav a:after {
+  flex: 1;
+  height: 0.0625rem;
+  min-width: 1.5rem;
+  margin-left: 0.875rem;
+  background: var(--line);
+  content: "";
+}
+.footer-nav a:last-child:after {
+  display: none;
+}
+.footer-nav a:last-child {
+  justify-content: flex-end;
+}
+.footer-nav a.is-active {
+  color: #fff;
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+}
+.footer-nav a.is-active span {
+  transform: translateY(-0.42em);
+}
+@media (hover: hover) and (pointer: fine) {
+  .footer-nav a:hover {
+    color: var(--accent);
+  }
+}
+.solutions-menu {
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  border: 0.0625rem solid rgb(226 231 242 / 20%);
+  border-radius: 0.75rem;
+  background: var(--panel);
+  backdrop-filter: blur(0.625rem);
+  box-shadow: 0 1rem 3rem rgb(0 0 0 / 50%);
+  overflow: hidden;
+}
+.solutions-menu-categories {
+  display: flex;
+  flex-direction: column;
+  min-width: 10rem;
+  margin: 0;
+  padding: 0.5rem;
+  list-style: none;
+}
+.solutions-menu-categories a {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: none;
+  color: var(--text);
+  font-family: var(--mono-font);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.15s ease-out, color 0.15s ease-out;
+}
+.solutions-menu-categories a.is-active {
+  background: #ffffff14;
+  color: #fff;
+}
+.solutions-menu-subitems {
+  display: flex;
+  min-width: 14rem;
+  flex-direction: column;
+  gap: 0.375rem;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-left: 0.0625rem solid rgb(226 231 242 / 15%);
+  list-style: none;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.solutions-menu-subitems a {
+  color: #dde1ecad;
+  text-decoration: none;
+  transition: color 0.15s ease-out;
+}
+@media (hover: hover) and (pointer: fine) {
+  .solutions-menu-subitems a:hover {
+    color: #fff;
+  }
+}
+/* Header's Solution mega-menu: two independent floating boxes (see
+   HeaderSolutionsMenu's own comment) rather than one flex row sharing the
+   footer menu's .solutions-menu — so the categories box never has to react
+   to the sub-items flyout's own size. */
+.header-solutions-panel {
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  min-width: 12rem;
+  margin: 0;
+  padding: 0.5rem;
+  border: 0.0625rem solid rgb(226 231 242 / 20%);
+  border-radius: 0.75rem;
+  background: var(--panel);
+  backdrop-filter: blur(0.625rem);
+  box-shadow: 0 1rem 3rem rgb(0 0 0 / 50%);
+}
+.header-solutions-panel a {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: none;
+  color: var(--text);
+  font-family: var(--mono-font);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.15s ease-out, color 0.15s ease-out;
+}
+.header-solutions-panel a.is-active {
+  background: #ffffff14;
+  color: #fff;
+}
+.header-solutions-subpanel {
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  min-width: 15rem;
+  padding: 0.75rem 1rem;
+  border: 0.0625rem solid rgb(226 231 242 / 20%);
+  border-radius: 0.75rem;
+  background: var(--panel);
+  backdrop-filter: blur(0.625rem);
+  box-shadow: 0 1rem 3rem rgb(0 0 0 / 50%);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.header-solutions-subpanel a {
+  color: #dde1ecad;
+  text-decoration: none;
+  transition: color 0.15s ease-out;
+}
+@media (hover: hover) and (pointer: fine) {
+  .header-solutions-subpanel a:hover {
+    color: #fff;
+  }
+}
+@media (width <= 760px) {
+  .site-footer {
+    height: var(--footer-height-mobile);
+    padding: 0.875rem 1.25rem;
+  }
+  .site-header {
+    height: var(--header-height-mobile);
+    display: flex;
+    justify-content: space-between;
+  }
+  .site-header .logo-link {
+    grid-column: auto;
+    justify-self: auto;
+    margin-left: 0;
+  }
+  .header-right {
+    grid-column: auto;
+    justify-self: auto;
+  }
+  .logo-link img {
+    width: 8.25rem;
+  }
+  .footer-nav {
+    display: flex;
+    gap: 1.125rem;
+    overflow-x: auto;
+    padding-bottom: 0.125rem;
+  }
+  .footer-nav a {
+    flex: 0 0 auto;
+    font-size: 1.25rem;
+  }
+  .footer-nav a span {
+    transform: scale(0.62);
+  }
+  .footer-nav a.is-active span {
+    transform: scale(1);
+  }
+  .footer-nav a:after {
+    width: 2.125rem;
+    flex: 0 0 2.125rem;
+  }
+}
+
+/* ---------- Buttons ---------- */
+.button {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 999rem;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  border: 0;
+  cursor: pointer;
+  overflow: hidden;
+  transition: box-shadow 0.28s ease-out, background-color 0.16s ease-out, color 0.2s ease-out,
+    scale 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.28s ease-out, outline-color 0.2s ease-out;
+}
+.primary-button {
+  background: #fff;
+  box-shadow: 0 0.321rem 0.321rem #4d576a14;
+  color: #040404;
+  font-weight: 500;
+  line-height: 100%;
+  gap: 0.5625rem;
+}
+.primary-button:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(105deg, #fff0 20%, #ffffff73, #fff0 80%);
+  transform: translate(-140%) skew(-8deg);
+  pointer-events: none;
+}
+.primary-button.default {
+  font-size: 1.25rem;
+  height: 3rem;
+  padding: 0.875rem 1.5rem;
+}
+.primary-button.big {
+  font-size: 1.875rem;
+  height: 4.375rem;
+  padding: 1.25rem 2.25rem;
+}
+.secondary-button {
+  height: 2.75rem;
+  padding: 0.875rem 1.25rem;
+  color: #dee3efb8;
+  font-family: var(--mono-font);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 100%;
+  letter-spacing: -0.03rem;
+  text-transform: uppercase;
+  background: #ffffff1a;
+  backdrop-filter: blur(0.625rem);
+}
+.primary-button:focus-visible {
+  box-shadow: 0 0 0 0.0625rem #ffffff7f, 0 0.125rem 0.875rem #fff6, 0 1.25rem 3.75rem #0009;
+}
+@media (hover: hover) and (pointer: fine) {
+  .primary-button:hover {
+    box-shadow: 0 0 0 0.0625rem #ffffff4d, 0 0.125rem 0.625rem #ffffff47, 0 0.5rem 2rem #ffffff1a,
+      0 2rem 5rem -0.5rem #0000008c;
+    scale: 1.04;
+    filter: brightness(1.03);
+  }
+  .primary-button:hover:before {
+    transform: translate(140%) skew(-8deg);
+    transition: transform 1.1s cubic-bezier(0.37, 0.13, 0.27, 0.95);
+  }
+  .primary-button:active {
+    background: #d6d6d6;
+    box-shadow: 0 0 0 0.0625rem #ffffff1a, inset 0 0.0625rem 0.25rem #00000024;
+    scale: 0.96;
+    filter: brightness(0.98);
+    transition: box-shadow 80ms ease-out, background-color 80ms ease-out, scale 80ms ease-out,
+      filter 80ms ease-out;
+  }
+  .secondary-button:hover {
+    background: #ffffff2b;
+    box-shadow: 0 0 0 0.0625rem #ffffff47, 0 0.25rem 1.5rem #ffffff0f;
+    backdrop-filter: blur(1rem);
+    color: #dee3efeb;
+    scale: 1.03;
+  }
+  .secondary-button:active {
+    background: #ffffff14;
+    box-shadow: 0 0 0 0.0625rem #ffffff1f;
+    backdrop-filter: blur(0.5rem);
+    color: #dee3ef8c;
+    scale: 0.96;
+    transition: box-shadow 80ms ease-out, background-color 80ms ease-out, scale 80ms ease-out,
+      color 80ms ease-out, filter 80ms ease-out;
+  }
+}
+
+/* ---------- Star canvas ---------- */
+#star-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  visibility: visible;
+  pointer-events: none;
+  background-color: transparent;
+  opacity: 1;
+  transition: opacity var(--transition-stars-fade-in) ease-out, visibility 0s linear 0s;
+}
+/* Ambient nebula glow, sitting behind the star canvas's own <canvas> (which
+   paints after this pseudo-element in DOM order, so the stars stay on top).
+   Oversized via a negative inset so the blur's soft falloff never shows a
+   hard box edge at the viewport border, and it fades in/out together with
+   the stars (same .stars-hidden trigger) since the Products slide's light
+   background would clash with it. */
+#star-canvas:before {
+  position: absolute;
+  inset: -20%;
+  content: "";
+  background: radial-gradient(45% 38% at 58% 38%, rgb(13 42 74 / 55%), transparent 70%),
+    radial-gradient(42% 34% at 42% 58%, rgb(10 58 42 / 50%), transparent 70%);
+  filter: blur(6.25rem);
+  opacity: 0.9;
+  pointer-events: none;
+}
+#star-canvas.stars-hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity var(--transition-stars-fade-out) ease-out,
+    visibility 0s linear var(--transition-stars-fade-out);
+}
+
+/* ---------- Reveal deck core ---------- */
+.reveal {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  height: 100dvh;
+  color: var(--text);
+  background: transparent;
+}
+.reveal .slides {
+  width: 100vw !important;
+  height: 100dvh !important;
+  perspective: 75rem;
+  text-align: left;
+}
+.reveal .slides section {
+  height: 100%;
+  padding: 0;
+}
+.slide {
+  overflow: hidden;
+  background: transparent;
+}
+.slide:before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  content: "";
+  pointer-events: none;
+}
+.stars-slide:before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  content: "";
+  pointer-events: none;
+  opacity: 1;
+}
+.stars-slide:after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  width: 41rem;
+  height: 41rem;
+  border-radius: 41rem;
+  aspect-ratio: 1 / 1;
+  background: radial-gradient(50% 50% at 50% 50%, #000c, #0000);
+  content: "";
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+/* Custom transition classes — applied/removed by SlideDeck.tsx around navigation.
+   NOTE: slide-in/out-fwd-center's own @keyframes are NOT present in the site's
+   shipped CSS (that transition is driven by its minified JS bundle, not CSS),
+   so the depth/opacity keyframes below are a faithful approximation matching
+   the site's declared z-index layering and .reveal .slides{perspective:75rem}
+   3D context — not a byte-exact extraction. Everything else in this file is
+   copied from the site's actual computed/source CSS. */
+.slide-enter-fwd {
+  animation: slide-in-fwd-center var(--transition-horizontal) cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.slide-exit-fwd {
+  animation: slide-out-fwd-center var(--transition-horizontal) cubic-bezier(0.45, 0, 0.2, 1) both;
+}
+/* slide-enter-down/up and slide-exit-up/down below are extracted verbatim
+   (real keyframes/timing from the source CSS) but BoilerLabApp.tsx no longer
+   assigns them: instrumented side-by-side timing tests against the live site
+   (real click() vs synthetic ArrowRight/wheel events, opacity sampled every
+   ~20ms in one continuous page-side loop) found no distinct "vertical" style
+   for same-topic hops — every keyboard/wheel step measured ~1.15-1.2s
+   matching slide-enter-fwd/exit-fwd, regardless of topic. Left in place in
+   case a future test (e.g. touch swipe, or arrow Up/Down specifically)
+   turns out to trigger them; kept as dead CSS rather than deleted so the
+   source-derived values aren't lost. */
+.slide-enter-down {
+  animation: slide-in-bottom var(--transition-vertical-move) cubic-bezier(0.19, 1, 0.22, 1)
+    var(--transition-vertical-enter-delay) both;
+}
+.slide-exit-up {
+  animation: slide-out-top var(--transition-vertical-move) cubic-bezier(0.45, 0, 0.2, 1) both;
+}
+.slide-enter-up {
+  animation: slide-in-top var(--transition-vertical-move) cubic-bezier(0.19, 1, 0.22, 1)
+    var(--transition-vertical-enter-delay) both;
+}
+.slide-exit-down {
+  animation: slide-out-bottom var(--transition-vertical-move) cubic-bezier(0.45, 0, 0.2, 1) both;
+}
+.slide-enter-fade {
+  animation: slide-in-fade var(--transition-wheel) cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.slide-exit-fade {
+  animation: slide-out-fade 0.36s ease-out both;
+}
+.slide-enter-fade-after {
+  animation: slide-in-fade var(--transition-partners-products-fade) cubic-bezier(0.16, 1, 0.3, 1)
+    var(--transition-partners-products-fade-delay) both;
+}
+@keyframes slide-in-fwd-center {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, -37.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+@keyframes slide-out-fwd-center {
+  0% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 0, 37.5rem);
+  }
+}
+@keyframes slide-in-bottom {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 22vh, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+@keyframes slide-out-top {
+  0% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, -22vh, 0);
+  }
+}
+@keyframes slide-in-top {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -22vh, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+@keyframes slide-out-bottom {
+  0% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 22vh, 0);
+  }
+}
+@keyframes slide-in-fade {
+  0% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slide-out-fade {
+  0% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* ---------- Shared slide content typography ---------- */
+.slide-inner {
+  position: relative;
+  display: flex;
+  min-height: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  padding: 7.5rem 8vw 7.375rem;
+}
+.stars-slide-inner {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  backface-visibility: hidden;
+}
+.hero-content {
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
+}
+.eyebrow,
+.hero-content h1 {
+  margin: 0;
+  font-size: 7.3125rem;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 0.94;
+  padding-block: 0.06em 0.12em;
+  text-align: center;
+  color: #adb5c2;
+  text-shadow: -0.0688rem 0 rgb(184 143 151 / 45%), 0.0688rem 0 rgb(134 163 188 / 45%);
+}
+h2.eyebrow {
+  font-size: 6.25rem;
+}
+h3.eyebrow {
+  font-size: 4.375rem;
+}
+/* Neon glow on the hero title's trailing "the Next" only — scoped to
+   .hero-slide so the many other .eyebrow uses sitewide (category badges,
+   section labels) stay untouched. "Inspiring" is the saved content's own
+   leading <span> (see mission.eyebrow in solutions-data/site-edits); "the
+   Next" is plain text that's a direct child of this h1, with no element of
+   its own to target — so the glow is set here, on the h1, where it's
+   inherited by both, and then explicitly cancelled back to the plain
+   chromatic-fringe shadow on that leading span so only the un-wrapped "the
+   Next" text keeps it. Kept faint (small blur radii, low alpha) so it reads
+   as an ambient glow rather than a hard neon outline. */
+.hero-slide .eyebrow {
+  text-shadow: -0.0688rem 0 rgb(184 143 151 / 45%), 0.0688rem 0 rgb(134 163 188 / 45%), 0 0 0.1875rem #00c853,
+    0 0 0.375rem rgb(0 200 83 / 55%);
+  animation: hero-title-glow 4s ease-in-out infinite;
+}
+.hero-slide .eyebrow > span:first-child {
+  text-shadow: -0.0688rem 0 rgb(184 143 151 / 45%), 0.0688rem 0 rgb(134 163 188 / 45%);
+  animation: none;
+}
+@keyframes hero-title-glow {
+  0%,
+  100% {
+    text-shadow: -0.0688rem 0 rgb(184 143 151 / 45%), 0.0688rem 0 rgb(134 163 188 / 45%), 0 0 0.1875rem #00c853,
+      0 0 0.375rem rgb(0 200 83 / 55%);
+  }
+  50% {
+    text-shadow: -0.0688rem 0 rgb(184 143 151 / 45%), 0.0688rem 0 rgb(134 163 188 / 45%), 0 0 0.25rem #00c853,
+      0 0 0.625rem rgb(0 200 83 / 65%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide .eyebrow {
+    animation: none;
+  }
+}
+.text-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.subtitle,
+.scroll-hint {
+  font-family: var(--mono-font);
+  text-transform: uppercase;
+}
+.subtitle {
+  color: #e2e7f2e0;
+  font-size: clamp(0.75rem, 1.25vw, 1.0625rem);
+  letter-spacing: 0.08em;
+}
+.scroll-hint {
+  margin: 3.875rem 0 0;
+  color: #ffffff7f;
+  text-align: center;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.72em;
+}
+.worldwide {
+  letter-spacing: 0.615rem;
+}
+.mission-content {
+  justify-content: center;
+  max-width: 71.25rem;
+  min-height: 1lh;
+  align-self: center;
+  gap: 1.25rem;
+}
+.mission-content p {
+  color: #b5c0ca;
+  font-size: 2.4375rem;
+  font-weight: 600;
+  line-height: 110%;
+  letter-spacing: -0.025rem;
+  margin: 0;
+  text-align: left;
+}
+.mission-content p:last-child {
+  min-height: 2.625rem;
+}
+@media (width <= 760px) {
+  .hero-content {
+    gap: 0.5rem;
+  }
+  .reveal {
+    height: 100dvh;
+  }
+  .slide-inner {
+    padding: 5.75rem 1.875rem;
+  }
+  .hero-slide .slide-inner {
+    justify-content: flex-start;
+    padding-top: 26dvh;
+  }
+  h1.eyebrow {
+    max-width: none;
+    font-size: clamp(2.25rem, calc((100vw - 3.75rem) / 6), 3.5625rem);
+    letter-spacing: -0.04em;
+    line-height: 0.86;
+    white-space: nowrap;
+  }
+  h2.eyebrow,
+  h3.eyebrow {
+    font-size: 2.625rem;
+  }
+  .subtitle {
+    max-width: 20.625rem;
+    font-size: 1rem;
+    line-height: 1.45;
+    letter-spacing: -0.01rem;
+  }
+  .worldwide {
+    letter-spacing: inherit;
+  }
+  .scroll-hint {
+    position: absolute;
+    font-size: 0.625rem;
+    white-space: nowrap;
+    bottom: 9.75rem;
+    left: 50%;
+    transform: translate(-50%);
+  }
+  .mission-content p {
+    max-width: 20.625rem;
+    font-size: 1.875rem;
+    letter-spacing: -0.0187rem;
+  }
+}
+
+/* ---------- Typewriter ---------- */
+[data-typewriter] .typewriter-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+/* A space-less Japanese sentence is a single "word": let it wrap between
+   phrases instead of running off as one line. */
+[data-typewriter] .typewriter-word-cjk {
+  display: inline;
+  white-space: normal;
+  word-break: auto-phrase;
+}
+@keyframes typewriter-cursor-blink {
+  50% {
+    opacity: 0;
+  }
+}
+/* Opt-in blinking type-cursor (Typewriter's `cursor` prop): a real trailing
+   element (not a `:after` on the whole text) so it visibly sits right after
+   whatever's been typed *so far* and moves along as more characters render,
+   instead of sitting at the fully-typed text's final position from frame
+   one. Scoped behind an explicit prop rather than every `[data-typewriter]`
+   instance sitewide (contacts' address lines, footer bits, etc.) so it
+   doesn't clutter a page with several of them visible at once. */
+.typewriter-cursor {
+  display: inline-block;
+  width: 0.125rem;
+  height: 0.85em;
+  margin-left: 0.15em;
+  vertical-align: text-bottom;
+  background: currentColor;
+  animation: typewriter-cursor-blink 0.7s step-end infinite;
+}
+/* Once typing finishes, fade the cursor out after a short pause instead of
+   leaving it blinking there forever. */
+.typewriter-cursor.typewriter-cursor-settled {
+  animation: typewriter-cursor-blink 0.7s step-end 2, typewriter-cursor-fade-out 0.4s ease-in 1.4s both;
+}
+@keyframes typewriter-cursor-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+/* ---------- Partners slide ---------- */
+.partners-content {
+  --partners-copy-delay: 0.48s;
+  --partners-copy-duration: 0.72s;
+  --partners-copy-rise: -7.125rem;
+  --partners-panel-fade-delay: 1.08s;
+  --partners-panel-fade-duration: 0.2s;
+  --partners-panel-delay: 1.18s;
+  --partners-panel-duration: 0.84s;
+  --partners-content-delay: 1.42s;
+  --partners-content-duration: 0.48s;
+  --partners-settle-duration: 0.32s;
+  --partners-panel-strip-width: 1.4625rem;
+  --partners-panel-width: min(61.75rem, calc(100vw - 4.5rem));
+  /* Taller than the live site's logo-only strip to fit an image + caption
+     per card (see .partner-logo) instead of a bare logo. */
+  --partners-panel-height: 13.975rem;
+  --partners-panel-half-height: 6.9875rem;
+  position: relative;
+  align-items: center;
+}
+.partners-hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.375rem;
+}
+.partners-hero-copy .eyebrow {
+  margin-top: -0.375rem;
+  margin-bottom: 0.25rem;
+}
+.partners-showcase-frame {
+  --partners-frame-offset-y: 2.625rem;
+  --partners-frame-center-y: calc(var(--partners-frame-offset-y) + var(--partners-panel-half-height));
+  position: absolute;
+  top: calc(50% + var(--partners-frame-center-y));
+  left: 50%;
+  width: var(--partners-panel-strip-width);
+  height: var(--partners-panel-height);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transform-origin: 50% 50%;
+  contain: layout;
+  will-change: width, opacity;
+}
+.partners-showcase {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+  border: 0.0625rem solid rgb(226 231 242 / 38%);
+  padding-top: 1.5rem;
+}
+.partners-showcase:before,
+.partners-showcase:after {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  width: 4.375rem;
+  height: 100%;
+  background: linear-gradient(270deg, #0000, #000);
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+}
+.partners-showcase:before {
+  left: 0;
+}
+.partners-showcase:after {
+  right: 0;
+  transform: rotate(180deg);
+}
+.partners-node {
+  position: absolute;
+  z-index: 2;
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 0.0625rem solid #040409;
+  background: #c5ccdc;
+  opacity: 1;
+}
+.partners-node-top-left {
+  top: -0.25rem;
+  left: -0.25rem;
+}
+.partners-node-top-right {
+  top: -0.25rem;
+  right: -0.25rem;
+}
+.partners-node-bottom-left {
+  bottom: -0.25rem;
+  left: -0.25rem;
+}
+.partners-node-bottom-right {
+  right: -0.25rem;
+  bottom: -0.25rem;
+}
+.partners-label {
+  position: absolute;
+  top: 1.5rem;
+  left: 50%;
+  margin: 0;
+  color: #e2e7f257;
+  font-family: var(--mono-font);
+  font-weight: 400;
+  font-size: 0.875rem;
+  letter-spacing: 0.0875rem;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translate(-50%, 0.5rem);
+  white-space: nowrap;
+}
+.partners-logos-viewport {
+  --partners-logo-gap: 3.9rem;
+  flex: 0 0 var(--partners-panel-width);
+  width: var(--partners-panel-width);
+  margin: 0.5rem 0 0;
+  opacity: 0;
+  transform: translateY(0.625rem);
+}
+.partners-logos-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  height: 10.725rem;
+  margin: 0;
+  padding: 0;
+  animation: partners-logos-scroll 24s linear infinite;
+  will-change: transform;
+}
+.partners-logos {
+  display: flex;
+  align-items: center;
+  gap: var(--partners-logo-gap);
+  margin: 0;
+  padding: 0 var(--partners-logo-gap) 0 0;
+  list-style: none;
+}
+.partner-logo {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+}
+.partner-logo img {
+  display: block;
+  width: 7.15rem;
+  height: 7.15rem;
+  max-width: none;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+.partner-logo-caption {
+  max-width: 9.1rem;
+  color: #e2e7f2b8;
+  font-size: 0.975rem;
+  line-height: 1.3;
+  text-align: center;
+  white-space: normal;
+}
+#partners.partners-open .partners-hero-copy,
+#partners.partners-leaving .partners-hero-copy {
+  transform: translateY(var(--partners-copy-rise));
+  transition: transform var(--partners-copy-duration) cubic-bezier(0.16, 1, 0.3, 1)
+    var(--partners-copy-delay);
+}
+#partners.partners-open .partners-showcase-frame,
+#partners.partners-leaving .partners-showcase-frame {
+  width: var(--partners-panel-width);
+  opacity: 1;
+  transition: opacity var(--partners-panel-fade-duration) ease-out var(--partners-panel-fade-delay),
+    width var(--partners-panel-duration) cubic-bezier(0.16, 1, 0.3, 1) var(--partners-panel-delay);
+}
+#partners.partners-open .partners-showcase:before,
+#partners.partners-open .partners-showcase:after,
+#partners.partners-leaving .partners-showcase:before,
+#partners.partners-leaving .partners-showcase:after {
+  opacity: 1;
+  transition: opacity var(--partners-content-duration) ease-out var(--partners-content-delay);
+}
+#partners.partners-open .partners-label,
+#partners.partners-leaving .partners-label {
+  opacity: 1;
+  transform: translate(-50%);
+  transition: opacity var(--partners-content-duration) ease-out var(--partners-content-delay),
+    transform var(--partners-content-duration) ease-out var(--partners-content-delay);
+}
+#partners.partners-open .partners-logos-viewport,
+#partners.partners-leaving .partners-logos-viewport {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--partners-content-duration) ease-out var(--partners-content-delay),
+    transform var(--partners-content-duration) ease-out var(--partners-content-delay);
+}
+#partners:is(.partners-leaving, .partners-settle)
+  :is(.partners-hero-copy, .partners-showcase-frame, .partners-label, .partners-logos-viewport),
+#partners:is(.partners-leaving, .partners-settle) .partners-showcase:before,
+#partners:is(.partners-leaving, .partners-settle) .partners-showcase:after {
+  transition-delay: 0ms;
+  transition-duration: var(--partners-settle-duration);
+}
+#partners.partners-open:not(.present, .partners-leaving) {
+  visibility: hidden;
+}
+#partners.partners-leaving {
+  visibility: visible !important;
+}
+@media (width <= 760px) {
+  .partners-content {
+    --partners-copy-rise: -6rem;
+  }
+  .partners-label {
+    font-size: 0.625rem;
+    letter-spacing: 0.0625rem;
+  }
+  .partners-showcase-frame {
+    --partners-frame-offset-y: 2rem;
+    --partners-panel-strip-width: 1rem;
+    --partners-panel-width: min(47.5rem, calc(100vw - 2.75rem));
+    --partners-panel-height: 6.6875rem;
+    --partners-panel-half-height: 3.3438rem;
+    width: var(--partners-panel-strip-width);
+    max-width: calc(100vw - 2.75rem);
+    height: var(--partners-panel-height);
+  }
+  .partners-showcase:before,
+  .partners-showcase:after {
+    width: 2.75rem;
+    height: 8.25rem;
+  }
+  .partners-logos-viewport {
+    --partners-logo-gap: 2.125rem;
+  }
+  .partner-logo img {
+    width: min(var(--partner-logo-width), 7rem);
+  }
+}
+@keyframes partners-logos-scroll {
+  0% {
+    transform: translate(0);
+  }
+  to {
+    transform: translate(-33.3333%);
+  }
+}
+
+/* ---------- Products slide ---------- */
+.product-content {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  padding-right: 6.4vw;
+  padding-left: 6.4vw;
+  perspective: 75rem;
+  transform-style: preserve-3d;
+  margin: auto 3rem;
+}
+.product-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  display: flex;
+  width: min(84rem, 100%);
+  gap: 1.25rem;
+  align-items: flex-start;
+  background: var(--bg);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(-50%, -50%, 0);
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease-out;
+}
+.product-card:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: #000;
+  opacity: var(--card-dim, 0);
+  pointer-events: none;
+}
+.product-copy,
+.product-visual-image {
+  filter: blur(var(--card-blur, 0));
+  will-change: filter;
+}
+.product-copy {
+  display: flex;
+  flex: 1 0 0;
+  align-self: stretch;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: clamp(1.375rem, 2.1vw, 1.875rem) clamp(1.375rem, 2.1vw, 1.875rem) clamp(1.375rem, 2.1vw, 1.875rem) 0;
+  border-top: 0.0625rem solid rgb(255 255 255 / 12%);
+  border-bottom: 0.0625rem solid rgb(255 255 255 / 12%);
+}
+.product-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  gap: 1.25rem;
+}
+.product-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #fff;
+  font-size: 2.625rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: -0.0788rem;
+}
+/* The original heading (name + logo, left of "Learn more ->" inside
+   `.product-header`) only — not `.product-heading-above`, the standalone
+   duplicate placed above `.product-copy`'s divider, which keeps the full
+   size above. Scaled to 0.7x across all breakpoints (see the two overrides
+   further down too) so it stays consistent instead of just shrinking on
+   desktop. */
+.product-header .product-heading {
+  font-size: 1.8375rem;
+}
+/* Real braindeck.net markup for this badge is `w-12 h-12 bg-accent/10
+   rounded-xl flex items-center justify-center text-accent` around a
+   lucide-react icon — reproduced directly instead of the earlier raster
+   logo `<img>` this replaced. */
+.product-heading-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: clamp(2.375rem, 3.35vw, 3rem);
+  height: clamp(2.375rem, 3.35vw, 3rem);
+  border-radius: 0.75rem;
+  background: rgba(71, 229, 32, 0.12);
+  color: #47e520;
+}
+.product-heading-icon svg {
+  width: 55%;
+  height: 55%;
+}
+.product-heading h2 {
+  margin: 0;
+  font: inherit;
+  letter-spacing: inherit;
+}
+.product-link {
+  align-self: center;
+  /* `.button`'s own `overflow: hidden` (needed to clip the hover light-sweep
+     pseudo-element) has a side effect in a flex row: it makes this item's
+     automatic min-width act as 0 instead of "at least my content's size"
+     (that protection is spec'd to apply only to `overflow: visible` flex
+     items) — so `.product-header`'s `justify-content: space-between` could
+     squeeze this button narrower than "Learn more ->" actually needs
+     whenever the heading name next to it ran long, clipping the button's
+     own text against its now-too-small box. `flex-shrink: 0` keeps this
+     item at its natural size always, so a long heading wraps instead. */
+  flex-shrink: 0;
+}
+.product-link.primary-button.default {
+  height: clamp(2.5rem, 3.35vw, 3rem);
+  padding: clamp(0.6875rem, 1vw, 0.875rem) clamp(1.125rem, 1.7vw, 1.5rem);
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+}
+.product-link.primary-button:hover {
+  box-shadow: 0 0 0 0.0625rem #fff3, 0 0.125rem 0.5rem #fff3, 0 0.321rem 0.321rem #4d576a14;
+  scale: 1.03;
+}
+.product-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(0.875rem, 1.4vw, 1.25rem);
+  align-self: stretch;
+}
+.product-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(0.375rem, 0.56vw, 0.5rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.product-tags li {
+  display: flex;
+  align-items: center;
+  padding: clamp(0.25rem, 0.42vw, 0.375rem) clamp(0.4375rem, 0.7vw, 0.625rem);
+  border-radius: 0.375rem;
+  color: #fff;
+  font-family: var(--mono-font);
+  font-size: clamp(0.6875rem, 1vw, 0.875rem);
+  font-weight: 400;
+  line-height: 100%;
+  letter-spacing: -0.0262rem;
+  text-align: center;
+  text-transform: uppercase;
+  background: #ffffff24;
+}
+.product-info h3,
+.product-info p {
+  margin: 0;
+}
+.product-info h3 {
+  color: #fff;
+  font-size: clamp(2.125rem, 3.45vw, 3.125rem);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 90%;
+  letter-spacing: -0.0313rem;
+}
+.product-info p {
+  max-width: 40.625rem;
+  color: #fff;
+  font-size: clamp(1.0625rem, 1.67vw, 1.5rem);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  letter-spacing: -0.015rem;
+}
+.product-visual {
+  width: min(41.5rem, 49.405%);
+  aspect-ratio: 664 / 500;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.product-visual-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+@media (width <= 1180px) {
+  .product-card {
+    align-items: stretch;
+  }
+}
+@media (width <= 1000px) {
+  .product-content {
+    padding-right: 3.2vw;
+    padding-left: 3.2vw;
+    margin: auto 1.5rem;
+  }
+  .product-card {
+    gap: 1rem;
+  }
+  .product-copy {
+    gap: 1rem;
+    padding: 1.125rem 1.125rem 1.125rem 0;
+  }
+  .product-header {
+    gap: 0.875rem;
+  }
+  .product-heading {
+    gap: 0.5rem;
+    font-size: 1.875rem;
+    letter-spacing: -0.0563rem;
+  }
+  .product-header .product-heading {
+    font-size: 1.3125rem;
+  }
+  .product-heading-icon {
+    width: 2.125rem;
+    height: 2.125rem;
+  }
+  .product-link.primary-button.default {
+    height: 2.375rem;
+    padding: 0.625rem 1rem;
+    font-size: 0.9375rem;
+  }
+  .product-info {
+    gap: 0.75rem;
+  }
+  .product-info h3 {
+    font-size: 1.5rem;
+    line-height: 0.95;
+    letter-spacing: -0.0187rem;
+  }
+  .product-info p {
+    font-size: 1rem;
+    line-height: 135%;
+    letter-spacing: -0.01rem;
+  }
+  .product-tags li {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.6875rem;
+  }
+  .product-visual {
+    width: min(25rem, 44%);
+  }
+}
+@media (width <= 820px) {
+  .product-slide {
+    overflow: hidden auto;
+    overscroll-behavior-y: contain;
+    height: calc(100dvh - var(--header-height-mobile) - var(--footer-height-mobile));
+    top: var(--header-height-mobile);
+    mask-image: linear-gradient(to bottom, transparent, #000 3rem, #000 calc(100% - 3rem), transparent);
+  }
+  .product-content {
+    min-height: 100%;
+    height: auto;
+    gap: 1.875rem;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 0 1rem 4rem;
+    perspective: none;
+    transform-style: flat;
+    margin: 0;
+    max-width: 31.25rem;
+    justify-self: center;
+  }
+  .product-card {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    z-index: auto !important;
+    width: 100%;
+    flex-direction: column;
+    gap: 1.5rem;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    filter: none !important;
+    transform: none !important;
+    transition: none;
+    visibility: visible !important;
+    will-change: auto;
+  }
+  .product-card:after {
+    display: none;
+  }
+  .product-copy,
+  .product-visual-image {
+    filter: none;
+    will-change: auto;
+  }
+  .product-copy {
+    gap: 1.375rem;
+    padding: 0 0 1.875rem;
+    border-top: 0;
+  }
+  .product-header {
+    gap: 1.125rem;
+    align-items: center;
+  }
+  .product-heading {
+    gap: 0.5rem;
+    font-size: 1.75rem;
+  }
+  .product-header .product-heading {
+    font-size: 1.225rem;
+  }
+  .product-heading-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+  .product-info h3 {
+    font-size: 1.75rem;
+    line-height: 0.98;
+  }
+  .product-info p {
+    font-size: 1.125rem;
+    line-height: 140%;
+    letter-spacing: -0.0112rem;
+  }
+  .product-link {
+    align-self: center;
+  }
+  .product-tags {
+    gap: 0.375rem;
+  }
+  .product-tags li {
+    font-size: 0.75rem;
+  }
+  .product-visual {
+    order: -1;
+    width: 100%;
+  }
+}
+
+/* ---------- In-press slide ---------- */
+.in-press-content {
+  align-items: stretch;
+  padding: 0;
+}
+.in-press-orbit {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  isolation: isolate;
+}
+.in-press-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  width: min(34rem, 58vw);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.in-press-orbit .in-press-card {
+  position: absolute;
+  top: var(--press-top);
+  left: var(--press-left);
+  z-index: var(--press-z);
+  display: block;
+  width: min(var(--press-width), 40vw);
+  color: #e8ebf3e0;
+  text-decoration: none;
+  transform: translate3d(-50%, -50%, 0) rotate(var(--press-rotate));
+  transform-origin: center;
+  outline: 0;
+  will-change: transform;
+}
+.in-press-card-surface {
+  display: flex;
+  min-height: 13.325rem;
+  flex-direction: column;
+  gap: 0.975rem;
+  padding: 1.95rem;
+  text-align: left;
+  overflow: hidden;
+  position: relative;
+  border: 0.0625rem solid transparent;
+  border-radius: 1rem;
+  background: linear-gradient(180deg, #1b1b1bcc, #1f1f1fcc);
+  box-shadow: inset 0 0.0625rem #ffffff14, 0 1.5rem 4rem #00000052;
+  animation: in-press-float var(--press-duration) ease-in-out var(--press-delay) infinite alternate;
+  backdrop-filter: blur(0.4375rem);
+  transition: border-color 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
+}
+.in-press-card strong {
+  display: block;
+  color: #f6f8ffdb;
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+.in-press-card p {
+  display: block;
+  max-height: 7.475rem;
+  margin: 0;
+  overflow: hidden;
+  color: #ebeef6c2;
+  white-space: pre-line;
+  font-size: 1.22rem;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+.in-press-card:focus-visible .in-press-card-surface {
+  border-color: #ffffffb8;
+  box-shadow: 0 0 0 0.1875rem #ffffff2e, 0 1.75rem 4.5rem #0000006b;
+}
+@media (hover: hover) and (pointer: fine) {
+  .in-press-card:hover .in-press-card-surface {
+    border-color: #ffffff38;
+    box-shadow: inset 0 0.0625rem #ffffff24, 0 1.875rem 5.5rem #0000006b, 0 0 2.5rem #d0dcff14;
+    filter: brightness(1.08);
+  }
+}
+.in-press-slide:not(.present) .in-press-title,
+.in-press-slide:not(.present) .in-press-card {
+  opacity: 0;
+}
+.in-press-slide.present .in-press-title {
+  animation: in-press-title-in 0.62s cubic-bezier(0.16, 1, 0.3, 1) 80ms backwards;
+}
+.in-press-slide.present .in-press-card {
+  animation: in-press-card-in 0.76s cubic-bezier(0.16, 1, 0.3, 1)
+    calc(0.44s + var(--press-index, 0) * 95ms) backwards;
+}
+@media (width <= 1180px) {
+  .in-press-card {
+    width: calc(var(--press-width) * 0.9);
+  }
+  .in-press-card p {
+    font-size: 1.14rem;
+  }
+}
+@media (width <= 820px) {
+  .in-press-slide {
+    overflow: hidden auto;
+    overscroll-behavior-y: contain;
+    height: calc(100dvh - var(--header-height-mobile) - var(--footer-height-mobile));
+    top: var(--header-height-mobile);
+    mask-image: linear-gradient(to bottom, transparent, #000 3rem, #000 calc(100% - 3rem), transparent);
+  }
+  .in-press-content {
+    justify-content: flex-start;
+    align-items: center;
+    height: auto;
+    min-height: 100%;
+    padding: 1rem 1rem 4.5rem;
+  }
+  .in-press-orbit {
+    display: grid;
+    width: min(100%, 31rem);
+    height: auto;
+    min-height: 0;
+    gap: 0.875rem;
+  }
+  .in-press-title {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    margin: 0 0 0.75rem;
+    transform: none;
+  }
+  .in-press-orbit .in-press-card {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    transform: none;
+    will-change: auto;
+  }
+  .in-press-card-surface {
+    min-height: 0;
+    animation: none;
+  }
+  .in-press-slide.present .in-press-title {
+    animation-name: in-press-title-in-mobile;
+  }
+  .in-press-slide.present .in-press-card {
+    animation-name: in-press-card-in-mobile;
+  }
+  .in-press-card p {
+    max-height: none;
+    font-size: 1.22rem;
+    line-height: 1.35;
+  }
+}
+@keyframes in-press-float {
+  0% {
+    transform: translate3d(-0.35rem, 0.28rem, 0) rotate(-0.45deg);
+  }
+  50% {
+    transform: translate3d(0.2rem, -0.42rem, 0) rotate(0.3deg);
+  }
+  to {
+    transform: translate3d(0.45rem, 0.22rem, 0) rotate(0.55deg);
+  }
+}
+@keyframes in-press-title-in {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 0.85rem));
+    filter: blur(0.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    filter: blur(0);
+  }
+}
+@keyframes in-press-card-in {
+  0% {
+    opacity: 0;
+    transform: translate3d(-50%, calc(-50% + 2.4rem), 0) scale(0.84) rotate(var(--press-rotate));
+    filter: blur(0.35rem);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0) scale(1) rotate(var(--press-rotate));
+    filter: blur(0);
+  }
+}
+@keyframes in-press-title-in-mobile {
+  0% {
+    opacity: 0;
+    transform: translateY(0.7rem);
+    filter: blur(0.2rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+@keyframes in-press-card-in-mobile {
+  0% {
+    opacity: 0;
+    transform: translateY(1.5rem) scale(0.97);
+    filter: blur(0.3rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .in-press-title,
+  .in-press-card,
+  .in-press-card-surface {
+    animation: none;
+    transition: none;
+    will-change: auto;
+  }
+  .in-press-slide .in-press-title,
+  .in-press-slide .in-press-card {
+    opacity: 1;
+  }
+}
+
+/* ---------- AIR values slide (4th of the "numbers"/Company group) ----------
+   Card surface intentionally matches .in-press-card-surface (same dark
+   glass-card look used for the Partner/trust-points slide) for visual
+   consistency between the two "value card" moments in the deck. Split into
+   .air-value-card (position/entrance) + .air-value-surface (background/
+   float/hover) the same way .in-press-card/.in-press-card-surface are
+   split — see the entrance rules further down for why. */
+.air-content {
+  align-items: center;
+  text-align: center;
+}
+.air-values {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 58rem;
+  margin-top: 2.75rem;
+}
+.air-value-card {
+  flex: 1 1 15rem;
+  max-width: 17.5rem;
+  opacity: 0;
+  pointer-events: none;
+}
+.air-value-card.is-revealed {
+  opacity: 1;
+  pointer-events: auto;
+}
+.air-eyebrow {
+  display: inline-flex;
+}
+.air-letter {
+  display: inline-block;
+  position: relative;
+  color: inherit;
+  transition: color 0.4s ease-out;
+}
+.air-letter.is-active {
+  color: #47e520;
+}
+.air-letter.is-active:after {
+  position: absolute;
+  bottom: -0.625rem;
+  left: 50%;
+  width: 0.4375rem;
+  height: 0.4375rem;
+  border-radius: 50%;
+  background: #47e520;
+  content: "";
+  animation: air-letter-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+  transform: translateX(-50%);
+}
+@keyframes air-letter-pop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -0.375rem) scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+.air-value-surface {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  text-align: left;
+  border: 0.0625rem solid transparent;
+  border-radius: 1rem;
+  background: linear-gradient(180deg, #1b1b1bcc, #1f1f1fcc);
+  box-shadow: inset 0 0.0625rem #ffffff14, 0 1.5rem 4rem #00000052;
+  backdrop-filter: blur(0.4375rem);
+  animation: in-press-float 8.4s ease-in-out calc(var(--air-index, 0) * -2.3s) infinite alternate;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .air-value-card:hover .air-value-surface {
+    border-color: #ffffff38;
+    box-shadow: inset 0 0.0625rem #ffffff24, 0 1.875rem 5.5rem #0000006b, 0 0 2.5rem #d0dcff14;
+    filter: brightness(1.08);
+  }
+}
+.air-value-letter {
+  display: block;
+  color: #ffffffd6;
+  font-family: var(--mono-font);
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1;
+}
+.air-value-name {
+  color: #f6f8ffdb;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.air-value-description {
+  color: #ebeef6c2;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+.air-value-card.is-revealed {
+  animation: air-value-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) calc(0.42s + var(--air-index, 0) * 110ms) backwards;
+}
+@keyframes air-value-in {
+  0% {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.97);
+    filter: blur(0.3rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+@media (width <= 760px) {
+  .air-values {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 22rem;
+  }
+  .air-value-card {
+    max-width: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .air-value-card,
+  .air-value-surface,
+  .air-letter.is-active:after {
+    animation: none;
+  }
+}
+
+/* ---------- Contacts slide ---------- */
+#contacts {
+  background: transparent;
+  isolation: isolate;
+}
+.contacts-moon-wrap {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  transform: translate3d(0, -50%, 0);
+  transform-origin: 50% 50%;
+  will-change: top, transform;
+}
+/* Hero's own instance of the sphere sits centered in the viewport instead of
+   peeking up from the bottom like the Contacts slide's moon. */
+.hero-moon-wrap {
+  top: 50%;
+}
+/* The "Company" mission/users text's own instance — a quiet background
+   accent behind the (left-aligned) text rather than a focal element like
+   Hero's or Contacts', so it fills the slide, sits behind the text
+   (z-index 0 vs .stars-slide-inner's 1) and stays out of its way
+   horizontally, and never intercepts pointer events at all. It's a plain
+   sibling of that text inside the same .company-fwd-in block (see
+   NumbersIntroScroll/NumbersUsersScroll), so it flies in together with it
+   on arrival instead of needing its own separate entrance animation. */
+.numbers-moon-wrap {
+  position: absolute;
+  inset: 0;
+  top: auto;
+  right: auto;
+  left: auto;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: clamp(1rem, 6vw, 6rem);
+  /* Hidden until the section actually arrives (see .company-fwd-in below) —
+     without this, since every "numbers-*" section is mounted in the DOM at
+     once, it'd sit there at 0.55 opacity even for a section scrolled past
+     or not yet reached. */
+  opacity: 0;
+  transform: translateX(-4vw) scale(0.75);
+}
+.numbers-moon-wrap .contacts-moon.contacts-marble {
+  width: min(30vw, 20rem);
+}
+/* Arrives with its own drift-in (independent of the text's 3D pop above,
+   both triggered by the same `active`/.company-fwd-in moment), then settles
+   into a slow, continuous bob so it doesn't just sit there static once
+   visible. The handoff between the two animations is seamless: arrive's
+   final frame (translateX(0) scale(1)) and bob's first frame (translateY(0))
+   are both the identity transform, so nothing visibly snaps at the junction. */
+.company-fwd-in .numbers-moon-wrap {
+  animation: numbers-moon-arrive 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both,
+    numbers-moon-bob 7s ease-in-out 1.05s infinite;
+}
+@keyframes numbers-moon-arrive {
+  from {
+    opacity: 0;
+    transform: translateX(-4vw) scale(0.75);
+  }
+  to {
+    opacity: 0.55;
+    transform: translateX(0) scale(1);
+  }
+}
+@keyframes numbers-moon-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .numbers-moon-wrap {
+    opacity: 0.55;
+    transform: none;
+  }
+  .company-fwd-in .numbers-moon-wrap {
+    animation: none;
+  }
+}
+@media (width <= 760px) {
+  .numbers-moon-wrap {
+    justify-content: center;
+    padding-right: 0;
+  }
+  .numbers-moon-wrap .contacts-moon.contacts-marble {
+    width: min(60vw, 16rem);
+  }
+  @keyframes numbers-moon-arrive {
+    to {
+      opacity: 0.4;
+      transform: translateX(0) scale(1);
+    }
+  }
+}
+.contacts-moon {
+  display: block;
+  width: min(68vw, 64rem);
+  max-width: none;
+  height: auto;
+  filter: brightness(0.78) contrast(1.08);
+  animation: moon-rotate 1000s linear infinite;
+  user-select: none;
+  pointer-events: none;
+  will-change: transform;
+}
+/* Interactive WebGL marble (MagicMarble.tsx) replacing the flat moon image —
+   needs real pointer events (it's draggable) and none of the flat image's
+   own filter/spin, but keeps the same footprint/entrance so the surrounding
+   layout and .contacts-arriving animations don't need to change. */
+.contacts-moon.contacts-marble {
+  width: min(76vw, 72rem);
+  aspect-ratio: 1 / 1;
+  height: auto;
+  filter: none;
+  animation: none;
+  pointer-events: auto;
+}
+@media (width <= 760px) {
+  .contacts-moon.contacts-marble {
+    width: min(104vw, 34rem);
+  }
+}
+.moon-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  opacity: 0;
+  background: radial-gradient(ellipse at 50% 78%, #dce4f524, #dce4f500 38%),
+    linear-gradient(0deg, #000, #000000c7 18%, #0000 64%);
+  pointer-events: none;
+  will-change: opacity;
+}
+.contacts-content {
+  z-index: auto;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: clamp(5rem, 8vh, 8.75rem);
+  pointer-events: none;
+  text-align: center;
+}
+.contacts-title {
+  /* NOTE: the site's shipped CSS declares `transform:translateY(34vh)` here
+     unconditionally, but with no corresponding rule that ever resets it —
+     combined with the fact contacts-button/.contacts-details are also
+     revealed with no matching CSS (both are JS-driven), the real resting
+     position must be set by JS after arrival, not by this static value.
+     Applying it as-is pushes the title below the button/details in normal
+     flow (confirmed visually), which the live site does not do, so it's
+     omitted here to match the reference screenshot's actual layout. */
+  position: relative;
+  z-index: 1;
+  max-width: 60rem;
+  font-size: clamp(2.5rem, 4.6vw, 4.5rem);
+  will-change: opacity, filter;
+  text-shadow: none;
+}
+.contacts-subtitle {
+  position: relative;
+  z-index: 1;
+  max-width: 34rem;
+  margin: 1.25rem 0 0;
+  color: #e2e7f2ad;
+  font-size: clamp(0.875rem, 1.1vw, 1.0625rem);
+  font-weight: 400;
+  line-height: 1.4;
+}
+.contacts-button {
+  position: relative;
+  z-index: 4;
+  height: 3rem;
+  margin-top: 3rem;
+  padding: 0.875rem 1.375rem;
+  gap: 0.375rem;
+  opacity: 0;
+  font-size: 1.0625rem;
+  pointer-events: none;
+  transform: translateY(1.75rem) scale(0.96);
+  will-change: opacity, transform;
+}
+.contacts-details {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.875rem;
+  max-width: 49rem;
+  margin-top: clamp(3.75rem, 8vh, 6rem);
+  /* Holds the space of the removed bullet row (one text line + the column
+     gap), so the button and the email/address lines — whose saved offsets
+     were set with the row in place — don't shift. */
+  padding-top: calc(1.12 * clamp(0.625rem, 0.74vw, 0.875rem) + 1.875rem);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(1.75rem);
+  will-change: opacity, transform;
+}
+.contacts-details-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  row-gap: 0.5rem;
+  column-gap: 0.625rem;
+}
+.contacts-details-row-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+.contacts-details-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: none;
+  color: #47e520;
+  font: inherit;
+  font-size: 0.5em;
+  line-height: 1;
+  cursor: pointer;
+}
+.contacts-details .subtitle {
+  min-height: 1.12em;
+  margin: 0;
+  color: #e2e7f2ad;
+  font-size: clamp(0.625rem, 0.74vw, 0.875rem);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: 0.045em;
+}
+.contacts-details .subtitle.is-typing-machine:after {
+  content: "";
+  display: inline-block;
+  width: 0.125rem;
+  height: 1em;
+  margin-left: 0.0625rem;
+  vertical-align: text-bottom;
+  background: currentColor;
+  animation: typewriter-cursor-blink 0.53s step-end infinite alternate;
+}
+.contacts-arriving .contacts-moon-wrap {
+  animation: moon-arrive-rise var(--moon-arrive, 2.4s) cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.contacts-arriving .contacts-moon {
+  animation: moon-rotate 1000s linear infinite,
+    moon-arrive-glow var(--moon-arrive, 2.4s) cubic-bezier(0.22, 1, 0.3, 1) both;
+}
+.contacts-arriving .contacts-moon.contacts-marble {
+  animation: moon-arrive-glow var(--moon-arrive, 2.4s) cubic-bezier(0.22, 1, 0.3, 1) both;
+}
+.contacts-arriving .contacts-title,
+.contacts-arriving .contacts-subtitle {
+  animation: contacts-title-arrive var(--moon-arrive, 2.4s) cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.contacts-content.arrived .contacts-button,
+.contacts-content.arrived .contacts-details {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+  transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes moon-rotate {
+  0% {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes moon-arrive-rise {
+  0% {
+    transform: translate3d(0, calc(-50% + 16vh), 0) scale(0.84);
+  }
+  to {
+    transform: translate3d(0, -50%, 0) scale(1);
+  }
+}
+@keyframes moon-arrive-glow {
+  0% {
+    filter: brightness(0.32) contrast(1.25);
+  }
+  46% {
+    filter: brightness(1.18) contrast(1.04);
+  }
+  to {
+    filter: brightness(0.78) contrast(1.08);
+  }
+}
+@keyframes contacts-title-arrive {
+  0% {
+    opacity: 0;
+    filter: blur(0.55rem);
+  }
+  55% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contacts-arriving .contacts-moon-wrap,
+  .contacts-arriving .contacts-moon,
+  .contacts-arriving .contacts-title,
+  .contacts-moon {
+    animation: none;
+  }
+}
+@media (width <= 760px) {
+  .contacts-moon {
+    width: min(104vw, 34rem);
+  }
+  .contacts-content {
+    padding-top: 6.75rem;
+  }
+  .contacts-button {
+    height: 2.5rem;
+    margin-top: 2rem;
+    padding: 0.75rem 1.125rem;
+    font-size: 0.9375rem;
+  }
+  .contacts-details {
+    max-width: 20rem;
+    margin-top: 3.75rem;
+  }
+  .contacts-details .subtitle {
+    font-size: 0.6875rem;
+  }
+}
+
+/* ---------- Inline click-to-edit text ---------- */
+.editable-text {
+  cursor: text;
+  outline: 1px dashed transparent;
+  outline-offset: 3px;
+  border-radius: 0.25rem;
+  transition: outline-color 0.15s ease-out, background-color 0.15s ease-out;
+}
+@media (hover: hover) and (pointer: fine) {
+  .editable-text:hover {
+    outline-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  }
+}
+.editable-text:focus {
+  outline: 1px solid var(--accent);
+  outline-offset: 3px;
+  background-color: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+/* ---------- Editable-text color palette (EditableText.tsx) ---------- */
+.editable-color-palette {
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  width: 18.75rem;
+  padding: 0.5rem;
+  border: 0.0625rem solid rgb(226 231 242 / 20%);
+  border-radius: 0.75rem;
+  background: var(--panel);
+  backdrop-filter: blur(0.625rem);
+  box-shadow: 0 0.75rem 2rem rgb(0 0 0 / 45%);
+}
+.editable-color-palette-hint {
+  flex: 1 0 100%;
+  margin: 0 0 0.125rem;
+  color: var(--text-muted, #ffffff8c);
+  font-size: 0.6875rem;
+  line-height: 1.3;
+}
+.editable-color-swatch {
+  flex: 0 0 auto;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 0.0625rem solid #ffffff33;
+  border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.15s ease-out, border-color 0.15s ease-out;
+}
+@media (hover: hover) and (pointer: fine) {
+  .editable-color-swatch:hover {
+    border-color: #fff;
+    transform: scale(1.15);
+  }
+}
+.editable-drag-handle {
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.375rem;
+  height: 1.375rem;
+  border: 0.0625rem solid rgb(226 231 242 / 20%);
+  border-radius: 50%;
+  background: var(--panel);
+  backdrop-filter: blur(0.625rem);
+  box-shadow: 0 0.375rem 1rem rgb(0 0 0 / 45%);
+  color: var(--accent);
+  font-size: 0.75rem;
+  line-height: 1;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+.editable-drag-handle.is-dragging {
+  cursor: grabbing;
+}
+.editable-resize-handle {
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.375rem;
+  height: 1.375rem;
+  border: 0.0625rem solid rgb(226 231 242 / 20%);
+  border-radius: 50%;
+  background: var(--panel);
+  backdrop-filter: blur(0.625rem);
+  box-shadow: 0 0.375rem 1rem rgb(0 0 0 / 45%);
+  color: var(--accent);
+  font-size: 0.75rem;
+  line-height: 1;
+  cursor: ew-resize;
+  touch-action: none;
+  user-select: none;
+  /* Opts back in — its DOM parent (.contacts-moon-wrap) is always
+     pointer-events:none so it doesn't swallow clicks meant for whatever it
+     visually overlaps (e.g. the Hero title). */
+  pointer-events: auto;
+}
+.editable-fontsize-handle {
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.375rem;
+  height: 1.375rem;
+  border: 0.0625rem solid rgb(226 231 242 / 20%);
+  border-radius: 50%;
+  background: var(--panel);
+  backdrop-filter: blur(0.625rem);
+  box-shadow: 0 0.375rem 1rem rgb(0 0 0 / 45%);
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: ns-resize;
+  touch-action: none;
+  user-select: none;
+}
+.editable-fontsize-handle.is-dragging {
+  cursor: ns-resize;
+}
+.editable-move-handle {
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.375rem;
+  height: 1.375rem;
+  border: 0.0625rem solid rgb(226 231 242 / 20%);
+  border-radius: 50%;
+  background: var(--panel);
+  backdrop-filter: blur(0.625rem);
+  box-shadow: 0 0.375rem 1rem rgb(0 0 0 / 45%);
+  color: var(--accent);
+  font-size: 0.75rem;
+  line-height: 1;
+  cursor: move;
+  touch-action: none;
+  user-select: none;
+  /* Same reasoning as .editable-resize-handle above. */
+  pointer-events: auto;
+}
+.editable-move-handle.is-dragging {
+  cursor: grabbing;
+}
+
+/* ---------- Demo access request modal (DemoModal.tsx) ---------- */
+.demo-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: #000000b3;
+  backdrop-filter: blur(0.25rem);
+}
+.demo-modal {
+  position: relative;
+  display: flex;
+  width: min(56rem, 100%);
+  max-height: calc(100dvh - 3rem);
+  border: 0.0625rem solid rgb(226 231 242 / 20%);
+  border-radius: 1.25rem;
+  background: #0a0a0ce6;
+  box-shadow: 0 2rem 6rem #000000a6;
+  overflow: hidden;
+}
+.demo-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 50%;
+  background: #ffffff14;
+  color: #fff;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.demo-modal-side {
+  display: flex;
+  width: 16rem;
+  flex-shrink: 0;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem 1.75rem;
+  border-right: 0.0625rem solid rgb(226 231 242 / 12%);
+  background: linear-gradient(180deg, #111319, #08090b);
+}
+.demo-modal-shield {
+  display: flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background: #47e52022;
+  font-size: 1.375rem;
+}
+.demo-modal-side h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.demo-modal-side ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.demo-modal-side li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: #dde1ecad;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+.demo-modal-side li span {
+  flex-shrink: 0;
+  color: #47e520;
+}
+.demo-modal-form {
+  flex: 1;
+  min-width: 0;
+  padding: 2rem 2rem 1.75rem;
+  overflow-y: auto;
+}
+.demo-modal-form h2 {
+  margin: 0 0 0.625rem;
+  color: #fff;
+  font-size: 1.625rem;
+  font-weight: 600;
+}
+.demo-modal-desc {
+  margin: 0 0 1.5rem;
+  color: #dde1ecad;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.demo-modal-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+}
+.demo-modal-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #e2e7f2;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+.demo-modal-form input,
+.demo-modal-form textarea {
+  border: 0.0625rem solid rgb(226 231 242 / 18%);
+  border-radius: 0.625rem;
+  background: #ffffff0a;
+  padding: 0.625rem 0.875rem;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.875rem;
+  resize: vertical;
+}
+.demo-modal-form input::placeholder,
+.demo-modal-form textarea::placeholder {
+  color: #ffffff4d;
+}
+.demo-modal-form input:focus,
+.demo-modal-form textarea:focus {
+  border-color: #47e520;
+  outline: none;
+}
+.demo-modal-solutions-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #e2e7f2;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+.demo-modal-solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.625rem;
+}
+.demo-modal-solutions-grid button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.125rem;
+  border: 0.0625rem solid rgb(226 231 242 / 15%);
+  border-radius: 0.625rem;
+  background: #ffffff08;
+  padding: 0.625rem 0.75rem;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease-out, background-color 0.15s ease-out;
+}
+.demo-modal-solutions-grid button .name {
+  color: #f6f8ff;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+.demo-modal-solutions-grid button .code {
+  color: #ffffff80;
+  font-family: var(--mono-font);
+  font-size: 0.6875rem;
+}
+.demo-modal-solutions-grid button.is-selected {
+  border-color: #47e520;
+  background: #47e52014;
+}
+.demo-modal-submit {
+  margin-top: 0.25rem;
+  border: 0;
+  border-radius: 999rem;
+  background: #47e520;
+  padding: 0.75rem 1rem;
+  color: #08110a;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease-out, transform 0.15s ease-out;
+}
+.demo-modal-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+.demo-modal-submit:not(:disabled):hover {
+  transform: translateY(-0.0625rem);
+}
+.demo-modal-success {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  border: 0.0625rem solid #47e52033;
+  border-radius: 0.75rem;
+  background: #47e52014;
+  padding: 1.25rem;
+  color: #d8ffcf;
+  font-size: 0.875rem;
+}
+.demo-modal-success span {
+  color: #47e520;
+  font-size: 1.125rem;
+}
+@media (width <= 640px) {
+  .demo-modal {
+    flex-direction: column;
+    max-height: calc(100dvh - 2rem);
+    overflow-y: auto;
+  }
+  .demo-modal-side {
+    width: auto;
+    border-right: 0;
+    border-bottom: 0.0625rem solid rgb(226 231 242 / 12%);
+  }
+  .demo-modal-solutions-grid {
+    grid-template-columns: 1fr;
+  }
+}

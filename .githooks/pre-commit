@@ -1,0 +1,13 @@
+#!/bin/sh
+# Runs the site-edits regression test (tests/site-edits-store.test.ts) whenever
+# a commit touches the save logic — the code whose race wiped
+# data/site-edits.json on 2026-09-28. Enabled by `npm install` (the "prepare"
+# script sets core.hooksPath=.githooks). Skip once with: git commit --no-verify
+SAVE_LOGIC='^(src/lib/site-edits-store\.ts|src/app/api/site-edits/|src/components/sites/boilerlab-ai-93c3cf36/root-8a5edab2/editable/(storage\.ts|SiteEditsHydrator\.tsx)|tests/site-edits-store\.test\.ts)'
+if git diff --cached --name-only --diff-filter=ACMRD | grep -Eq "$SAVE_LOGIC"; then
+  echo "pre-commit: save logic changed — running the site-edits regression test..."
+  if ! npm test --silent; then
+    echo "pre-commit: site-edits regression test FAILED — commit blocked." >&2
+    exit 1
+  fi
+fi

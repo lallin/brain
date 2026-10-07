@@ -1,0 +1,288 @@
+{
+ "keyed": {
+  "mission.eyebrow": {
+   "text": "Inspiring the Next",
+   "html": "<span style=\"color:#fff\">Inspiring </span>the Next",
+   "tag": "H1"
+  },
+  "mission.subtitle": {
+   "text": "Trusted Human-Centered AI",
+   "html": "Trusted Human-Centered AI",
+   "tag": "P"
+  },
+  "mission.scrollHint": {
+   "text": "",
+   "html": "",
+   "tag": "P"
+  },
+  "numbers.intro.mission": {
+   "text": "",
+   "html": "<span><span class=\"typewriter-word\"></span></span>",
+   "tag": "P"
+  },
+  "numbers.intro.signoff": {
+   "text": "Trusted Cognitive Augmentation.",
+   "html": "<span><span class=\"typewriter-word\">Trusted</span> </span><span><span class=\"typewriter-word\">Cognitive</span> </span><span><span class=\"typewriter-word\">Augmentation.</span></span><span class=\"typewriter-cursor typewriter-cursor-settled\" aria-hidden=\"true\"></span>",
+   "tag": "P"
+  },
+  "numbers.users.eyebrow": {
+   "text": "Redefining the limits of time through cognitive augmentation.",
+   "html": "<span><span class=\"typewriter-word\">Redefining</span> </span><span><span class=\"typewriter-word\">the</span> </span><span><span class=\"typewriter-word\">limits</span> </span><span><span class=\"typewriter-word\">of</span> </span><span><span class=\"typewriter-word\">time</span> </span><span><span class=\"typewriter-word\">through</span> </span><span><span class=\"typewriter-word\">cognitive</span> </span><s",
+   "tag": "H2"
+  },
+  "numbers.users.subtitle": {
+   "text": "",
+   "html": "<span><span class=\"typewriter-word\"></span></span>",
+   "tag": "SPAN"
+  },
+  "numbers.users.worldwide": {
+   "text": "",
+   "html": "<span><span class=\"typewriter-word\"></span></span><span class=\"typewriter-cursor typewriter-cursor-settled\" aria-hidden=\"true\"></span>",
+   "tag": "SPAN"
+  },
+  "air.intro": {
+   "text": "The core values Braindeck believes in",
+   "html": "The core values Braindeck believes in",
+   "tag": "P"
+  },
+  "air.A.name": {
+   "text": "uthenticity",
+   "html": "<span style=\"color:rgba(71,229,32,0.55)\">uthenticity</span>",
+   "tag": "H3"
+  },
+  "air.A.description": {
+   "text": "Genuine, without pretense. We communicate with consistent, trustworthy conduct and live out the values we stand for.",
+   "html": "Genuine, without pretense. We communicate with consistent, trustworthy conduct and live out the values we stand for.",
+   "tag": "P"
+  },
+  "air.I.name": {
+   "text": "nitiative",
+   "html": "<span style=\"color:rgba(71,229,32,0.55)\">nitiative</span>",
+   "tag": "H3"
+  },
+  "air.I.description": {
+   "text": "We find and solve problems on our own. We lead new attempts and generate positive energy.",
+   "html": "We find and solve problems on our own. We lead new attempts and generate positive energy.",
+   "tag": "P"
+  },
+  "air.R.name": {
+   "text": "espect",
+   "html": "<span style=\"color:rgba(71,229,32,0.55)\">espect</span>",
+   "tag": "H3"
+  },
+  "air.R.description": {
+   "text": "We respect our colleagues, customers, and partners. We embrace diversity and build a collaborative culture rooted in trust and care.",
+   "html": "We respect our colleagues, customers, and partners. We embrace diversity and build a collaborative culture rooted in trust and care.",
+   "tag": "P"
+  },
+  "products.atomicbot.name-above": {
+   "text": "Enterprise / Industrial AX",
+   "html": "Enterprise / Industrial AX",
+   "tag": "P"
+  },
+  "products.atomicbot.1.name": {
+   "text": "Multimodal Advanced Emotion Recognition",
+   "html": "Multimodal Advanced Emotion Recognition",
+   "tag": "H2"
+  },
+  "products.atomicbot.1.headline": {
+   "text": "Multimodal Emotion Recognition",
+   "html": "Multimodal Emotion Recognition",
+   "tag": "H3"
+  },
+  "products.atomicbot.1.description": {
+   "text": "A precise emotion prediction solution that integrates speech, facial expressions, and biosignals to minimize uncertainty.",
+   "html": "A precise emotion prediction solution that integrates speech, facial expressions, and biosignals to minimize uncertainty.",
+   "tag": "P"
+  },
+  "products.atomicbot.cta": {
+   "text": "Learn more ->",
+   "html": "Learn more -&gt;",
+   "tag": "SPAN"
+  },
+  "partners.became": {
+   "text": "Proven Excellence",
+   "html": "Proven Excellence",
+   "tag": "P"
+  },
+  "partners.eyebrow": {
+   "text": "Proof of Our Technology and Trust",
+   "html": "Proof of Our Technology and Trust",
+   "tag": "H2"
+  },
+  "partners.grew": {
+   "text": "",
+   "html": "",
+   "tag": "P"
+  },
+  "partners.label": {
+   "text": "",
+   "html": "",
+   "tag": "P"
+  },
+  "inpress.title": {
+   "text": "A PartnerYou Can Trust",
+   "html": "<span style=\"color:rgba(255,255,255,0.6)\">A </span><span style=\"color:rgba(71,229,32,0.55)\">Partner<br></span>You Can Trust",
+   "tag": "H3"
+  },
+  "inpress.0.author": {
+   "text": "Data Protection Principles",
+   "html": "Data Protection Principles",
+   "tag": "STRONG"
+  },
+  "inpress.0.quote": {
+   "text": "Customer data is deleted immediately after analysis and is not leaked externally",
+   "html": "Customer data is deleted immediately after analysis and is not leaked externally",
+   "tag": "P"
+  },
+  "inpress.2.author": {
+   "text": "Enterprise-Grade Security",
+   "html": "Enterprise-Grade Security",
+   "tag": "STRONG"
+  },
+  "inpress.2.quote": {
+   "text": "Supports on-premise deployment, data encryption, and full GDPR compliance",
+   "html": "Supports on-premise deployment, data encryption, and full GDPR compliance",
+   "tag": "P"
+  },
+  "inpress.4.author": {
+   "text": "Dedicated Support Team",
+   "html": "Dedicated Support Team",
+   "tag": "STRONG"
+  },
+  "inpress.4.quote": {
+   "text": "Provides technical support and consulting throughout the entire process from demo to implementation",
+   "html": "Provides technical support and consulting throughout the entire process from demo to implementation",
+   "tag": "P"
+  },
+  "inpress.5.author": {
+   "text": "Fast Integration",
+   "html": "Fast Integration",
+   "tag": "STRONG"
+  },
+  "inpress.5.quote": {
+   "text": "Integration with existing systems within 2 weeks is possible with REST API and SDK",
+   "html": "Integration with existing systems within 2 weeks is possible with REST API and SDK",
+   "tag": "P"
+  },
+  "contacts.title": {
+   "text": "Experience the demo right now",
+   "html": "Experience the demo right now",
+   "tag": "H2"
+  },
+  "contacts.subtitle": {
+   "text": "You can test Braindeck's AI solution in a real environment for 24 hours after approval",
+   "html": "You can test Braindeck's AI solution in a real environment for 24 hours after approval",
+   "tag": "P"
+  },
+  "contacts.cta": {
+   "text": "Demo",
+   "html": "Demo",
+   "tag": "SPAN"
+  },
+  "contacts.address.0": {
+   "text": "",
+   "html": "<span><span class=\"typewriter-word\"></span><br></span>",
+   "tag": "P"
+  },
+  "contacts.address.1": {
+   "text": "Immediate use after approval",
+   "html": "<span><span class=\"typewriter-word\">Immediate</span> </span><span><span class=\"typewriter-word\">use</span> </span><span><span class=\"typewriter-word\">after</span> </span><span><span class=\"typewriter-word\">approval</span></span>",
+   "tag": "P"
+  },
+  "contacts.address.2": {
+   "text": "Enterprise security standards",
+   "html": "<span><span class=\"typewriter-word\">Enterprise</span> </span><span><span class=\"typewriter-word\">security</span> </span><span><span class=\"typewriter-word\">standards</span></span>",
+   "tag": "P"
+  },
+  "contacts.address.3": {
+   "text": "braindeck@braindeck.net+82-2-2088-7522",
+   "html": "<span><span class=\"typewriter-word\">braindeck@braindeck.net</span><br></span><span><span class=\"typewriter-word\"></span><br></span><span><span class=\"typewriter-word\">+82-2-2088-7522</span></span>",
+   "tag": "P"
+  },
+  "contacts.address.4": {
+   "text": "2F, 33 Yangjaecheon-ro 11-gil,Seocho-gu, Seoul, Republic of Korea",
+   "html": "<span><span class=\"typewriter-word\">2F,</span> </span><span><span class=\"typewriter-word\">33</span> </span><span><span class=\"typewriter-word\">Yangjaecheon-ro</span> </span><span><span class=\"typewriter-word\">11-gil,</span><br></span><span><span class=\"typewriter-word\">Seocho-gu,</span> </span><span><span class=\"typewriter-word\">Seoul,</span> </span><span><span class=\"typewriter-word\">Republic</sp",
+   "tag": "P"
+  },
+  "footer.nav.mission": {
+   "text": "Mission",
+   "html": "Mission",
+   "tag": "SPAN"
+  },
+  "footer.nav.numbers": {
+   "text": "Company",
+   "html": "Company",
+   "tag": "SPAN"
+  },
+  "footer.nav.products": {
+   "text": "Solutions",
+   "html": "Solutions",
+   "tag": "SPAN"
+  },
+  "footer.nav.partners": {
+   "text": "Excellence",
+   "html": "Excellence",
+   "tag": "SPAN"
+  },
+  "footer.nav.in-press": {
+   "text": "Partner",
+   "html": "Partner",
+   "tag": "SPAN"
+  },
+  "footer.nav.contacts": {
+   "text": "Contacts",
+   "html": "Contacts",
+   "tag": "SPAN"
+  }
+ },
+ "free": [
+  "Solution   <button.header-nav-link>",
+  "About Us   <button.header-nav-link>",
+  "Demo   <button.header-pill>",
+  "EN   <button.header-pill>",
+  "A   <span.air-split-letter>",
+  "I   <span.air-split-letter>",
+  "R   <span.air-split-letter>",
+  "German Innovation Award 2026   <span.partner-logo-caption>",
+  "CES 2025 Innovation Award   <span.partner-logo-caption>",
+  "EDISON AWARDS   <span.partner-logo-caption>",
+  "Patent   <span.partner-logo-caption>",
+  "ISO 9001   <span.partner-logo-caption>",
+  "●   <button.contacts-details-dot>"
+ ],
+ "aria": [
+  "aria-label: A glass marble with swirling pigment inside, draggable, changing colour when clicked",
+  "aria-label: 드래그해서 달 크기 조절",
+  "title: 드래그해서 달 크기 조절",
+  "aria-label: 드래그해서 달 위치 이동",
+  "title: 드래그해서 달 위치 이동",
+  "aria-label: Braindeck home",
+  "alt: Braindeck",
+  "aria-label: Main",
+  "aria-label: Switch language (current: EN)",
+  "aria-label: Previous solution",
+  "aria-label: Copyright Voucher",
+  "aria-label: Deepfake Music Detection",
+  "aria-label: Deepfake Image/Video Detection",
+  "aria-label: Voice Cloning TTS",
+  "aria-label: AI Music Generation",
+  "aria-label: AAC Voice Communication",
+  "aria-label: Diagnosis & Rehabilitation Integration",
+  "aria-label: AI-Powered Zero-Defect Detection for Robot Components",
+  "aria-label: Multimodal Advanced Emotion Recognition",
+  "aria-label: Next solution",
+  "aria-label: Our partners",
+  "aria-label: Awards and certifications",
+  "alt: German Innovation Award 2026",
+  "alt: CES 2025 Innovation Award",
+  "alt: EDISON AWARDS",
+  "alt: Patent",
+  "alt: ISO 9001",
+  "aria-label: Press mentions",
+  "aria-label: Company contacts",
+  "aria-label: Change dot color",
+  "title: Click to change the dot color",
+  "aria-label: Sections"
+ ]
+}

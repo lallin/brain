@@ -1,23 +1,58 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
+import { SiteEditsHydrator } from "@/components/sites/boilerlab-ai-93c3cf36/root-8a5edab2/editable/SiteEditsHydrator";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const overusedGrotesk = localFont({
+  variable: "--font-overused-grotesk",
+  src: [
+    {
+      path: "../../public/sites/boilerlab-ai-93c3cf36/root-8a5edab2/fonts/OverusedGrotesk-Roman.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/sites/boilerlab-ai-93c3cf36/root-8a5edab2/fonts/OverusedGrotesk-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/sites/boilerlab-ai-93c3cf36/root-8a5edab2/fonts/OverusedGrotesk-SemiBold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+  ],
+  display: "optional",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const jetBrainsMono = localFont({
+  variable: "--font-jetbrains-mono",
+  src: [
+    {
+      path: "../../public/sites/boilerlab-ai-93c3cf36/root-8a5edab2/fonts/JetBrainsMono-400.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/sites/boilerlab-ai-93c3cf36/root-8a5edab2/fonts/JetBrainsMono-700.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Website Clone",
-  description: "Pixel-perfect website clone",
+  title: "Boiler Lab | AI startups at rocket speed",
+  description:
+    "We build AI products used by over 20 million people globally — private, fast, and built to scale.",
+  icons: {
+    icon: "/sites/boilerlab-ai-93c3cf36/root-8a5edab2/seo/favicon-black.png",
+  },
+  manifest: "/sites/boilerlab-ai-93c3cf36/root-8a5edab2/seo/site.webmanifest",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -25,9 +60,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${overusedGrotesk.variable} ${jetBrainsMono.variable} h-full antialiased`}
+      style={{ colorScheme: "dark" }}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full">
+        <SiteEditsHydrator />
+        {children}
+      </body>
     </html>
   );
 }

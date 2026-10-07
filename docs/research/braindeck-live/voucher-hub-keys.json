@@ -1,0 +1,245 @@
+{
+ "slug": {
+  "lit": "voucher"
+ },
+ "productId": {
+  "lit": "sigma"
+ },
+ "name": {
+  "key": "categories.voucher.title"
+ },
+ "tagline": {
+  "key": "voucher_detail.overseas_copyright.main_title"
+ },
+ "eyebrow": {
+  "lit": "Verified Voucher Program"
+ },
+ "title": {
+  "key": "voucher_detail.overseas_copyright.main_title"
+ },
+ "intro": {
+  "key": "voucher_detail.overseas_copyright.main_subtitle"
+ },
+ "comparisonOldTitle": {
+  "key": "voucher_detail.overseas_copyright.problems_title"
+ },
+ "comparisonNewTitle": {
+  "key": "voucher_detail.overseas_copyright.solves_title"
+ },
+ "comparison": [
+  {
+   "old": {
+    "key": "voucher_detail.overseas_copyright.p1"
+   },
+   "ours": {
+    "key": "voucher_detail.overseas_copyright.s1"
+   }
+  },
+  {
+   "old": {
+    "key": "voucher_detail.overseas_copyright.p2"
+   },
+   "ours": {
+    "key": "voucher_detail.overseas_copyright.s2"
+   }
+  },
+  {
+   "old": {
+    "key": "voucher_detail.overseas_copyright.p3"
+   },
+   "ours": {
+    "key": "voucher_detail.overseas_copyright.s3"
+   }
+  },
+  {
+   "old": {
+    "lit": ""
+   },
+   "ours": {
+    "key": "voucher_detail.overseas_copyright.s4"
+   }
+  }
+ ],
+ "approachQuote": {
+  "key": "voucher_detail.overseas_copyright.approach_subtitle"
+ },
+ "featuresTitle": {
+  "key": "voucher_detail.overseas_copyright.key_features_title"
+ },
+ "features": [
+  {
+   "title": {
+    "key": "voucher_detail.overseas_copyright.kf1_title"
+   },
+   "points": [
+    {
+     "key": "voucher_detail.overseas_copyright.kf1_description1"
+    },
+    {
+     "key": "voucher_detail.overseas_copyright.kf1_description2"
+    },
+    {
+     "key": "voucher_detail.overseas_copyright.kf1_description3"
+    }
+   ]
+  },
+  {
+   "title": {
+    "key": "voucher_detail.overseas_copyright.kf2_title"
+   },
+   "points": [
+    {
+     "key": "voucher_detail.overseas_copyright.kf2_description1"
+    },
+    {
+     "key": "voucher_detail.overseas_copyright.kf2_description2"
+    },
+    {
+     "key": "voucher_detail.overseas_copyright.kf2_description3"
+    }
+   ]
+  },
+  {
+   "title": {
+    "key": "voucher_detail.overseas_copyright.kf3_title"
+   },
+   "points": [
+    {
+     "key": "voucher_detail.overseas_copyright.kf3_description1"
+    },
+    {
+     "key": "voucher_detail.overseas_copyright.kf3_description2"
+    },
+    {
+     "key": "voucher_detail.overseas_copyright.kf3_description3"
+    }
+   ]
+  }
+ ],
+ "deliveryTitle": {
+  "key": "voucher_detail.overseas_copyright.model_title"
+ },
+ "delivery": [
+  {
+   "title": {
+    "key": "voucher_detail.overseas_copyright.m1_title"
+   },
+   "points": [
+    {
+     "key": "voucher_detail.overseas_copyright.m1_subtitle"
+    },
+    {
+     "key": "voucher_detail.overseas_copyright.m1_description"
+    },
+    {
+     "key": "voucher_detail.overseas_copyright.m1_description2"
+    },
+    {
+     "key": "voucher_detail.overseas_copyright.m1_description3"
+    }
+   ]
+  },
+  {
+   "title": {
+    "key": "voucher_detail.overseas_copyright.m2_title"
+   },
+   "points": [
+    {
+     "key": "voucher_detail.overseas_copyright.m2_subtitle"
+    },
+    {
+     "key": "voucher_detail.overseas_copyright.m2_description"
+    },
+    {
+     "key": "voucher_detail.overseas_copyright.m2_description2"
+    },
+    {
+     "key": "voucher_detail.overseas_copyright.m2_description3"
+    }
+   ]
+  }
+ ],
+ "industriesTitle": {
+  "key": "voucher_detail.market_comparison.title"
+ },
+ "industries": [
+  {
+   "key": "voucher_detail.market_comparison.items.0.title"
+  },
+  {
+   "key": "voucher_detail.market_comparison.items.1.title"
+  },
+  {
+   "key": "voucher_detail.market_comparison.items.2.title"
+  },
+  {
+   "key": "voucher_detail.market_comparison.items.3.title"
+  },
+  {
+   "key": "voucher_detail.market_comparison.items.4.title"
+  },
+  {
+   "key": "voucher_detail.market_comparison.items.5.title"
+  }
+ ],
+ "workflowTitle": {
+  "key": "voucher_detail.overseas_copyright.process_title"
+ },
+ "workflow": [
+  {
+   "step": {
+    "lit": "01"
+   },
+   "title": {
+    "key": "voucher_detail.overseas_copyright.process_steps.0.title"
+   },
+   "description": {
+    "key": "voucher_detail.overseas_copyright.process_steps.0.desc"
+   }
+  },
+  {
+   "step": {
+    "lit": "02"
+   },
+   "title": {
+    "key": "voucher_detail.overseas_copyright.process_steps.1.title"
+   },
+   "description": {
+    "key": "voucher_detail.overseas_copyright.process_steps.1.desc"
+   }
+  },
+  {
+   "step": {
+    "lit": "03"
+   },
+   "title": {
+    "key": "voucher_detail.overseas_copyright.process_steps.2.title"
+   },
+   "description": {
+    "key": "voucher_detail.overseas_copyright.process_steps.2.desc"
+   }
+  },
+  {
+   "step": {
+    "lit": "04"
+   },
+   "title": {
+    "key": "voucher_detail.overseas_copyright.process_steps.3.title"
+   },
+   "description": {
+    "key": "voucher_detail.overseas_copyright.process_steps.3.desc"
+   }
+  },
+  {
+   "step": {
+    "lit": "05"
+   },
+   "title": {
+    "key": "voucher_detail.overseas_copyright.process_steps.4.title"
+   },
+   "description": {
+    "key": "voucher_detail.overseas_copyright.process_steps.4.desc"
+   }
+  }
+ ]
+}

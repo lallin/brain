@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="54" height="10" viewBox="0 0 54 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="section-dots" clip-path="url(#clip0_0_4)">
+<circle id="Ellipse" cx="5" cy="5" r="5" fill="#00FF66"/>
+<circle id="Ellipse_2" cx="27" cy="5" r="5" fill="#4D4D4D"/>
+<circle id="Ellipse_3" cx="49" cy="5" r="5" fill="#4D4D4D"/>
+</g>
+<defs>
+<clipPath id="clip0_0_4">
+<rect width="54" height="10" fill="white"/>
+</clipPath>
+</defs>
+</svg>

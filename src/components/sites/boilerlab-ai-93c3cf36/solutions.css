@@ -1,0 +1,494 @@
+/* ---------- /solutions/* pages — dark theme restyle of the source site's
+   detail-page template (see SolutionPageChrome.tsx / solutions-data.ts) ---------- */
+.solution-page {
+  /* SiteHeader (boilerlab.css's .site-header and friends) reads these off
+     its nearest ancestor with them set — normally .boilerlab-root, which
+     this page never renders (it's a plain flow-scrolling page, not that
+     component's fixed fullscreen app shell), so they're redeclared here
+     with the same values instead. */
+  --panel: rgb(5 5 10 / 94%);
+  --line: rgb(134 143 162 / 22%);
+  --muted: #8b8f9e;
+  --text: #d8dce8;
+  --accent: #eef2ff;
+  --mono-font: var(--font-jetbrains-mono), "Courier New", monospace;
+  --header-height-desktop: 4.25rem;
+  --header-height-mobile: 3.625rem;
+
+  display: flex;
+  min-height: 100dvh;
+  flex-direction: column;
+  background: #050506;
+  color: var(--text);
+}
+.solution-page-main {
+  flex: 1;
+  width: 100%;
+  max-width: 90rem;
+  margin: 0 auto;
+  /* SiteHeader is position:fixed (out of flow) — this replaces the space
+     its old sticky-positioned equivalent used to reserve at the top. */
+  padding-block: calc(4rem + var(--header-height-desktop)) 6rem;
+  padding-inline: 6%;
+}
+.solution-hero {
+  position: relative;
+  isolation: isolate;
+  padding-bottom: 2.5rem;
+  border-bottom: 0.0625rem solid rgb(226 231 242 / 12%);
+  margin-bottom: 2.5rem;
+}
+/* Diagonal hatch texture — brand green, kept faint so it reads as a subtle
+   surface texture rather than a visible grid over the hero copy. */
+.solution-hero:before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgb(74 222 128 / 4%) 0,
+    rgb(74 222 128 / 4%) 1px,
+    transparent 1px,
+    transparent 12px
+  );
+  content: "";
+  pointer-events: none;
+}
+.solution-hero > * {
+  position: relative;
+  z-index: 1;
+}
+.solution-hero-badge {
+  display: inline-flex;
+  margin-bottom: 1rem;
+  padding: 0.3125rem 0.75rem;
+  border: 0.0625rem solid rgb(226 231 242 / 20%);
+  border-radius: 999rem;
+  color: var(--accent);
+  font-family: var(--mono-font);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.solution-hero h1 {
+  margin: 0 0 0.5rem;
+  color: #fff;
+  font-size: clamp(2rem, 1.4rem + 2vw, 3.25rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.solution-hero-code {
+  margin: 0 0 1rem;
+  color: #dde1ecad;
+  font-family: var(--mono-font);
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+}
+.solution-hero-tagline {
+  margin: 0;
+  max-width: 42rem;
+  color: #dde1ecc7;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+.solution-section {
+  margin-bottom: 3rem;
+}
+.solution-section-kicker {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+  font-family: var(--mono-font);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.solution-section h2 {
+  margin: 0 0 1rem;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.solution-body-text {
+  margin: 0;
+  max-width: 42rem;
+  color: #dde1ecc7;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+/* Two-column region: PROBLEM & SOLUTION through the "작동 원리" box, with the
+   활용 사례/보안 sidebar tracking alongside. Grid's default align-items:
+   stretch makes .solution-sidebar exactly as tall as .solution-main-col —
+   that stretched height is what bounds .solution-sidebar-inner's sticky
+   travel (see the comment above this markup in page.tsx). */
+.solution-sticky-bound {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 20rem;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+.solution-sidebar-inner {
+  position: sticky;
+  top: calc(var(--header-height-desktop, 4rem) + 1.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.solution-sidebar-card {
+  border: 0.0625rem solid rgb(226 231 242 / 15%);
+  border-radius: 0.875rem;
+  background: #ffffff05;
+  padding: 1.25rem;
+}
+.solution-sidebar-card h3 {
+  margin: 0 0 1rem;
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+.solution-sidebar-card .solution-usecase-list,
+.solution-sidebar-card .solution-body-text {
+  max-width: none;
+}
+.solution-sidebar-card .solution-usecase-list li,
+.solution-sidebar-card .solution-body-text {
+  font-size: 0.8125rem;
+}
+.solution-howitworks-box {
+  border-radius: 1.25rem;
+  background: linear-gradient(155deg, #10241a, #050506 65%);
+  padding: 2rem;
+}
+.solution-howitworks-box .solution-section-kicker {
+  margin-bottom: 0.75rem;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+.solution-howitworks-box p {
+  margin: 0;
+  max-width: 42rem;
+  color: #f6f8ff;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.6;
+}
+@media (width <= 60rem) {
+  .solution-sticky-bound {
+    display: block;
+  }
+  .solution-main-col {
+    margin-bottom: 3rem;
+  }
+  .solution-sidebar-inner {
+    position: static;
+  }
+}
+.solution-feature-list,
+.solution-usecase-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.solution-feature-list li,
+.solution-usecase-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  color: #e2e7f2;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+.solution-feature-list li:before {
+  position: absolute;
+  left: 0;
+  color: #4ade80;
+  content: "✓";
+}
+.solution-usecase-list {
+  counter-reset: usecase;
+}
+.solution-usecase-list li:before {
+  position: absolute;
+  left: 0;
+  counter-increment: usecase;
+  color: var(--accent);
+  content: counter(usecase, decimal-leading-zero);
+  font-family: var(--mono-font);
+  font-size: 0.8125rem;
+}
+.solution-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+.solution-faq-item {
+  border: 0.0625rem solid rgb(226 231 242 / 15%);
+  border-radius: 0.75rem;
+  background: #ffffff05;
+  overflow: hidden;
+}
+.solution-faq-question {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 0.875rem;
+  border: 0;
+  background: none;
+  padding: 1rem 1.125rem;
+  color: #f6f8ff;
+  font-size: 0.9375rem;
+  text-align: left;
+  cursor: pointer;
+}
+.solution-faq-question span:nth-child(2) {
+  flex: 1;
+}
+.solution-faq-index {
+  color: var(--accent);
+  font-family: var(--mono-font);
+  font-size: 0.8125rem;
+}
+.solution-faq-caret {
+  color: #ffffff80;
+  font-size: 1.125rem;
+}
+.solution-faq-answer {
+  margin: 0;
+  padding: 0 1.125rem 1.125rem 2.625rem;
+  color: #dde1ecad;
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+.solution-cta {
+  border-top: 0.0625rem solid rgb(226 231 242 / 12%);
+  padding-top: 2.5rem;
+  text-align: center;
+}
+.solution-cta h2 {
+  margin: 0 0 0.5rem;
+}
+.solution-cta p {
+  margin: 0 0 1.5rem;
+  color: #dde1ecad;
+  font-size: 0.9375rem;
+}
+.solution-page-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  justify-content: space-between;
+  border-top: 0.0625rem solid rgb(226 231 242 / 12%);
+  padding: 2.5rem 1.5rem;
+  max-width: 56rem;
+  margin: 0 auto;
+  width: 100%;
+}
+.solution-page-footer h4 {
+  margin: 0 0 0.75rem;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.solution-page-footer p,
+.solution-page-footer a {
+  display: block;
+  margin: 0 0 0.375rem;
+  color: #dde1ecad;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  text-decoration: none;
+}
+.solution-page-footer .logo-text {
+  font-size: 1rem;
+}
+
+/* Category hub extras */
+.solution-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+.solution-comparison > div {
+  border: 0.0625rem solid rgb(226 231 242 / 15%);
+  border-radius: 0.875rem;
+  background: #ffffff05;
+  padding: 1.25rem;
+}
+.solution-comparison h3 {
+  margin: 0 0 0.875rem;
+  color: #dde1ecad;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.solution-comparison .is-ours {
+  border-color: #47e52033;
+  background: #47e52010;
+}
+.solution-comparison .is-ours h3 {
+  color: var(--accent);
+}
+.solution-comparison ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: #e2e7f2;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+.solution-quote {
+  margin: 0;
+  border-left: 0.1875rem solid var(--accent);
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  color: #f6f8ff;
+  font-size: 1.0625rem;
+  font-style: normal;
+  line-height: 1.6;
+}
+.solution-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem;
+}
+.solution-feature-card {
+  border: 0.0625rem solid rgb(226 231 242 / 15%);
+  border-radius: 0.875rem;
+  background: #ffffff05;
+  padding: 1.25rem;
+}
+.solution-feature-card h3 {
+  margin: 0 0 0.75rem;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.solution-feature-card ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: #dde1ecc7;
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+.solution-feature-card li:before {
+  color: var(--accent);
+  content: "· ";
+}
+.solution-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.solution-tag-list li {
+  border: 0.0625rem solid rgb(226 231 242 / 18%);
+  border-radius: 999rem;
+  padding: 0.4375rem 0.875rem;
+  color: #e2e7f2;
+  font-size: 0.8125rem;
+}
+.solution-workflow {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+.solution-workflow li {
+  position: relative;
+  padding-left: 3rem;
+}
+.solution-workflow-step {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--accent);
+  font-family: var(--mono-font);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+.solution-workflow h3 {
+  margin: 0 0 0.25rem;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.solution-workflow p {
+  margin: 0;
+  color: #dde1ecad;
+  font-size: 0.875rem;
+}
+.solution-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem;
+}
+.solution-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 0.0625rem solid rgb(226 231 242 / 15%);
+  border-radius: 0.875rem;
+  background: #ffffff05;
+  padding: 1.25rem;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.15s ease-out, background-color 0.15s ease-out;
+}
+@media (hover: hover) and (pointer: fine) {
+  .solution-card:hover {
+    border-color: #47e5204d;
+    background: #47e52010;
+  }
+}
+.solution-card-code {
+  color: var(--accent);
+  font-family: var(--mono-font);
+  font-size: 0.75rem;
+}
+.solution-card h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+.solution-card p {
+  margin: 0;
+  flex: 1;
+  color: #dde1ecad;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+.solution-card-link {
+  color: #f6f8ff;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+@media (width <= 640px) {
+  .solution-page-main {
+    padding: calc(2.5rem + var(--header-height-mobile)) 1.25rem 4rem;
+  }
+  .solution-comparison {
+    grid-template-columns: 1fr;
+  }
+}

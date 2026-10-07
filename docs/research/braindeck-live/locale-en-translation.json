@@ -1,0 +1,689 @@
+{
+  "hero_title_line1": "Inspiring",
+  "hero_title_line2": "the Next",
+  "hero_subtitle_line1": "We inspire the next generation and unlock",
+  "hero_subtitle_line2": "new possibilities for humanity through technology.",
+  "hero_cta_demo": "Demo",
+  "hero_cta_solutions": "Explore Solutions",
+  "header_solutions": "Solutions",
+  "header_solutions_content": "Media & Content",
+  "header_solutions_medical": "Health Care",
+  "header_solutions_ax": "Industrial AX",
+  "header_company": "Company",
+  "header_voucher": "Voucher",
+  "header_demo": "Demo",
+  "proof": {
+    "section_title": "Proof of Our Technology and Trust",
+    "trust_title": "A Partner You Can Trust",
+    "trustPoints": [
+      {
+        "icon": "Shield",
+        "title": "Enterprise-Grade Security",
+        "description": "Supports on-premise deployment, data encryption, and full GDPR compliance"
+      },
+      {
+        "icon": "Lock",
+        "title": "Data Protection Principles",
+        "description": "Customer data is deleted immediately after analysis and is not leaked externally"
+      },
+      {
+        "icon": "Zap",
+        "title": "Fast Integration",
+        "description": "Integration with existing systems within 2 weeks is possible with REST API and SDK"
+      },
+      {
+        "icon": "Users",
+        "title": "Dedicated Support Team",
+        "description": "Provides technical support and consulting throughout the entire process from demo to implementation"
+      }
+    ],
+    "industries_title": "Applicable Industries",
+    "industries": [
+      "Media & Entertainment",
+      "Healthcare",
+      "Semiconductor Manufacturing",
+      "Automotive Industry",
+      "Electronic Component Manufacturing",
+      "e-Learning"
+    ]
+  },
+  "solutions_overview": {
+    "title": "Core Solutions",
+    "subtitle": "Create business value with field-proven AI technology in three core areas",
+    "learn_more": "Learn More"
+  },
+  "solution_detail": {
+    "back_to_list": "Back to Solutions",
+    "watch_tutorial": "Watch Tutorial",
+    "tutorial_not_ready": "Tutorial video is being prepared.",
+    "what_it_solves": "What it Solves",
+    "key_features": "Key Features",
+    "use_cases": "Use Cases",
+    "how_it_works": "How it Works",
+    "integration": "Integration",
+    "security": "Security & Data Handling",
+    "faq": "Frequently Asked Questions",
+    "cta_title": "Experience this solution firsthand",
+    "cta_subtitle": "Test in a real environment for 24 hours after approval and evaluate business suitability",
+    "request_demo_access": "Request Demo Access"
+  },
+  "final_cta": {
+    "title": "Experience the demo right now",
+    "subtitle": "You can test Braindeck's AI solution in a real environment for 24 hours after approval",
+    "contact_us": "Contact Us",
+    "trust_1": "24-hour demo access",
+    "trust_2": "Immediate use after approval",
+    "trust_3": "Enterprise security standards"
+  },
+  "footer": {
+    "description_line1": "Providing enterprise solutions that innovate the boundary",
+    "description_line2": "between humans and AI with AI technology",
+    "rights": "All rights reserved.",
+    "contact": "Contact",
+    "address_line1": "2F, 33 Yangjaecheon-ro 11-gil",
+    "address_line2": "Seocho-gu, Seoul, Republic of Korea",
+    "privacy_policy": "Privacy Policy",
+    "terms_of_service": "Terms of Service",
+    "cookie_policy": "Cookie Policy"
+  },
+  "demo_form": {
+    "title": "Request Demo Access",
+    "subtitle": "Please enter your company information for a quick review and approval<br />process. Upon approval, a Demo Key will be sent to your email, valid for 24 hours.",
+    "contact_name": "Name",
+    "contact_name_placeholder": "Enter your name",
+    "company_name": "Company Name",
+    "company_name_placeholder": "e.g., Braindeck Inc.",
+    "email": "Contact Person's Email",
+    "email_note": "The Demo Key will be sent to this email.",
+    "message": "Message",
+    "message_placeholder": "Please describe your request.",
+    "submit_button_one": "Request {{count}} Demo",
+    "submit_button_other": "Request {{count}} Demos",
+    "solution": "Solution of Interest",
+    "solution_placeholder": "Select a solution",
+    "all_solutions": "Try all solutions",
+    "purpose": "Purpose of Use (Optional)",
+    "purpose_placeholder": "Briefly describe what you want to verify through the demo or specific use cases.",
+    "purpose_note": "Providing a specific purpose of use will enable faster approval and customized support.",
+    "info_title": "Demo Usage Guide",
+    "info_list": [
+      "Approval is processed within 2-4 business hours",
+      "The Demo Key is valid for 24 hours from the time of issuance",
+      "You can test the same functions as in the actual operating environment",
+      "Inquiries during demo use can be immediately supported through the chat avatar"
+    ],
+    "cancel": "Cancel",
+    "voucher_fallback_title": "Copyright Protection Voucher",
+    "select_solution_alert": "Please select at least one solution.",
+    "no_message": "No message",
+    "submit_error": "An error occurred while submitting. Please try again.",
+    "submitting": "Submitting...",
+    "submitted_title": "Request received!",
+    "submitted_subtitle": "Our representative will review it quickly and proceed with the approval process.",
+    "submitted_email_note": "A Demo Key will be sent to <strong>{{email}}</strong>.",
+    "submitted_closing_note": "This window will close automatically..."
+  },
+  "about_page": {
+    "title": "About Braindeck",
+    "subtitle": "Expanding human communication through AI, shaping a new future of interfaces.",
+    "mission_title": "Mission",
+    "mission_description": "Through trusted, human-centered AI, we help anyone easily harness technology to create better experiences.",
+    "vision_title": "Vision",
+    "vision_description": "We build a world where AI extends human intelligence and memory, continuously inspiring and opening new possibilities across generations and eras.",
+    "values_title": "AIR",
+    "values_intro": "The core values Braindeck believes in",
+    "values": [
+      { "letter": "A", "name": "Authenticity", "description": "Genuine and unembellished — we communicate with a trustworthy, consistent attitude and put the values we stand for into practice." },
+      { "letter": "I", "name": "Initiative", "description": "We find and solve problems ourselves, driving new attempts and creating positive momentum." },
+      { "letter": "R", "name": "Respect", "description": "We respect colleagues, customers, and partners alike, embracing diversity and building a collaborative culture on trust and care." }
+    ],
+    "company_profile_title": "Company Profile",
+    "address": "2F, 33, Yangjaecheon-ro 11-gil, Seocho-gu, Seoul",
+    "tel": "TEL. 02-2088-7522",
+    "mail": "MAIL. braindeck@braindeck.net",
+    "instagram": "Instagram",
+    "youtube": "YouTube",
+    "facebook": "Facebook",
+    "linkedin": "LinkedIn",
+    "data_protection_policy": "Data Protection Policy",
+    "copyright": "© 2025 Braindeck. All rights reserved."
+  },
+  "avatar": {
+    "initial_message": "Hello! I'm the Braindeck AI assistant. Feel free to ask me anything about our solutions. I can also help you request a demo! 😊",
+    "online": "Online",
+    "input_placeholder": "Type your message...",
+    "fullscreen_title": "Braindeck AI Assistant",
+    "fullscreen_subtitle": "Online - Ask me anything",
+    "fullscreen_input_placeholder": "Type your message... (e.g., Tell me about deepfake detection, I want to apply for a demo)",
+    "send": "Send",
+    "locale": "en-US",
+    "keywords": {
+      "demo_1": "demo",
+      "demo_2": "trial",
+      "demo_3": "test",
+      "demo_4": "experience",
+      "deepfake_1": "deepfake",
+      "deepfake_2": "manipulation",
+      "medical_1": "medical",
+      "medical_2": "voice",
+      "medical_3": "aac",
+      "ax_1": "industrial",
+      "ax_2": "inspection",
+      "ax_3": "defect",
+      "ax_4": "dram",
+      "pricing_1": "price",
+      "pricing_2": "cost",
+      "pricing_3": "pricing",
+      "integration_1": "integration",
+      "integration_2": "linking",
+      "integration_3": "api",
+      "greeting_1": "hello",
+      "greeting_2": "hi",
+      "greeting_3": "hey"
+    },
+    "responses": {
+      "demo": "I can help with the demo request! Click the Request Demo Access button, or should I open the demo request form for you right away?",
+      "solution_specific": "{{title}} sounds interesting! This solution is {{description}}\n\nWould you like to go to the detailed page?",
+      "deepfake": "Braindeck offers solutions for deepfake music detection and image/video detection. Both solutions boast high accuracy of over 98% and are capable of real-time processing. Which solution are you more curious about?",
+      "medical": "In the healthcare field, we provide an AAC solution that converts disordered speech into normal speech and a diagnosis-rehabilitation linkage solution. This technology practically contributes to improving the quality of life for patients. Would you like to see more details?",
+      "ax": "With our AX (Industrial AX) solution, we provide high-precision component inspection based on robot vision and a DRAM inspection solution. You can dramatically improve the quality of your manufacturing process. Are you curious about specific use cases?",
+      "pricing": "The price varies depending on the type of solution, scale of use, and deployment method (cloud/on-premise). After you first experience the solution through a demo, our sales team will provide you with a customized quote. Can I help you with a demo request?",
+      "integration": "All solutions provide a REST API and SDK, and can be integrated into existing systems within 2-3 weeks. We support major platforms and industry standard protocols. If you would like to discuss a specific integration scenario, please inquire when requesting a demo!",
+      "greeting": "Hello! Ask me anything about Braindeck's AI solutions. We provide solutions in various fields such as content detection, healthcare voice rehabilitation, and industrial AI inspection. What are you curious about?",
+      "default": "Thank you for your question. If you need more specific information, I recommend requesting a demo or browsing the solution page. Do you have any other questions?"
+    }
+  },
+  "voucher": {
+    "title": "Copyright Voucher",
+    "subtitle": "Leverage Braindeck's AI solutions through the voucher program.",
+    "cta": "Apply for Voucher"
+  },
+  "voucher_detail": {
+    "overseas_copyright": {
+      "back_button": "Back to Home",
+      "main_title": "AI-Powered Digital Content Protection Infrastructure",
+      "main_subtitle": "A next-generation copyright protection solution that preemptively blocks illegal leaks of digital content and uses AI to analyze patterns and routes to track the responsible parties if a leak occurs.",
+      "details_title": "Problems We Solve",
+      "feature1": "Difficulty in adopting protection technology due to lack of an in-house platform",
+      "feature2": "Occurrence of illegal copying and leaks during external delivery, inspection, and distribution",
+      "feature3": "Existing DRM is limited to playback control and cannot respond after a leak",
+      "feature4": "Existing forensics are ID mapping-centered, limiting response to modified or reprocessed content",
+      "problems_title": "Limitations of Existing Technology",
+      "p1": "Static ID-based tracking",
+      "p2": "File-level identification",
+      "p3": "Manual post-analysis",
+      "solves_title": "Our AI-Powered Solution",
+      "s1": "AI pattern and route analysis beyond simple ID mapping",
+      "s2": "Similarity-based identification of modified, edited, or re-encoded content",
+      "s3": "Response to AI-generated content, including deepfake music and video detection",
+      "s4": "Automated detection of repetitive and organized leak patterns",
+      "approach_title": "Our Approach",
+      "approach_subtitle": "We place AI analysis technology at the center of protection, flexibly integrating proven global DRM and digital forensic technologies to provide copyright protection as 'platform infrastructure' rather than just a 'solution.' DRM serves as the control measure, while AI acts as the core engine for judgment, analysis, and tracking.",
+      "key_features_title": "Key Features",
+      "kf1_title": "Global DRM Integration",
+      "kf1_description1": "Integration with proven overseas DRM technologies",
+      "kf1_description2": "Playback, copying, and access control",
+      "kf1_description3": "Applicable to web, platform, and B2B delivery environments",
+      "kf2_title": "Dynamic Watermarking & Digital Forensics",
+      "kf2_description1": "Dynamic insertion of identification info by content, session, and distribution target",
+      "kf2_description2": "Forensic design based on AI analysis rather than simple insertion",
+      "kf2_description3": "Automated identification of leaked content",
+      "kf3_title": "AI-Based Leak Analysis (Core Differentiation)",
+      "kf3_description1": "Automated learning and classification of leak patterns",
+      "kf3_description2": "Detection of repetitive and organized leak behavior",
+      "kf3_description3": "Analyzing 'how and through what routes' leaks occur, not just 'who leaked it'",
+      "model_title": "Delivery Model",
+      "m1_title": "Platform-Integrated Protection Infrastructure",
+      "m1_subtitle": "For large content companies and platforms",
+      "m1_description": "Integration via API/SDK",
+      "m1_description2": "Streaming and large-scale content protection",
+      "m1_description3": "Real-time monitoring and analysis",
+      "m2_title": "Dedicated Protected Web-App Delivery",
+      "m2_subtitle": "For content companies without a platform",
+      "m2_description": "Provision of a dedicated protected web-app (White-label)",
+      "m2_description2": "Unified process: Content upload → Protection → Distribution",
+      "m2_description3": "Immediate use without additional platform development",
+      "faq": [
+  {
+    "question": "How does this differ from existing DRM or forensic solutions?",
+    "answer": "While traditional methods focus on file protection and post-leak identification, our solution analyzes the leakage behavior and paths using AI. Instead of static mapping, it analyzes user patterns and behaviors to support precise session-level tracking."
+  },
+  {
+    "question": "Is this simply a combination of AI technology and DRM?",
+    "answer": "No. DRM is merely the control mechanism; the core lies in the AI analysis layer. The AI handles the judgment, tracking, and evidence-gathering processes after a leak occurs, going beyond simple blocking to investigate the circumstances of the leakage."
+  },
+  {
+    "question": "Can the AI analysis results be used as legal evidence?",
+    "answer": "Yes. By combining watermark/forensic identification, access/distribution logs, and AI pattern analysis results into a single evidence package, we strengthen the structure and consistency required for legal evidence."
+  },
+  {
+    "question": "Can companies without a dedicated distribution platform still benefit from this?",
+    "answer": "Yes. We provide a 'Dedicated Protection Web App' for companies without their own platforms. This allows for powerful protection even during external transfers, ensuring the same level of security regardless of platform availability."
+  },
+  {
+    "question": "Is it difficult to protect large volumes of content using a web app?",
+    "answer": "Not at all. The provided web app is an 'Operational Protection Portal,' not just a simple tool. it functions as a dedicated enterprise protection infrastructure, supporting bulk uploads, repeated distribution, user-specific permission management, and the accumulation of leak analysis logs."
+  },
+  {
+    "question": "Does this solution respond to the leakage of Deepfakes or AI-generated content?",
+    "answer": "Yes, this is our primary focus. Through AI-based similarity analysis and synthetic pattern recognition, we precisely detect modified content—such as deepfake music and video—that is difficult to protect with traditional DRM."
+  },
+  {
+    "question": "We are already using another DRM solution. Do we need to replace it?",
+    "answer": "Our solution can be implemented as an additional layer while maintaining your existing system. It complements your operations by adding 'post-leakage' analysis capabilities with minimal changes to your current workflow, making it an expansion solution rather than a replacement."
+  },
+  {
+    "question": "What is the difference between your solution and traditional copyright protection companies?",
+    "answer": "While traditional firms focus on the protection technology (DRM) itself, we provide an AI-powered 'Protection Operations Infrastructure.' We play an expanded role in advanced areas such as platform-agnostic protection, AI-generated content security, and evidence automation."
+  }
+],
+      "demo_request_button": "Request Demo",
+      "process_title": "Service Process",
+      "process_steps": [
+        { "title": "Client Request", "desc": "Online/Offline Meeting" },
+        { "title": "Requirements & Analysis", "desc": "Detailed Needs Assessment" },
+        { "title": "Custom Development", "desc": "Building Tailored Solutions" },
+        { "title": "Delivery & Settlement", "desc": "Final Inspection & Completion" },
+        { "title": "Satisfaction Evaluation", "desc": "Post-management & Feedback" }
+      ]
+    },
+    "market_comparison": {
+      "title": "Specialized Protection Solutions by Industry",
+      "subtitle": "Market Comparison",
+      "column_category": "Category",
+      "column_legacy": "Legacy Providers",
+      "column_our": "Braindeck",
+      "items": [
+        {
+          "id": "ebook",
+          "title": "E-Book Companies",
+          "rows": [
+            ["Primary Protection", "Viewer-based DRM", "DRM Integration + AI Analysis"],
+            ["Prerequisites", "In-house platform required", "Available without a platform"],
+            ["External Distribution", "Limited", "Dedicated protected web-app provided"],
+            ["Leak Response", "Account/ID blocking", "AI-based leak pattern analysis"],
+            ["Evidence Gathering", "Log-centered", "Automated evidence packaging"],
+            ["Competitive Edge", "-", "Covers publishers/educators without platforms"]
+          ]
+        },
+        {
+          "id": "audio",
+          "title": "Audio / Music Companies",
+          "rows": [
+            ["Primary Protection", "Watermark or DRM alone", "DRM + Watermark + AI"],
+            ["Modified/Edited Content", "Limited", "AI similarity & pattern analysis"],
+            ["Deepvoice Response", "Partially available", "Includes AI-generated audio detection"],
+            ["Leak Analysis", "File identification", "Path & behavior-based analysis"],
+            ["External Leakage", "Difficult to manage", "Tracking up to external distribution"],
+            ["Competitive Edge", "-", "Comprehensive protection for AI generated/modified audio"]
+          ]
+        },
+        {
+          "id": "video",
+          "title": "Image / Video Companies",
+          "rows": [
+            ["Primary Protection", "Watermark-centered", "Session-level Watermark + AI"],
+            ["Re-edited/Clip Response", "Limited", "AI-based reprocessed content identification"],
+            ["Deepfake Response", "Insufficient", "Deepfake video detection"],
+            ["Detection Timing", "Post-event", "Real-time + Post-analysis"],
+            ["Scalability", "Format dependent", "Multi-format support"],
+            ["Competitive Edge", "-", "Tracking even 'reprocessed videos' with AI"]
+          ]
+        },
+        {
+          "id": "ai_gen",
+          "title": "AI Content Generation Companies",
+          "rows": [
+            ["Protection Target", "Traditional content", "Optimized for AI-generated content"],
+            ["Product Identification", "Nearly impossible", "AI similarity & source analysis"],
+            ["Deepfake Response", "Not supported", "Core feature"],
+            ["DRM Application", "Limited", "Integration available"],
+            ["Infringement Response", "Manual", "AI automated analysis"],
+            ["Competitive Edge", "-", "The only protection structure fit for the AI era"]
+          ]
+        },
+        {
+          "id": "b2b",
+          "title": "B2B Content Distribution",
+          "rows": [
+            ["Protection Premise", "Platform-based", "Covers companies without platforms"],
+            ["External Transfer", "Vulnerable", "Delivery of dedicated protected web-app"],
+            ["User Tracking", "Limited", "Access & behavior-level analysis"],
+            ["Contract Violation", "Difficult", "Automated evidence generation"],
+            ["Implementation Ease", "High difficulty", "Immediate use available"],
+            ["Competitive Edge", "-", "Optimized protection for B2B delivery"]
+          ]
+        },
+        {
+          "id": "ip_brand",
+          "title": "IP Owners / Brand Companies",
+          "rows": [
+            ["Protection Target", "Original content", "Includes secondary distribution/reprocessing"],
+            ["Global Distribution", "Limited", "Global DRM integration + AI"],
+            ["Unauthorized Usage", "Manual/Reporting", "AI pattern detection"],
+            ["Evidence Gathering", "Individual data", "Integrated evidence packaging"],
+            ["Brand Protection", "Reactive", "Proactive + Reactive response"],
+            ["Competitive Edge", "-", "AI infrastructure managing overall IP distribution"]
+          ]
+        }
+      ]
+    }
+  },
+  "categories": {
+    "content": {
+      "title": "Media & Content",
+      "titleEn": "Media & Content",
+      "description": "AI-generated content detection and generation solutions"
+    },
+    "medical": {
+      "title": "Health Care",
+      "titleEn": "Health Care",
+      "description": "Voice disorder and healthcare diagnosis support solutions"
+    },
+    "ax": {
+      "title": "Enterprise / Industrial AX",
+      "titleEn": "Enterprise / Industrial AX",
+      "description": "Industrial AI inspection and optimization solutions"
+    },
+    "voucher": {
+      "title": "Copyright Voucher",
+      "titleEn": "Copyright Voucher",
+      "description": "AI-based copyright protection and management solution"
+    }
+  },
+  "solutions": {
+    "deepfake-music-detection": {
+      "title": "IRIS - 5",
+      "titleEn": "Deepfake Music Detection",
+      "shortDescription": "Protect copyrights by accurately distinguishing between AI-generated music and real music",
+      "whatItSolves": "Music streaming platforms and record labels are facing copyright infringement and authenticity verification issues due to the proliferation of AI-generated music. This solution protects the platform's reliability by detecting deepfake music in real time.",
+      "keyFeatures": [
+        "Real-time AI-generated music detection (accuracy 98%+)",
+        "Recognition of various music generation model patterns",
+        "Streaming platform API integration",
+        "Bulk music inspection support",
+        "Detailed analysis report provided"
+      ],
+      "useCases": [
+        "AI-generated music filtering on music streaming platforms",
+        "Copyright protection system for record labels",
+        "Authenticity verification for music competitions",
+        "Quality control for music distributors"
+      ],
+      "howItWorks": "The deep learning-based audio analysis engine analyzes the spectrum, frequency patterns, and generation artifacts of music in real time to determine whether it is AI-generated. It responds to new deepfake techniques by learning the characteristics of various generation models.",
+      "integration": "Easy integration with existing platforms is possible with REST API and SDK. Both cloud and on-premise deployments are supported.",
+      "security": "All music data is transmitted encrypted and deleted immediately after analysis. It provides an infrastructure that complies with GDPR and personal information protection laws.",
+      "faq": [
+        {
+          "question": "What AI music generation tools can it detect?",
+          "answer": "It detects a wide range of major AI music generation tools such as Suno, Udio, and MusicGen, as well as proprietary models. It continuously learns to respond to new generation techniques."
+        },
+        {
+          "question": "What is the real-time processing speed?",
+          "answer": "It analyzes a 3-minute piece of music in an average of 2 seconds or less. For bulk processing, the speed is optimized by parallel processing."
+        },
+        {
+          "question": "What is the false positive rate?",
+          "answer": "It currently maintains a high accuracy of less than 2% for false positives and less than 1.5% for false negatives."
+        }
+      ]
+    },
+    "deepfake-media-detection": {
+      "title": "IRIS - 6",
+      "titleEn": "Deepfake Image/Video Detection",
+      "shortDescription": "Prevents the spread of false information by detecting AI-manipulated images and videos in real time",
+      "whatItSolves": "Deepfake videos and images are being abused as a major means of spreading false information on social media and news platforms. This solution secures the reliability of the platform by automatically detecting AI-manipulated content.",
+      "keyFeatures": [
+        "Simultaneous detection of image and video deepfakes",
+        "Face swap, Face reenactment pattern recognition",
+        "Frame-by-frame precision analysis",
+        "GPU-accelerated high-volume-processing",
+        "Manipulation area visualization report"
+      ],
+      "useCases": [
+        "Content moderation for social media platforms",
+        "Fact-checking system for news organizations",
+        "Brand protection for corporate PR teams",
+        "Authenticity verification of legal/evidence materials"
+      ],
+      "howItWorks": "The CNN-based video analysis model inspects the face area, boundary artifacts, and temporal consistency for each frame. It determines whether it has been manipulated by analyzing GAN-based generation patterns and compression traces.",
+      "integration": "It is provided in the form of a web API, Python SDK, and Chrome Extension, and can be directly integrated into a content management system.",
+      "security": "Uploaded media is processed in a dedicated isolated environment for analysis and automatically deleted after analysis is complete. It supports end-to-end encryption.",
+      "faq": [
+        {
+          "question": "Can it also analyze real-time video streams?",
+          "answer": "Yes, near-real-time detection is possible even in a live streaming environment through frame sampling."
+        },
+        {
+          "question": "What deepfake techniques does it detect?",
+          "answer": "It detects major deepfake frameworks such as FaceSwap, DeepFaceLab, and First Order Motion Model, as well as the latest Diffusion-based generation models."
+        },
+        {
+          "question": "Is high-resolution video also processed quickly?",
+          "answer": "4K video is processed at about 1.5 times the real-time speed with GPU acceleration, and HD video can be processed in near real-time."
+        }
+      ]
+    },
+    "cloning-tts": {
+      "title": "LUCY - 5",
+      "titleEn": "Voice Cloning TTS",
+      "shortDescription": "Clones a natural voice from a small amount of voice samples for use in various content creation",
+      "whatItSolves": "A lot of time and money is spent on casting and recording voice actors for audiobook, advertisement, and e-Learning production. This solution maximizes production efficiency by generating high-quality voice from a small amount of voice samples.",
+      "keyFeatures": [
+        "Voice cloning with a 5-minute sample",
+        "Multilingual support (Korean, English, Chinese, Japanese, etc.)",
+        "Emotion and intonation control",
+        "Real-time voice generation engine",
+        "API-based automated workflow"
+      ],
+      "useCases": [
+        "Audiobook and podcast production",
+        "Automatic generation of multilingual marketing content",
+        "Narration of e-Learning educational content",
+        "Game character voice production"
+      ],
+      "howItWorks": "The latest Neural TTS technology learns the timbre, intonation, and speaking style of a voice. The few-shot learning technique enables high-quality cloning with only a small amount of samples, and provides a lightweight model capable of real-time inference.",
+      "integration": "It returns a voice file when text is transmitted through the REST API. When deployed on-premise, it is provided in the form of a Docker container.",
+      "security": "Voice samples are trained in a customer-dedicated isolated environment, and model weights are stored encrypted. Unauthorized use is prevented by a license management system.",
+      "faq": [
+        {
+          "question": "How many voice samples are needed?",
+          "answer": "A minimum of 5 minutes and a recommended 10-15 minutes of clean voice samples are required. The more samples, the better the quality."
+        },
+        {
+          "question": "Can it be used for real-time interactive applications?",
+          "answer": "Yes, the optimized model generates voice within an average of 0.5 seconds per sentence, making it suitable for real-time conversation systems."
+        },
+        {
+          "question": "Can I also control emotional expressions?",
+          "answer": "You can control basic emotions such as joy, sadness, anger, and neutral, as well as the strength of intonation, with parameters."
+        }
+      ]
+    },
+    "music-generation": {
+      "title": "LUCY - 7",
+      "titleEn": "AI Music Generation",
+      "shortDescription": "Automatically generates music of the desired genre and mood with a text prompt",
+      "whatItSolves": "Video producers and creators spend a lot of time looking for background music that is free of copyright concerns. This solution increases creative efficiency by instantly generating the desired music with just a text description.",
+      "keyFeatures": [
+        "Text-based music generation",
+        "Fine-tuning of genre, tempo, and instruments",
+        "Free length setting from 30 seconds to 5 minutes",
+        "Generation of loopable background music",
+        "Includes commercial use license"
+      ],
+      "useCases": [
+        "YouTube video background music",
+        "Advertising and promotion music",
+        "Game and app background music",
+        "Prototype music sketch"
+      ],
+      "howItWorks": "The Transformer-based music generation model converts text prompts into musical elements (melody, harmony, rhythm). It is automatically arranged according to the user-specified genre and mood, and supports smooth looping by automatically detecting loop points.",
+      "integration": "Accessible via Web UI and REST API, and the generated music is downloaded in WAV, MP3 format.",
+      "security": "The copyright of the generated music belongs to the user, and the prompt data is deleted after generation is complete.",
+      "faq": [
+        {
+          "question": "Are there any copyright issues?",
+          "answer": "All generated music is created with a model that has resolved the copyright issues of the training data, and a commercial use license is included."
+        },
+        {
+          "question": "How long does it take to generate?",
+          "answer": "A 30-second piece of music takes about 10-15 seconds, and a 3-minute piece takes about 1 minute."
+        },
+        {
+          "question": "Can it imitate a specific artist's style?",
+          "answer": "To protect copyright, it does not support imitating a specific artist's style, and only provides generation based on genre and mood."
+        }
+      ]
+    },
+    "aac-voice-communication": {
+      "title": "BLINGS (AAC)",
+      "titleEn": "AAC Voice Communication",
+      "shortDescription": "Converts disordered speech into normal speech in real time",
+      "whatItSolves": "Patients with speech disorders experience great inconvenience in daily conversation. This solution supports smooth communication by converting disordered speech into clear speech in real time.",
+      "keyFeatures": [
+        "Real-time voice conversion (latency less than 0.3 seconds)",
+        "Support for various types of speech disorders",
+        "Personalized voice profile",
+        "Support for mobile apps and wearable devices",
+        "Offline mode support"
+      ],
+      "useCases": [
+        "Communication support for ALS patients",
+        "Rehabilitation after laryngeal cancer surgery",
+        "Assistant for stroke patients with language disorders",
+        "Communication training for children with developmental disabilities"
+      ],
+      "howItWorks": "The AI speech recognition engine converts unclear speech into text, and a personalized TTS model regenerates it into a natural voice. It maximizes clarity while preserving the user's original tone of voice.",
+      "integration": "It supports linkage with mobile apps (iOS/Android), web browsers, and voice amplification devices.",
+      "security": "All voice data is processed on the device (on-device AI) and is not transmitted to an external server. It is preparing for medical device standard (FDA, MFDS) certification.",
+      "faq": [
+    {
+      "question": "What types of speech impairments are supported?",
+      "answer": "We support a wide range of types including Dysarthria, Aphasia, and vocal tremors. Our specialized model is particularly effective at reconstructing the unclear articulation of dysarthria patients into clear speech."
+    },
+    {
+      "question": "Can the user's original voice be maintained?",
+      "answer": "Yes. Through our personalized voice reconstruction technology, we can restore the user's pre-impairment voice or the most similar tone, allowing them to communicate with a voice that reflects their own identity rather than a generic machine voice."
+    },
+    {
+      "question": "How is sensitive medical and personal information secured?",
+      "answer": "Utilizing On-Device AI, all voice data is processed instantly within the device without being sent to external servers. This provides a high level of security that complies with HIPAA (U.S. Health Insurance Portability and Accountability Act) regulations."
+    }
+  ]
+    },
+    "diagnosis-rehabilitation": {
+      "title": "Revocal",
+      "titleEn": "Diagnosis & Rehabilitation Integration",
+      "shortDescription": "Automatically generates a customized rehabilitation program based on voice diagnosis data",
+      "whatItSolves": "After a voice disorder is diagnosed, the design of a rehabilitation program relies heavily on the experience of experts, and it is difficult to customize it for each patient. This solution analyzes diagnostic data to automatically propose an optimal rehabilitation program.",
+      "keyFeatures": [
+        "AI-based voice disorder diagnosis assistance",
+        "Creation of a personalized rehabilitation program for each patient",
+        "Real-time monitoring of rehabilitation progress",
+        "Remote rehabilitation session support",
+        "Medical staff-patient collaboration dashboard"
+      ],
+      "useCases": [
+        "Voice therapy program in the department of rehabilitation medicine",
+        "Digital transformation of speech therapy rooms",
+        "Remote voice rehabilitation service",
+        "Long-term rehabilitation management in nursing homes"
+      ],
+      "howItWorks": "The voice analysis AI evaluates the type and severity of the disorder from the patient's voice sample and creates a personalized training plan by matching it with the rehabilitation protocols in the database. It dynamically adjusts the program by tracking progress.",
+      "integration": "It can be linked with the existing EMR (Electronic Medical Record) system and the HL7 FHIR standard, and can also be used as a standalone web app.",
+      "security": "Fully compliant with medical data security standards (HIPAA, Personal Information Protection Act). Patient data is stored encrypted, and access logs are recorded.",
+      "faq": [
+        {
+          "question": "Can it be used without a medical professional?",
+          "answer": "Although it provides a diagnostic assistance function, the final diagnosis and treatment plan must be reviewed by a medical professional."
+        },
+        {
+          "question": "What kind of rehabilitation training does it provide?",
+          "answer": "It provides evidence-based voice rehabilitation protocols such as vocalization training, articulation practice, breathing training, and pitch control in a gamified interface."
+        },
+        {
+          "question": "How is progress monitored?",
+          "answer": "You can track improvement through weekly/monthly voice evaluation reports and visualized progress charts."
+        }
+      ]
+    },
+"robot-defect-detection": {
+  "title": "Robot Component Defect Detection",
+  "titleEn": "AI-Powered Zero-Defect Detection for Robot Components",
+  "shortDescription": "Real-time detection of micro-defects in robot reducers within 1ms using VIB and Distributional Reinforcement Learning.",
+  "whatItSolves": "This solution addresses the limitations of 'random sampling' in the quality validation of Harmonic Drives (Robo Drive), which is often caused by high physical and computational costs. By repurposing high-speed signal integrity technology for mechanical vibration analysis, our 'Digital Stethoscope' AI inspects every single unit on the production line to eliminate tail risks and safety concerns in the collaborative robot (Cobot) market.",
+  "keyFeatures": [
+    "VIB(Variational Information Bottleneck) based data compression and ultra-high-speed inspection (51x faster processing)",
+    "Worst-Case robustness certification via CVaR (Conditional Value at Risk) optimization for extreme environments",
+    "Zero-Shot anomaly detection based on 'Golden Master' data (95.9% detection accuracy for unseen defects)",
+    "Automated generation of data-driven 'Safety Certificates' for every individual product"
+  ],
+  "useCases": [
+    "Ultra-high-speed vibration pattern inspection for robot reducers and rotating components",
+    "Mathematical robustness guarantee for precision parts under extreme conditions (thermal shock, torque spikes)",
+    "Immediate micro-defect detection without the need for prior fault data accumulation",
+    "Real-time assembly quality validation for semiconductor wafers, precision molds, and SMT lines",
+    "Establishing a digital quality history and safety certification system for all shipped units"
+  ],
+  "howItWorks": "Our proprietary AI compresses massive sensor data using VIB technology, reducing inspection time per unit to under 1ms. Instead of optimizing for average performance, we use CVaR to mathematically guarantee normal operation even in the bottom 10% worst-case scenarios, utilizing semi-supervised learning to catch even previously unseen defect types.",
+  "integration": "Directly interfaces with major industrial robots (FANUC, ABB, KUKA) and integrates with PLC/MES systems via OPC UA and MQTT protocols.",
+  "security": "Supports On-Device AI strategies for HIPAA compliance; all production data is processed on-premise within an air-gapped environment.",
+  "faq": [
+    {
+      "question": "Can the detection speed keep up with the production line?",
+      "answer": "Yes. VIB technology has reduced the inspection time per unit to under 1ms. This is 51 times faster than conventional methods, enabling 100% full inspection without causing bottlenecks on the production line."
+    },
+    {
+      "question": "Is it applicable to new processes with insufficient fault data?",
+      "answer": "Yes. Our Zero-Shot detection technology requires no fault data accumulation. It can operate immediately using only 'Golden Master' (normal) data and can identify even the most subtle, newly-occurring defects."
+    },
+    {
+      "question": "What environmental factors can be guaranteed?",
+      "answer": "Through Distributional Reinforcement Learning, we mathematically guarantee that the system operates normally even under 'Worst-Case' conditions, such as sudden torque changes or thermal shocks, and issue safety certificates based on this data."
+    }
+  ]
+},
+    "emotion-recognition": {
+      "title": "Multimodal Emotion Recognition",
+      "titleEn": "Multimodal Advanced Emotion Recognition",
+      "shortDescription": "A precise emotion prediction solution that integrates speech, facial expressions, and biosignals to minimize uncertainty.",
+      "whatItSolves": "Relying on a single data source (facial expression or voice alone) often leads to inconsistencies and uncertainty in emotional judgment. This solution utilizes an Evidence Fusion model to process multi-angle sensing data, providing highly reliable emotional state analysis.",
+      "keyFeatures": [
+        "Multimodal Data Integration (Speech + Face + Biosignals)",
+        "Evidence Fusion Model-based resolution of data inconsistencies",
+        "Real-time Emotion Index Visualization (Gauge Dashboard)",
+        "Deep Learning-based Audio2Emotion acoustic analysis",
+        "Facial Model expression recognition and Biosignal analysis (Heart Rate, EDA, etc.)"
+      ],
+      "useCases": [
+        "Stress and mental health monitoring for high-risk professionals",
+        "Real-time tracking of agent and customer emotions in contact centers",
+        "Intelligent safety control systems (Detection of abnormal behavior and emotions)",
+        "Enhanced quality for remote medical/counseling services"
+      ],
+      "howItWorks": "The system concurrently collects voice data from speech audio tracks, facial expression data via cameras, and biosignals (heart rate, blood pressure, EDA) from wearable devices. Each piece of information is processed through an Evidence Fusion model to offset data uncertainties, ultimately delivering precise and high-confidence emotional insights.",
+      "integration": "Integrates with existing safety management or counseling solutions through standard wearable device interfaces and APIs.",
+      "security": "Supports encrypted data transmission and secure server processing to protect sensitive biometric and facial data.",
+      "faq": [
+        {
+          "question": "How do you handle cases where different data sources conflict?",
+          "answer": "The Evidence Fusion algorithm calculates the reliability weights of each data source to derive an optimal emotion value that minimizes uncertainty."
+        },
+        {
+          "question": "What types of biosignals are supported?",
+          "answer": "It primarily supports Heart Rate, Blood Pressure, and Electrodermal Activity (EDA), with expandability based on device compatibility."
+        },
+        {
+          "question": "Is real-time analysis possible?",
+          "answer": "Yes, real-time streaming data analysis and output are possible through edge computing and high-performance AI models."
+        }
+      ]
+    },
+    "voucher": {
+      "title": "Copyright Voucher",
+      "titleEn": "Copyright Voucher",
+      "shortDescription": "AI-based copyright protection and management solution"
+    }
+  }
+}

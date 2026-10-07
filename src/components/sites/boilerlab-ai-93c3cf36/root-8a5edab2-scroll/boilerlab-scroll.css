@@ -1,0 +1,1494 @@
+/*
+ * Structural overrides that turn the fixed, non-scrolling slide deck
+ * (boilerlab.css: `.boilerlab-root { position: fixed; overflow: hidden }`)
+ * into a normally-scrolling page. Everything here is scoped under the
+ * `.scroll-mode` modifier class, so it can never affect the original,
+ * unmodified `/` page — only `/scroll` adds this class to `.boilerlab-root`.
+ * All typography/color/component styling still comes from boilerlab.css,
+ * imported alongside this file; only positioning/height rules are replaced.
+ */
+
+.boilerlab-root.scroll-mode {
+  position: static;
+  inset: auto;
+  overflow: visible;
+  min-height: 100dvh;
+}
+
+.boilerlab-root.scroll-mode .reveal {
+  /* Keep `position: relative` (inherited from boilerlab.css) — only its
+     fixed 100vh height needs to go. Several slides (contacts' moon, in
+     particular: `.contacts-moon-wrap { position: absolute; top: 100% }`)
+     rely on `top: 100%` meaning "one viewport below the top of *this*
+     positioned box"; each `<section>` below is made its own positioning
+     context instead, so that math still resolves per-section rather than
+     against the whole (now page-length) `.reveal`. */
+  height: auto;
+}
+
+.boilerlab-root.scroll-mode .reveal .slides {
+  /* boilerlab.css's `100vw` includes the vertical scrollbar, which the fixed
+     deck never has but this scrolling page does — it overflowed by the
+     scrollbar's width and produced a horizontal scrollbar. */
+  width: 100% !important;
+  height: auto !important;
+  /* BoilerLabScrollApp's section crossfade translates the not-yet-reached
+     #contacts (the last section) down by up to ~70px, which would otherwise
+     extend the document's scrollable height and shift its own progress
+     math. `clip` (unlike `hidden`) creates no scroll container, so the
+     sticky/pinned sections inside keep working. Clipped horizontally too:
+     the depth transition scales a passing section up to 103%, which would
+     otherwise spill past the viewport and add a horizontal scrollbar. */
+  overflow: clip;
+  perspective: none;
+}
+
+/* "Company" (numbers-intro / numbers-users / numbers-air) text entrance: a
+   scoped 3D zoom-in-from-depth pop, independent of the whole-deck
+   slide-enter-fwd/slide-exit-fwd pair above (those are unused here — scroll
+   mode disables `.slides`'s perspective entirely, see the rule above).
+   Triggered once per section, the same moment it becomes `.present` (see
+   BoilerLabScrollApp), not by scroll-progress math. Each text block gets
+   its own local `perspective` so the effect is self-contained and doesn't
+   need `.slides`'s disabled one. */
+.company-fwd-perspective {
+  perspective: 62.5rem;
+}
+.company-fwd-in {
+  animation: company-slide-in-fwd-center 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+@keyframes company-slide-in-fwd-center {
+  0% {
+    transform: translateZ(-87.5rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+
+.boilerlab-root.scroll-mode .reveal .slides section {
+  position: relative;
+  height: auto;
+  min-height: 100dvh;
+  scroll-margin-top: var(--header-height-desktop);
+  scroll-snap-align: start;
+}
+
+/* One wheel/trackpad gesture lands squarely on the next section, echoing
+   the original fixed deck's one-input-per-slide feel, while this stays a
+   real scrolling document (the root scroller is the document itself —
+   `.reveal .slides` has no overflow/height of its own — so the snap type
+   has to live on `html`, scoped to pages that mount this scroll-mode root).
+   Products opts out below: it scrubs its own multi-viewport gallery
+   internally (see ProductsSlideScroll), so it must stay a free-scroll
+   region, not a snap target, or the moment a scroll gesture settled
+   anywhere inside it, it'd get yanked back to its own top. */
+html:has(.boilerlab-root.scroll-mode):not(.snap-paused) {
+  scroll-snap-type: y mandatory;
+}
+
+/* #products opts out of both the clip and the snap that everything else
+   above just opted into:
+   - `overflow: visible` — boilerlab.css's `.slide { overflow: hidden }`
+     clips each fixed-deck slide to its own 100vh box. Contacts relies on
+     that clip (its moon is `position: absolute; top: 100%`, deliberately
+     hanging past the section's own bottom edge so it can "rise" into view
+     — with nothing to clip it in scroll mode it would bleed past the last
+     section into the blank page below), but an `overflow: hidden` ancestor
+     also becomes the containing block for CSS `position: sticky`, which
+     would break ProductsSlideScroll's sticky card-stack viewport (it'd
+     "stick" relative to this section instead of the real document scroll).
+   - `scroll-snap-align: none` — #products is never itself a snap point
+     (its own multi-viewport scrubbing needs to stop anywhere), but that
+     alone isn't enough: a *mandatory* snap-type with no snap point inside
+     its huge range doesn't just leave a scroll that stops there alone, it
+     yanks it out to the nearest snap point on either side (verified:
+     landing exactly at #products's own top edge still triggered a jump all
+     the way to #partners). So BoilerLabScrollApp also suspends the
+     snap-type itself (`.snap-paused` on `<html>`) for as long as
+     `nearestSectionId()` reads "products". */
+.boilerlab-root.scroll-mode .reveal .slides #products {
+  overflow: visible;
+  scroll-snap-align: none;
+}
+
+/* Safety net for the moment a scroll gesture ends while snap-type hasn't
+   been paused yet (`.snap-paused` only flips once #products is already the
+   nearest section, so there's a brief window on the way in where it's
+   still "mandatory"): each product's own dwell-start marker
+   (ProductsSlideScroll's `.product-scroll-marker`, one per product) is a
+   snap point too, bounding a mistimed snap to the nearest product's own
+   start instead of all the way out of #products to #numbers-air or
+   #partners. */
+.boilerlab-root.scroll-mode .reveal .slides #products .product-scroll-marker {
+  scroll-snap-align: start;
+}
+
+/* The live site abandons its scroll-jacked 3D card stack entirely below
+   820px (see boilerlab.css's own `.product-card` mobile override — plain
+   `position:relative`, `transform:none!important`, stacked in normal flow)
+   in favor of a plain scrollable list. Our sticky-pin viewport (the vh-tall
+   `.product-scroll-outer` + its `position:sticky` `.product-content` child)
+   only exists to drive that same 3D stack via real scroll progress, so on
+   mobile it needs to get out of the way too, or the section would reserve
+   hundreds of vh of empty scroll space above a now-normal-flow, much
+   shorter card list. `!important` is required here since the component
+   sets these via inline style, which normally beats a class selector. */
+@media (width <= 820px) {
+  .boilerlab-root.scroll-mode .reveal .slides #products .product-scroll-outer {
+    height: auto !important;
+  }
+  .boilerlab-root.scroll-mode .reveal .slides #products .product-content {
+    position: static !important;
+    top: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+}
+
+/* #mission (HeroSlideScroll) needs `overflow: visible` — its `position:
+   sticky` pinned viewport would otherwise get clipped by (and its
+   containing block broken by) `.slide { overflow: hidden }`. Also keeps the
+   default `scroll-snap-align: start`: it's the very first section, so
+   there's nothing to wheel-step *into* it from, but its own top is still
+   the natural resting point scrolling back up to it lands on. */
+.boilerlab-root.scroll-mode .reveal .slides #mission {
+  overflow: visible;
+}
+.boilerlab-root.scroll-mode .reveal .slides #mission .mission-snap-marker {
+  scroll-snap-align: start;
+}
+
+.boilerlab-root.scroll-mode .slide-inner {
+  height: auto;
+  min-height: 100dvh;
+}
+
+@media (width <= 760px) {
+  .boilerlab-root.scroll-mode .reveal .slides section {
+    scroll-margin-top: var(--header-height-mobile);
+  }
+}
+
+/* Contacts' moon: boilerlab.css positions `.contacts-moon-wrap` with
+   `top: 100%; transform: translateY(-50%)`, which only shows exactly half
+   the moon when #contacts's own bottom edge sits exactly at the viewport's
+   bottom edge. The fixed slide deck guarantees that (every slide IS one
+   full viewport); a normal scroll landing at the true end of the page also
+   gets there for free, since #contacts is the last section (nothing after
+   it to scroll to, so max-scroll = its bottom flush with the viewport
+   bottom). The one path that broke it: clicking a footer-nav link scrolls
+   via `scrollIntoView`, which honors this section's `scroll-margin-top`
+   (the fixed header's height) — landing with the section's TOP offset by
+   that amount instead of 0, which shifts its BOTTOM by the same amount and
+   throws off the "exactly half" math (measured directly: 40% instead of
+   50% after a nav-link jump to Contacts).
+   Tried and reverted: making `.contacts-moon-wrap` itself `position:
+   sticky` to pin it to the viewport regardless of scroll position — sticky
+   still occupies flow space, so it shoved `.contacts-content` (title/
+   button/address) down by the moon's full height. `scroll-margin-top: 0`
+   is simpler and sufficient: it's the *last* section, so nothing above the
+   header can visually need protecting here (`.contacts-content` already
+   reserves far more top padding than the header's height), and removing it
+   just makes the nav-link landing match the natural full-scroll landing
+   that already works. */
+.boilerlab-root.scroll-mode .reveal .slides #contacts {
+  scroll-margin-top: 0;
+}
+/* Solutions (#products) lands where its sticky Ferris frame is settled
+   (top 0). With the header's margin it stopped 68px short: the frame's
+   background had not stuck yet and its wash still had a straight top edge
+   right under the (transparent) header — a visible cut across the
+   gradient. The frame pads its own content below the header. Applies to
+   the wheel stop after AIR and the footer nav's Solutions link alike. */
+.boilerlab-root.scroll-mode .reveal .slides #products {
+  scroll-margin-top: 0;
+}
+
+/* #numbers-air pins an inner wrapper (NumbersAirSlideScroll's `.air-split-
+   content`, not the `<section>` itself) for its scroll-scrubbed animation —
+   same reasoning as #products opting out of the clip above: pinning the
+   `<section>` directly would make ITS OWN rect stay stuck near the
+   viewport top for the whole scrub, breaking BoilerLabScrollApp's
+   nearest-section math (the wheel-stepper and scroll-snap both use each
+   section's own top offset). Pinning the inner wrapper instead leaves the
+   `<section>` a normal, growing block (GSAP's pin-spacer reserves the
+   scrub's extra scroll room inside it), so its rect behaves normally. */
+.air-split-content {
+  width: 100%;
+  min-height: 100dvh;
+  gap: 2.5rem;
+}
+.air-split-intro {
+  margin: 0;
+}
+.air-split-row {
+  display: grid;
+  width: min(70rem, 100%);
+  margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr);
+}
+.air-split-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1rem;
+  text-align: center;
+}
+.air-split-letter {
+  display: inline-block;
+  color: #adb5c2;
+  font-family: var(--mono-font);
+  font-size: clamp(4rem, 10vw, 8.5rem);
+  font-weight: 600;
+  line-height: 1;
+  text-shadow: -0.0688rem 0 rgb(184 143 151 / 45%), 0.0688rem 0 rgb(134 163 188 / 45%);
+}
+.air-split-text {
+  max-width: 18rem;
+  margin-top: 1.5rem;
+}
+.air-split-name {
+  margin: 0 0 0.5rem;
+  color: #f6f8ffdb;
+  font-size: 1.0625rem;
+  font-weight: 500;
+}
+.air-split-description {
+  margin: 0;
+  color: #ebeef6c2;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+@media (width <= 760px) {
+  .air-split-row {
+    gap: 2.5rem;
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Products — Side Ferris Wheel, Landscape Cards ----------
+   (ProductsFerrisScroll; motion study 05 of dessert-motion-studies.html).
+   `--ferris-accent` / `--ferris-glaze` are scroll-interpolated per part. */
+.boilerlab-root.scroll-mode #products .ferris-content {
+  --ferris-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(18rem, 36%) 1fr;
+  align-items: center;
+  gap: clamp(1.25rem, 4vw, 3.75rem);
+  padding: var(--header-height-desktop) clamp(1.25rem, 6.4vw, 6rem) var(--footer-height-desktop);
+  color: var(--text);
+  /* Overlaps `.ferris-bg` (same sticky frame) and stacks above SharedMoon
+     (z 2); the background stays below it on `.ferris-bg`. */
+  margin-top: -100dvh;
+  z-index: 3;
+}
+.boilerlab-root.scroll-mode #products .ferris-bg {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  background: radial-gradient(120% 140% at 15% 0%, color-mix(in srgb, var(--ferris-accent) 42%, #000) 0%, #000 62%);
+}
+.ferris-info {
+  position: relative;
+  z-index: 2;
+  max-width: 28rem;
+}
+.ferris-part {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  animation: ferris-in 0.6s var(--ferris-ease) both;
+}
+.ferris-part-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.75rem;
+  color: var(--ferris-glaze);
+  background: color-mix(in srgb, var(--ferris-glaze) 16%, transparent);
+}
+.ferris-part-icon svg {
+  width: 1.375rem;
+  height: 1.375rem;
+}
+.ferris-part-name {
+  margin: 0;
+  font-family: var(--mono-font);
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ferris-glaze);
+}
+.ferris-copy {
+  animation: ferris-in 0.6s var(--ferris-ease) both;
+}
+.ferris-step {
+  margin: 0 0 0.75rem;
+  font-family: var(--mono-font);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.ferris-name {
+  margin: 0 0 1rem;
+  font-size: clamp(1.75rem, 3.4vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-shadow: 0 2px 24px rgb(0 0 0 / 55%);
+}
+.ferris-headline {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: color-mix(in srgb, var(--ferris-glaze) 70%, #fff);
+}
+.ferris-desc {
+  margin: 0;
+  max-width: 34ch;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.ferris-link {
+  display: inline-flex;
+  margin-top: 1.75rem;
+}
+.ferris-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.125rem;
+  margin-top: 2.25rem;
+}
+.ferris-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.375rem;
+  height: 2.375rem;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: rgb(255 255 255 / 3%);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.15s ease, opacity 0.25s ease;
+}
+.ferris-arrow:hover:not(:disabled) {
+  border-color: rgb(255 255 255 / 30%);
+  background: rgb(255 255 255 / 7%);
+}
+.ferris-arrow:active:not(:disabled) {
+  transform: scale(0.92);
+}
+.ferris-arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.ferris-arrow svg {
+  width: 1rem;
+  height: 1rem;
+}
+.ferris-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+.ferris-dot-group {
+  display: flex;
+  gap: 0.4375rem;
+}
+.ferris-dot {
+  width: 0.4375rem;
+  height: 0.4375rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 22%);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.ferris-dot.is-active {
+  background: var(--ferris-glaze);
+  transform: scale(1.4);
+}
+
+.ferris-stage-wrap {
+  position: relative;
+  height: min(64vh, 36rem);
+  perspective: 100rem;
+}
+.ferris-stage {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+.ferris-card {
+  --card-w: min(34vw, 28rem);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--card-w);
+  margin-left: calc(var(--card-w) / -2);
+  margin-top: calc(var(--card-w) * 0.6 / -2);
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  text-align: center;
+  cursor: pointer;
+  backface-visibility: hidden;
+  will-change: transform, filter;
+}
+.ferris-card.is-active {
+  cursor: default;
+}
+.ferris-tile {
+  position: relative;
+  display: block;
+  aspect-ratio: 5 / 3;
+  border-radius: 1.375rem;
+  overflow: hidden;
+  background: var(--tile-accent);
+  transform: rotate(-6deg);
+  box-shadow: 0 30px 60px -25px rgb(0 0 0 / 70%);
+}
+.ferris-tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 90% at 30% 15%, rgb(255 255 255 / 14%), transparent 55%),
+    linear-gradient(to top, color-mix(in srgb, var(--tile-accent) 70%, transparent), transparent 55%);
+  pointer-events: none;
+}
+.ferris-tile-image {
+  object-fit: cover;
+}
+
+/* Study 06's rolling sphere, parked between the copy and the wheel. */
+.ferris-sphere {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 41%;
+  width: min(62vh, 32vw, 36rem);
+  height: min(62vh, 32vw, 36rem);
+  transform: translate(-50%, -50%);
+  /* Handed over to/from SharedMoon at the section's edges (ferris-handoff.ts). */
+  opacity: var(--ferris-sphere-handoff, 1);
+}
+/* The wrapper takes hover (for its resize handle); the marble canvas itself
+   stays non-interactive so a click can't cycle it off the part's color. */
+.ferris-sphere canvas {
+  pointer-events: none;
+}
+/* DraggableBox around the wheel (products.stage): the grid item. Its saved
+   drag offset is an inline `translate`, so layout offsets use left/top. */
+.ferris-stage-drag {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes ferris-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Mobile: keep the pinned wheel (unlike the old card-stack, which fell
+   back to a plain list) — info stacks above a shorter stage. */
+@media (width <= 820px) {
+  .boilerlab-root.scroll-mode .reveal .slides #products.product-slide {
+    overflow: visible;
+    height: auto;
+    top: auto;
+    mask-image: none;
+  }
+  .boilerlab-root.scroll-mode #products .ferris-content {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    align-content: center;
+    gap: 0.5rem;
+    padding: calc(var(--header-height-mobile) + 0.5rem) 1rem calc(var(--footer-height-mobile) + 0.5rem);
+  }
+  .ferris-part {
+    margin-bottom: 0.75rem;
+  }
+  .ferris-name {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .ferris-desc {
+    max-width: none;
+    font-size: 0.875rem;
+  }
+  .ferris-link {
+    margin-top: 1rem;
+  }
+  .ferris-nav {
+    margin-top: 1rem;
+  }
+  .ferris-stage-drag,
+  .ferris-stage-wrap {
+    height: 100%;
+    min-height: 16rem;
+  }
+  .ferris-card {
+    --card-w: min(62vw, 18rem);
+  }
+  .ferris-sphere {
+    top: auto;
+    bottom: calc(var(--footer-height-mobile) + 1rem);
+    left: 50%;
+    width: min(40vh, 80vw);
+    height: min(40vh, 80vw);
+    transform: translateX(-50%);
+    opacity: calc(0.6 * var(--ferris-sphere-handoff, 1));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ferris-part,
+  .ferris-copy {
+    animation: none;
+  }
+}
+
+/* ---------- Numbers — reference text blocks + trail echo ----------
+   Positions and the stretched "echo" trail come from the reference
+   ("Design® — 3D glass orb scroll site"): `.block.left` (top 40%) for the
+   intro, `.block.right` (top 36%) for the users stat. `--t` is written per
+   section by BoilerLabScrollApp's crossfade loop (distance + scroll speed).
+   Typography stays the site's own. */
+.numbers-stage {
+  position: absolute;
+  inset: 0;
+  max-width: none;
+  min-height: 0;
+}
+/* One shared, viewport-fixed moon for hero → numbers (SharedMoon.tsx).
+   The outer `.shared-moon` gets translate/scale/opacity from the scroll
+   scrub; the inner ContactsMoon wrap just centers the marble in the
+   viewport the way `.hero-moon-wrap` did (top 50% + translateY(-50%)). */
+.boilerlab-root .shared-moon {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  /* No overflow clip: the marble can sit partly outside this box (the
+     hero's saved offset puts its center on the bottom edge), and a clip here
+     would scale down with the wrapper and slice the sphere into a half
+     circle mid-scroll. The viewport already clips anything off screen. */
+  pointer-events: none;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+.boilerlab-root .shared-moon .shared-moon-inner {
+  position: absolute;
+  inset: 0;
+  top: 0;
+  align-items: center;
+  justify-content: center;
+  transform: none;
+}
+/* Numbers' gentle bob, faded in with `--bob` (0 at the hero, 1 in numbers). */
+.boilerlab-root .shared-moon .contacts-marble {
+  animation: shared-moon-bob 7s ease-in-out infinite;
+}
+@keyframes shared-moon-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(calc(var(--bob, 0) * -14px));
+  }
+}
+/* The dark disc boilerlab.css puts in the middle of every `.stars-slide`
+   (#mission, the three numbers sections, #partners) is fixed to its section,
+   so on this page it scrolled in ahead of the moon and read as a smudge.
+   Off here only (/classic keeps it); `.moon-shade` below replaces it. */
+.boilerlab-root.scroll-mode .stars-slide::after {
+  content: none;
+}
+/* That disc, now centred on the moon and shown only at the Company text
+   stops (SharedMoon writes --shade-*, company-flow.ts decides when; numbers
+   in COMPANY_FLOW.shade). Same z as the moon but later in the DOM, so it
+   darkens the moon; the Company sections (z 3) and their text stay above.
+   A fixed size — never the moon's scale — and only transform / opacity
+   change per frame. */
+.boilerlab-root .moon-shade {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: var(--shade-size);
+  height: var(--shade-size);
+  margin: calc(var(--shade-size) / -2) 0 0 calc(var(--shade-size) / -2);
+  border-radius: 50%;
+  background: radial-gradient(50% 50% at 50% 50%, rgb(0 0 0 / var(--shade-alpha)), rgb(0 0 0 / 0));
+  pointer-events: none;
+  opacity: var(--shade-o, 0);
+  transform: translate3d(calc(var(--shade-x, 0) * 1px), calc(var(--shade-y, 0) * 1px), 0);
+  will-change: transform, opacity;
+}
+/* Contacts' address text sits on top of its moon — keep the whole section
+   above the shared moon (sections are transparent, so the moon still shows
+   through behind the text). For that z-index to reach the moon, `.reveal`
+   must not be its own stacking context: boilerlab.css gives it `z-index: 1`,
+   which put every section (Contacts included) under the moon's 2. The fixed
+   header/footer (20) and modals (≥ 9999) still sit above everything, and
+   sections still paint above the star canvas by DOM order. */
+.boilerlab-root.scroll-mode .reveal {
+  z-index: auto;
+}
+.boilerlab-root.scroll-mode .reveal .slides #contacts {
+  z-index: 3;
+}
+/* Same for Excellence: after Solutions the moon glides down to its parked
+   spot while this section's title rises through the same area — keep the
+   title in front (the section is transparent, so the moon still shows
+   behind it). */
+.boilerlab-root.scroll-mode .reveal .slides #partners {
+  z-index: 3;
+}
+/* Contacts' arrival glow, same keyframes its own moon used. */
+.boilerlab-root .shared-moon.is-contacts-arriving .contacts-marble {
+  animation: moon-arrive-glow var(--moon-arrive, 2.4s) cubic-bezier(0.22, 1, 0.3, 1) both;
+}
+/* Edit handles only at the hero checkpoint (see SharedMoon's `editable`). */
+.boilerlab-root .shared-moon:not(.is-editable) :is(.editable-resize-handle, .editable-move-handle) {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .boilerlab-root .shared-moon .contacts-marble {
+    animation: none;
+  }
+}
+.numbers-block {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  width: min(38rem, 42vw);
+  text-align: left;
+}
+.numbers-block-left {
+  left: clamp(20px, 6vw, 96px);
+  top: 40%;
+}
+.numbers-block-right {
+  right: clamp(20px, 6vw, 96px);
+  top: 36%;
+}
+.numbers-block .eyebrow {
+  text-align: left;
+}
+.numbers-trail {
+  text-shadow:
+    0 calc(var(--t, 0) * 0.3px) 0 rgb(255 255 255 / 55%),
+    0 calc(var(--t, 0) * 0.6px) 0 rgb(255 255 255 / 42%),
+    0 calc(var(--t, 0) * 0.9px) 0 rgb(255 255 255 / 30%),
+    0 calc(var(--t, 0) * 1.2px) 0 rgb(255 255 255 / 20%),
+    0 calc(var(--t, 0) * 1.5px) 0 rgb(255 255 255 / 12%);
+}
+/* .eyebrow has its own chromatic-fringe shadow — keep it under the trail. */
+.numbers-block .eyebrow.numbers-trail {
+  text-shadow:
+    -0.0688rem 0 rgb(184 143 151 / 45%),
+    0.0688rem 0 rgb(134 163 188 / 45%),
+    0 calc(var(--t, 0) * 0.3px) 0 rgb(255 255 255 / 55%),
+    0 calc(var(--t, 0) * 0.6px) 0 rgb(255 255 255 / 42%),
+    0 calc(var(--t, 0) * 0.9px) 0 rgb(255 255 255 / 30%),
+    0 calc(var(--t, 0) * 1.2px) 0 rgb(255 255 255 / 20%),
+    0 calc(var(--t, 0) * 1.5px) 0 rgb(255 255 255 / 12%);
+}
+.numbers-trail-soft {
+  text-shadow:
+    0 calc(var(--t, 0) * 0.3px) 0 rgb(232 238 255 / 32%),
+    0 calc(var(--t, 0) * 0.6px) 0 rgb(232 238 255 / 20%),
+    0 calc(var(--t, 0) * 0.9px) 0 rgb(232 238 255 / 10%);
+}
+@media (width <= 720px) {
+  .numbers-block-left,
+  .numbers-block-right {
+    left: 20px;
+    right: auto;
+    top: 22%;
+  }
+  .numbers-block {
+    width: min(300px, 82vw);
+  }
+}
+
+/* ---------- Deep space backdrop (DeepSpace.tsx) ----------
+   Replaces StarCanvas on the scroll page. Everything here sits in
+   #star-canvas (fixed, z-index 0), below the shared moon (z 2) and every
+   section, so the moon's handoffs and the section layering are untouched.
+   Aurora opacity stays low (≤ 0.24, then blurred) so text contrast doesn't change. */
+.boilerlab-root.scroll-mode #star-canvas.deep-space {
+  overflow: hidden;
+}
+/* The old static glow is replaced by the drifting nebulae below. */
+.boilerlab-root.scroll-mode #star-canvas.deep-space:before {
+  display: none;
+}
+.deep-space .space-nebulae {
+  position: absolute;
+  inset: -15%;
+  will-change: transform;
+}
+/* Aurora: long, tilted ribbons of colour (not round pools), each melted by
+   a very wide blur (~140px) and swaying / stretching slowly on its own
+   cycle, so the light drifts like a curtain rather than sitting in patches.
+   Every ribbon fades to 0 along its length and its width, the blur then
+   dissolves what edge is left, and `screen` lets overlaps glow into each
+   other. Peaks stay ≤ ~0.24 alpha so text contrast doesn't change.
+   Only transforms animate (compositor), never the blur. */
+.deep-space .space-aurora {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(var(--blur, 140px));
+  mix-blend-mode: screen;
+  will-change: transform;
+  background:
+    radial-gradient(60% 50% at var(--hx, 45%) 50%, rgb(var(--c2) / var(--a2)) 0%, rgb(var(--c2) / 0) 100%),
+    linear-gradient(
+      90deg,
+      rgb(var(--c) / 0) 0%,
+      rgb(var(--c) / calc(var(--a) * 0.45)) 18%,
+      rgb(var(--c) / var(--a)) 42%,
+      rgb(var(--c) / calc(var(--a) * 0.8)) 62%,
+      rgb(var(--c) / calc(var(--a) * 0.3)) 82%,
+      rgb(var(--c) / 0) 100%
+    );
+  animation: var(--anim) var(--dur) ease-in-out infinite alternate;
+}
+/* Teal curtain across the upper left. */
+.deep-space .space-aurora-1 {
+  --c: 20 130 118;
+  --a: 0.22;
+  --c2: 60 200 150;
+  --a2: 0.1;
+  --hx: 38%;
+  --anim: aurora-sway-1;
+  --dur: 58s;
+  top: 6%;
+  left: -22%;
+  width: 118vmax;
+  height: 30vmax;
+  rotate: -14deg;
+}
+/* Deep blue sweep, top right. */
+.deep-space .space-aurora-2 {
+  --c: 34 62 158;
+  --a: 0.24;
+  --c2: 80 90 200;
+  --a2: 0.08;
+  --hx: 58%;
+  --anim: aurora-sway-2;
+  --dur: 71s;
+  top: -8%;
+  right: -26%;
+  width: 110vmax;
+  height: 34vmax;
+  rotate: 18deg;
+}
+/* Green band low across the middle — the moon's colour, faint. */
+.deep-space .space-aurora-3 {
+  --c: 40 140 76;
+  --a: 0.16;
+  --c2: 90 220 110;
+  --a2: 0.07;
+  --hx: 50%;
+  --anim: aurora-sway-3;
+  --dur: 83s;
+  bottom: 4%;
+  left: 2%;
+  width: 124vmax;
+  height: 26vmax;
+  rotate: -6deg;
+}
+/* Violet wisp crossing the lower right. */
+.deep-space .space-aurora-4 {
+  --c: 72 58 150;
+  --a: 0.14;
+  --c2: 120 90 210;
+  --a2: 0.06;
+  --hx: 62%;
+  --anim: aurora-sway-4;
+  --dur: 66s;
+  bottom: -10%;
+  right: -18%;
+  width: 96vmax;
+  height: 28vmax;
+  rotate: -24deg;
+}
+/* Thin teal-green veil through the centre, tying the others together. */
+.deep-space .space-aurora-5 {
+  --c: 30 160 130;
+  --a: 0.1;
+  --c2: 70 210 170;
+  --a2: 0.05;
+  --hx: 44%;
+  --anim: aurora-sway-5;
+  --dur: 97s;
+  top: 34%;
+  left: -8%;
+  width: 130vmax;
+  height: 18vmax;
+  rotate: 8deg;
+}
+/* Sway: drift, lean (skew) and breathe (scaleY) on uneven beats, so no two
+   ribbons ever line up and the motion never reads as a loop. */
+@keyframes aurora-sway-1 {
+  0% { transform: translate3d(0, 0, 0) skewX(0deg) scale(1, 1); }
+  30% { transform: translate3d(5vw, 3vh, 0) skewX(-8deg) scale(1.06, 1.35); }
+  65% { transform: translate3d(9vw, -2vh, 0) skewX(5deg) scale(0.96, 0.8); }
+  100% { transform: translate3d(3vw, 6vh, 0) skewX(-4deg) scale(1.1, 1.2); }
+}
+@keyframes aurora-sway-2 {
+  0% { transform: translate3d(0, 0, 0) skewX(0deg) scale(1, 1); }
+  35% { transform: translate3d(-6vw, 5vh, 0) skewX(7deg) scale(1.08, 0.78); }
+  70% { transform: translate3d(-3vw, 10vh, 0) skewX(-5deg) scale(0.94, 1.3); }
+  100% { transform: translate3d(-9vw, 4vh, 0) skewX(3deg) scale(1.05, 1.05); }
+}
+@keyframes aurora-sway-3 {
+  0% { transform: translate3d(0, 0, 0) skewX(0deg) scale(1, 1); }
+  40% { transform: translate3d(-5vw, -4vh, 0) skewX(-6deg) scale(1.1, 1.4); }
+  75% { transform: translate3d(4vw, -7vh, 0) skewX(6deg) scale(0.95, 0.85); }
+  100% { transform: translate3d(-2vw, -2vh, 0) skewX(-3deg) scale(1.04, 1.15); }
+}
+@keyframes aurora-sway-4 {
+  0% { transform: translate3d(0, 0, 0) skewX(0deg) scale(1, 1); }
+  25% { transform: translate3d(-4vw, -6vh, 0) skewX(9deg) scale(1.05, 1.3); }
+  60% { transform: translate3d(-8vw, -3vh, 0) skewX(-4deg) scale(0.92, 0.82); }
+  100% { transform: translate3d(-5vw, -9vh, 0) skewX(5deg) scale(1.08, 1.12); }
+}
+@keyframes aurora-sway-5 {
+  0% { transform: translate3d(0, 0, 0) skewX(0deg) scale(1, 1); }
+  45% { transform: translate3d(7vw, 4vh, 0) skewX(10deg) scale(1.12, 1.6); }
+  80% { transform: translate3d(2vw, -5vh, 0) skewX(-7deg) scale(0.96, 0.7); }
+  100% { transform: translate3d(5vw, 1vh, 0) skewX(4deg) scale(1.06, 1.25); }
+}
+.deep-space .space-stars {
+  position: absolute;
+  top: 0;
+  /* One tile of overhang on each side for the Company camera pan (x). */
+  right: -900px;
+  left: -900px;
+  /* One extra tile of height so the wrapped translate never shows an edge. */
+  height: calc(100% + 900px);
+  background-repeat: repeat;
+  will-change: transform;
+}
+.deep-space .space-stars-near {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+/* Phones: three ribbons, a smaller blur (same softness at that size). */
+@media (width <= 760px) {
+  .deep-space .space-aurora {
+    --blur: 90px;
+  }
+  .deep-space :is(.space-aurora-4, .space-aurora-5) {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .deep-space .space-aurora {
+    animation: none;
+  }
+}
+/* Solutions lets the stars through: its wash is now a translucent tint
+   instead of an opaque fill (it stays below the moon — see .ferris-bg). */
+.boilerlab-root.scroll-mode #products .ferris-bg {
+  background: radial-gradient(120% 140% at 15% 0%, color-mix(in srgb, var(--ferris-accent) 34%, transparent) 0%, transparent 62%);
+  /* Rounded, soft top edge while the section slides in (ProductsFerrisScroll's
+     washArc, --ferris-wash-arc: 1 far → 0 settled). An ellipse anchored at
+     the bottom centre: at 1 it's about the box's own size, so the top edge is
+     an arc; toward 0 it grows ~4× and covers the whole box (no visible mask). */
+  --wash-rx: calc(90% + (1 - var(--ferris-wash-arc, 0)) * 300%);
+  --wash-ry: calc(100% + (1 - var(--ferris-wash-arc, 0)) * 300%);
+  /* Plus a top fade of the same strength, so the edge is never a straight
+     line while the dome opens (its last stretch, wash-arc ~0.7 → 0, sits
+     just below the header, which is see-through): 0 once settled. */
+  --wash-top: calc(var(--ferris-wash-arc, 0) * 22vh);
+  -webkit-mask-image:
+    radial-gradient(ellipse var(--wash-rx) var(--wash-ry) at 50% 100%, #000 55%, transparent 100%),
+    linear-gradient(to bottom, transparent 0, #000 var(--wash-top));
+  -webkit-mask-composite: source-in;
+  mask-image:
+    radial-gradient(ellipse var(--wash-rx) var(--wash-ry) at 50% 100%, #000 55%, transparent 100%),
+    linear-gradient(to bottom, transparent 0, #000 var(--wash-top));
+  mask-composite: intersect;
+}
+
+/* ---------- Typography: "Horizon" (main page only) ----------
+   Titles in Syne (wide, distinctive), body copy in Inter (readability
+   first), labels/buttons/menus in Space Grotesk caps with wide tracking.
+   Korean falls back to SUIT (titles) / Pretendard (text), loaded only when
+   KO is picked; Japanese uses the system Japanese UI font. This is an
+   override layer over boilerlab.css's per-component font rules, hence
+   !important on font-family / tracking / case only. */
+.boilerlab-root.scroll-mode {
+  --type-head: var(--font-syne), "SUIT Variable", "Pretendard Variable", "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", sans-serif;
+  --type-body: var(--font-inter), "Pretendard Variable", "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", sans-serif;
+  --type-label: var(--font-space-grotesk), "Pretendard Variable", "Hiragino Sans", "Yu Gothic UI", sans-serif;
+}
+/* Titles */
+.boilerlab-root.scroll-mode :is(h1, h2).editable-text,
+.boilerlab-root.scroll-mode h2[data-key],
+.boilerlab-root.scroll-mode [data-key="numbers.intro.signoff"],
+.boilerlab-root.scroll-mode .contacts-title {
+  font-family: var(--type-head) !important;
+  font-weight: 700;
+  letter-spacing: 0.02em !important;
+}
+/* Syne is wide: sized so the hero stays on one line inside its saved edit
+   width (874px at a 1440px viewport), clear of the moon. */
+.boilerlab-root.scroll-mode #mission h1.editable-text {
+  font-size: clamp(3rem, 6vw, 5.4rem);
+}
+/* Section titles: white → pale teal, like moonlit metal. The hero keeps its
+   own two-tone white/green. */
+.boilerlab-root.scroll-mode .slides h2:is(.editable-text, [data-key]),
+.boilerlab-root.scroll-mode [data-key="numbers.intro.signoff"],
+.boilerlab-root.scroll-mode .contacts-title {
+  background: linear-gradient(180deg, #fff 30%, #bfeee4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/* Card titles */
+.boilerlab-root.scroll-mode [data-key^="inpress."][data-key$="author"],
+.boilerlab-root.scroll-mode .air-split-name {
+  font-family: var(--type-head) !important;
+  font-weight: 600;
+  letter-spacing: 0.01em !important;
+}
+/* Body copy */
+.boilerlab-root.scroll-mode :is(.air-split-description, .air-split-intro, .ferris-desc, .ferris-headline, .contacts-subtitle, [data-key$="quote"]) {
+  font-family: var(--type-body) !important;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: 0 !important;
+}
+/* Labels, buttons, menus */
+.boilerlab-root.scroll-mode :is(#mission .subtitle, .header-pill, .header-nav-link, [data-key^="footer.nav"], .ferris-part-name, .ferris-step, [data-key="partners.became"], .contacts-details p, .primary-button, .partner-logo-caption) {
+  font-family: var(--type-label) !important;
+  font-weight: 500;
+  text-transform: uppercase !important;
+  letter-spacing: 0.24em !important;
+}
+/* Hangul / kana don't take wide caps tracking well. */
+html:is([lang="ko"], [lang="ja"]) .boilerlab-root.scroll-mode :is(#mission .subtitle, .header-pill, .header-nav-link, [data-key^="footer.nav"], .ferris-part-name, [data-key="partners.became"], .contacts-details p, .primary-button) {
+  letter-spacing: 0.08em !important;
+}
+html:is([lang="ko"], [lang="ja"]) .boilerlab-root.scroll-mode :is(:is(h1, h2).editable-text, h2[data-key], .contacts-title) {
+  letter-spacing: 0 !important;
+}
+/* The saved title width (contacts.title__width) was set for the English
+   line; the Korean one is a few px wider, and Hangul may break between any
+   two syllables, so "요" dropped alone to a second line. Size to the text
+   instead (still capped by the section), breaking only between words. */
+html:is([lang="ko"], [lang="ja"]) .boilerlab-root.scroll-mode .contacts-title {
+  width: max-content !important;
+  max-width: 100% !important;
+  word-break: keep-all;
+}
+/* Solutions: the headline / description wrap before the sphere instead of
+   running onto it (the accent-coloured headline all but vanished on the
+   same-coloured sphere). --ferris-copy-room is the measured space between
+   the copy's left edge and the sphere's visible edge (ProductsFerrisScroll);
+   the floor only matters on narrow desktops where there's barely any room.
+   `balance` splits a sentence into even lines rather than one long + one
+   orphan word. */
+@media (width > 820px) {
+  .boilerlab-root.scroll-mode .ferris-info :is(.ferris-headline, .ferris-desc) {
+    max-width: max(15rem, var(--ferris-copy-room, 100%));
+    text-wrap: balance;
+  }
+  /* Hangul / kana may break between any two characters, which split
+     "Braindeck의" into "Braindeck / 의": break only between words. */
+  html:is([lang="ko"], [lang="ja"]) .boilerlab-root.scroll-mode .ferris-info :is(.ferris-headline, .ferris-desc) {
+    word-break: keep-all;
+  }
+  /* Japanese has no spaces, so keep-all left the whole sentence on one
+     line; break between phrases instead (two balanced lines, like KO/EN). */
+  html[lang="ja"] .boilerlab-root.scroll-mode .ferris-info :is(.ferris-headline, .ferris-desc) {
+    word-break: auto-phrase;
+  }
+  /* …and the voucher sentence would still balance into 4 short lines in the
+     narrow copy column; give it room for 2, as in KO/EN. */
+  html[lang="ja"] .boilerlab-root.scroll-mode .ferris-info .ferris-headline[data-key="products.sigma.0.headline"] {
+    max-width: 18em;
+  }
+}
+
+/* Solutions layout from the Figma edit (frame "05 Solutions", 1440×900):
+   tight-leading title, 20px headline, and the sphere moved right
+   and down between the copy and the wheel (+190px / +73px at 1440×900,
+   kept proportional via vw/vh). The saved move offset (products.sphere
+   __pos, inline `translate`) still composes on top. Desktop only. */
+@media (width > 820px) {
+  .boilerlab-root.scroll-mode .ferris-info {
+    max-width: 32rem;
+  }
+  /* Every solution title uses the size the user set on the Robot card
+     (products.atomicbot.0.name__fontSize, 46.5px); smaller below 1440px. */
+  .boilerlab-root.scroll-mode .ferris-name {
+    font-size: clamp(2rem, 3.23vw, 2.906rem);
+    line-height: 0.75;
+    /* Saved box widths (e.g. products.sigma.0.name__width, 255px) date from
+       the old 44px size; an `em` floor keeps a title from splitting every
+       word onto its own line, and a wider dragged width still wins. */
+    min-width: 6em;
+  }
+  /* Hangul / kana fill the whole em box, so the 0.75 leading above clips
+     their tops and makes a wrapped title overlap itself. Give them real
+     leading, size the box to the text (the saved widths are for the English
+     titles; editing is English-only), and break only between words/phrases
+     so "著作権バウチャー" isn't split into "バウチ / ャー". */
+  html:is([lang="ko"], [lang="ja"]) .boilerlab-root.scroll-mode .ferris-name {
+    line-height: 1.22;
+    width: auto !important;
+    min-width: 0;
+    max-width: 100%;
+    padding-top: 0.04em;
+    word-break: keep-all;
+    text-wrap: balance;
+  }
+  html[lang="ja"] .boilerlab-root.scroll-mode .ferris-name {
+    word-break: auto-phrase;
+  }
+  .boilerlab-root.scroll-mode .ferris-headline {
+    font-size: clamp(1rem, 1.39vw, 1.375rem);
+    line-height: 1.32;
+  }
+  /* Headlines that are model names (IRIS - 5, LUCY - 7, BLINGS (AAC), …)
+     share the size the user set on the Robot card (28.1px); smaller below
+     1440px. Voucher's headline is a sentence and keeps the body size above.
+     A per-card font-size edit (inline style) still wins. */
+  .boilerlab-root.scroll-mode .ferris-headline:not([data-key="products.sigma.0.headline"]) {
+    font-size: clamp(1.25rem, 1.95vw, 1.756rem);
+    line-height: 1.2;
+  }
+  .boilerlab-root.scroll-mode .ferris-sphere {
+    top: calc(50% + 8.1vh);
+    left: calc(41% + 13.2vw);
+  }
+}
+
+/* ---------- Moon atmosphere (stage 2) ----------
+   A soft green halo hugging the sphere. It lives on the shared moon's own
+   marble, so it follows every move/scale of the scroll scrub; its strength
+   (--moon-glow) comes from SharedMoon's checkpoints (0 while the moon turns
+   into FerrisSphere). The visible sphere is 64% of the marble box, i.e. a
+   radius of 32% — the halo peaks just outside that edge. */
+.boilerlab-root .shared-moon .contacts-marble {
+  position: relative;
+}
+.boilerlab-root .shared-moon .contacts-marble::before {
+  position: absolute;
+  inset: -45%;
+  z-index: -1;
+  content: "";
+  pointer-events: none;
+  border-radius: 50%;
+  /* closest-side radius = 95% of the marble box; sphere edge ≈ 34% of it.
+     A filled glow (no hollow centre, so no ring), strongest behind the
+     sphere and thinning out on a long eased curve to exactly 0 at the rim,
+     so it spreads into the backdrop with no edge. No `filter: blur` here:
+     the moon moves / rescales every frame, which re-blurred this whole
+     layer per frame (measured: 8.5% dropped frames in the Company flow,
+     draw p95 22.8ms → 0% / 3.7ms without it). The dense stops give the
+     same softness for free. */
+  background: radial-gradient(
+    closest-side,
+    rgb(90 240 70 / 34%) 0%,
+    rgb(90 240 70 / 31%) 28%,
+    rgb(88 238 74 / 27%) 34%,
+    rgb(84 232 82 / 21%) 40%,
+    rgb(80 227 88 / 16%) 46%,
+    rgb(76 222 94 / 11.5%) 52%,
+    rgb(71 216 100 / 8%) 58%,
+    rgb(66 210 106 / 5.3%) 64%,
+    rgb(63 205 108 / 3.4%) 70%,
+    rgb(60 200 110 / 2%) 77%,
+    rgb(60 200 110 / 1%) 84%,
+    rgb(60 200 110 / 0.4%) 91%,
+    rgb(60 200 110 / 0%) 100%
+  );
+  opacity: var(--moon-glow, 0.8);
+  /* Company flow pulse (company-flow.ts). */
+  scale: var(--moon-glow-scale, 1);
+}
+/* Aurora veil over the halo: soft arcs of green / teal / pale blue that
+   turn slowly around the sphere, so the light around it shifts and
+   breathes instead of sitting still. Masked to the band outside the
+   sphere, below it in z so the marble stays clean. Softness comes from
+   the wide colour ramps (every arc fades in and out over ~50°) and the
+   feathered mask — not a blur, which moving with the moon cost frames
+   (see ::before). */
+.boilerlab-root .shared-moon .contacts-marble::after {
+  position: absolute;
+  inset: -38%;
+  z-index: -1;
+  content: "";
+  pointer-events: none;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    rgb(90 240 70 / 0%) 0deg,
+    rgb(90 240 70 / 7%) 18deg,
+    rgb(90 240 70 / 16%) 34deg,
+    rgb(90 240 70 / 18%) 44deg,
+    rgb(70 225 120 / 9%) 66deg,
+    rgb(40 200 170 / 2%) 92deg,
+    rgb(40 200 170 / 9%) 122deg,
+    rgb(40 200 170 / 15%) 148deg,
+    rgb(60 170 200 / 8%) 176deg,
+    rgb(80 140 230 / 2%) 204deg,
+    rgb(80 140 230 / 8%) 232deg,
+    rgb(80 140 230 / 12%) 256deg,
+    rgb(100 190 170 / 5%) 286deg,
+    rgb(120 230 120 / 1%) 316deg,
+    rgb(90 240 70 / 0%) 360deg
+  );
+  -webkit-mask-image: radial-gradient(
+    closest-side,
+    transparent 34%,
+    rgb(0 0 0 / 45%) 40%,
+    rgb(0 0 0 / 85%) 47%,
+    rgb(0 0 0 / 70%) 58%,
+    rgb(0 0 0 / 38%) 70%,
+    rgb(0 0 0 / 14%) 83%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    closest-side,
+    transparent 34%,
+    rgb(0 0 0 / 45%) 40%,
+    rgb(0 0 0 / 85%) 47%,
+    rgb(0 0 0 / 70%) 58%,
+    rgb(0 0 0 / 38%) 70%,
+    rgb(0 0 0 / 14%) 83%,
+    transparent 100%
+  );
+  opacity: var(--moon-glow, 0.8);
+  animation: moon-aurora 48s linear infinite;
+}
+@keyframes moon-aurora {
+  0% {
+    transform: rotate(0deg) scale(1, 1);
+  }
+  25% {
+    transform: rotate(90deg) scale(1.06, 0.96);
+  }
+  50% {
+    transform: rotate(180deg) scale(0.97, 1.05);
+  }
+  75% {
+    transform: rotate(270deg) scale(1.05, 0.98);
+  }
+  100% {
+    transform: rotate(360deg) scale(1, 1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .boilerlab-root .shared-moon .contacts-marble::after {
+    animation: none;
+  }
+}
+
+/* ---------- Moonlight on card edges (stage 2, Moonlight.tsx) ----------
+   A 1px rim, masked to the border, lit by a radial light centred on the
+   moon (--moon-lx/-ly are the moon's position relative to the card). */
+.boilerlab-root.scroll-mode :is(.in-press-card-surface, .partners-showcase-frame)::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  padding: 1.5px;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(
+    var(--moon-reach, 800px) circle at var(--moon-lx, 50%) var(--moon-ly, 140%),
+    rgb(190 255 200 / 100%) 0%,
+    rgb(140 245 165 / 60%) 45%,
+    rgb(120 230 155 / 18%) 75%,
+    rgb(110 220 150 / 0%) 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: var(--moon-lit, 0);
+}
+
+/* Performance: the Partner cards' backdrop blur had to re-blur the moving
+   starfield behind them every frame. Without it the overlapping cards let
+   the text behind show through, so the surface is made opaque
+   instead — same look, no per-frame blur. */
+.boilerlab-root.scroll-mode .in-press-card-surface {
+  backdrop-filter: none;
+  background: linear-gradient(180deg, #1b1b1b, #1f1f1f);
+}
+
+/* Partner cards in the Excellence frame's style (user request): square
+   corners, the same thin pale border, a small square node on each corner,
+   and the starfield showing through a light dark wash instead of a solid
+   panel. The cards keep their positions, float and tilt, and the moonlight
+   rim (::after, above). Nodes are drawn on ::before (the markup is shared
+   with the fixed deck, so no extra elements): an 8px dark square with a
+   6px light square inside, like `.partners-node`. */
+.boilerlab-root.scroll-mode .in-press-card-surface {
+  overflow: visible;
+  border: 0.0625rem solid rgb(226 231 242 / 38%);
+  border-radius: 0;
+  background: rgb(6 8 12 / 46%);
+  box-shadow: none;
+}
+.boilerlab-root.scroll-mode .in-press-card-surface::before {
+  position: absolute;
+  inset: -0.3125rem;
+  z-index: 2;
+  content: "";
+  pointer-events: none;
+  background:
+    linear-gradient(#c5ccdc 0 0) left 0.0625rem top 0.0625rem / 0.375rem 0.375rem no-repeat,
+    linear-gradient(#c5ccdc 0 0) right 0.0625rem top 0.0625rem / 0.375rem 0.375rem no-repeat,
+    linear-gradient(#c5ccdc 0 0) left 0.0625rem bottom 0.0625rem / 0.375rem 0.375rem no-repeat,
+    linear-gradient(#c5ccdc 0 0) right 0.0625rem bottom 0.0625rem / 0.375rem 0.375rem no-repeat,
+    linear-gradient(#040409 0 0) left top / 0.5rem 0.5rem no-repeat,
+    linear-gradient(#040409 0 0) right top / 0.5rem 0.5rem no-repeat,
+    linear-gradient(#040409 0 0) left bottom / 0.5rem 0.5rem no-repeat,
+    linear-gradient(#040409 0 0) right bottom / 0.5rem 0.5rem no-repeat;
+}
+/* Hangul may break between any two syllables: "파트 / 너", "삭제되 / 며".
+   Words only. */
+html:is([lang="ko"], [lang="ja"]) .boilerlab-root.scroll-mode :is(.in-press-title, .in-press-card) {
+  word-break: keep-all;
+}
+@media (hover: hover) and (pointer: fine) {
+  .boilerlab-root.scroll-mode .in-press-card:hover .in-press-card-surface {
+    border-color: rgb(226 231 242 / 62%);
+    box-shadow: none;
+  }
+}
+
+/* ---------- Floating UI (stage 3) ----------
+   Partner cards tilt a few degrees toward the pointer (Moonlight.tsx writes
+   --tilt-*). The individual `rotate` property composes with the cards' own
+   `in-press-float` transform animation instead of replacing it. */
+.boilerlab-root.scroll-mode .in-press-orbit .in-press-card {
+  perspective: 1000px;
+}
+.boilerlab-root.scroll-mode .in-press-card-surface {
+  rotate: var(--tilt-ax, 0) var(--tilt-ay, 1) 0 var(--tilt-deg, 0deg);
+}
+/* Excellence award logos drift weightlessly, each on its own beat. */
+.boilerlab-root.scroll-mode .partner-logo img {
+  animation: space-float 7s ease-in-out infinite alternate;
+}
+.boilerlab-root.scroll-mode .partner-logo:nth-child(3n + 2) img {
+  animation-duration: 8.5s;
+  animation-delay: -3s;
+}
+.boilerlab-root.scroll-mode .partner-logo:nth-child(3n) img {
+  animation-duration: 6.2s;
+  animation-delay: -1.6s;
+}
+@keyframes space-float {
+  from {
+    translate: 0 -3px;
+  }
+  to {
+    translate: 0 3px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .boilerlab-root.scroll-mode .partner-logo img {
+    animation: none;
+  }
+  .boilerlab-root.scroll-mode .in-press-card-surface {
+    rotate: none;
+  }
+}
+
+/* ---------- Hero layout: centred (user request) ----------
+   The hero opens on the same bottom-centre moon as Contacts, so its copy is
+   centred above it like Contacts' title. The saved drag offsets on these
+   two texts (`mission.*__pos`) are ignored on this page — kept in the edit
+   data, just not applied here. */
+.boilerlab-root.scroll-mode #mission .hero-content,
+.boilerlab-root.scroll-mode #mission .text-content {
+  width: 100%;
+  align-items: center;
+  text-align: center;
+}
+.boilerlab-root.scroll-mode #mission :is(h1.eyebrow, .subtitle) {
+  translate: none !important;
+  margin-inline: auto;
+  text-align: center;
+}
+/* The hero title's saved size / box (mission.eyebrow__fontSize 129.9px,
+   __width 1330px) were set on a wide screen and applied at every width, so
+   below ~1400px the one-line title ran off both sides. Above 1400px the
+   saved size is used as is. Below it the title shrinks to fit (one line is
+   ≈ 9.55 × its font size; 8.12rem = the saved 129.9px, so the size is
+   continuous at the breakpoint), and phones wrap it onto two lines,
+   "Inspiring / the Next", at a size that fills the width. */
+@media (width < 1400px) {
+  .boilerlab-root.scroll-mode #mission h1.eyebrow {
+    width: auto !important;
+    max-width: none !important;
+    white-space: nowrap !important;
+    font-size: min(8.12rem, calc((100vw - 8rem) / 9.6)) !important;
+  }
+}
+@media (width <= 760px) {
+  .boilerlab-root.scroll-mode #mission h1.eyebrow {
+    white-space: normal !important;
+    font-size: min(8.12rem, 16vw) !important;
+    line-height: 1.02;
+  }
+}
+
+/* ---------- Company flow (company-flow.ts, company-flow-config.ts) ----------
+   The two text blocks are placed, wiped (mask) and tinted per frame. They get
+   vertical room so the mask doesn't crop Syne's tall glyphs or the echo trail
+   below them (box-sizing is border-box, so the width is unchanged).
+   Colour is a solid fill, mix(#f2f2f2 → the sphere's green by --cf-g): a
+   background-clip gradient would sit under the text-shadows and read white.
+   The sphere's glow is --cf-glow-*; the existing echo trail stays, its
+   spacing on --t and its strength on --cf-echo. */
+/* Text reads over the sphere (SharedMoon is z 2), as in the reference. */
+html[data-company-flow] .boilerlab-root.scroll-mode :is(#numbers-intro, #numbers-users) {
+  z-index: 3;
+  /* The blocks are placed in screen space on a timer, so they can show
+     while their own section is still only partly on screen; `.slide`'s
+     `overflow: hidden` would cut them off at the section's edge. */
+  overflow: visible;
+}
+html[data-company-flow] .boilerlab-root.scroll-mode :is(#numbers-intro, #numbers-users) .numbers-block {
+  /* The box at S = 1 (1440px: min(38rem, 42vw) = 604.8px), scaled with the
+     text (--cf-font-k) so the line breaks match 1440 at every size. */
+  width: calc(37.8rem * var(--cf-font-k, 1));
+  /* Screen space: the flow places the blocks against the viewport. Fixed
+     means the page's (compositor-driven) smooth scroll never moves them, so
+     no per-frame counter-scroll that would lag it by a frame and shake. */
+  position: fixed;
+  padding-block: 5rem;
+  margin-block: -5rem;
+  will-change: transform, opacity;
+}
+html[data-company-flow] .boilerlab-root.scroll-mode :is([data-key="numbers.intro.signoff"], [data-key="numbers.users.eyebrow"]) {
+  --cf-trail:
+    0 calc(var(--t, 0) * 0.3px) 0 rgb(255 255 255 / calc(0.55 * var(--cf-echo, 0))),
+    0 calc(var(--t, 0) * 0.6px) 0 rgb(255 255 255 / calc(0.42 * var(--cf-echo, 0))),
+    0 calc(var(--t, 0) * 0.9px) 0 rgb(255 255 255 / calc(0.3 * var(--cf-echo, 0))),
+    0 calc(var(--t, 0) * 1.2px) 0 rgb(255 255 255 / calc(0.2 * var(--cf-echo, 0))),
+    0 calc(var(--t, 0) * 1.5px) 0 rgb(255 255 255 / calc(0.12 * var(--cf-echo, 0)));
+  background: none;
+  -webkit-text-fill-color: color-mix(in srgb, #f2f2f2, rgb(125 255 106) calc(var(--cf-g, 0) * 100%));
+  color: color-mix(in srgb, #f2f2f2, rgb(125 255 106) calc(var(--cf-g, 0) * 100%)) !important;
+  text-shadow:
+    0 0 var(--cf-glow-r, 0px) rgb(90 255 80 / var(--cf-glow-a, 0)),
+    var(--cf-trail);
+}
+/* The users line is an .eyebrow: keep its chromatic fringe under the rest. */
+html[data-company-flow] .boilerlab-root.scroll-mode [data-key="numbers.users.eyebrow"] {
+  text-shadow:
+    -0.0688rem 0 rgb(184 143 151 / 45%),
+    0.0688rem 0 rgb(134 163 188 / 45%),
+    0 0 var(--cf-glow-r, 0px) rgb(90 255 80 / var(--cf-glow-a, 0)),
+    var(--cf-trail);
+}
+/* Text size follows S (company-flow.ts writes --cf-font = saved size ×
+   min(S, maxFontScale)); it beats the saved inline size only while set. */
+html[data-company-flow] .boilerlab-root.scroll-mode [data-cf-font] {
+  font-size: var(--cf-font) !important;
+}
+/* "Core Value" / "Vision": a small caps label right above each Company
+   line, in the hero subtitle's style (green Space Grotesk caps). It sits in
+   the same block, so it moves, wipes and leaves with the line; company-flow
+   copies the line's saved offset onto it (--cf-label-x / -y) and fades it
+   with the line's visible weight (--cf-label). Size follows the text (k). */
+.boilerlab-root.scroll-mode .numbers-block .numbers-label {
+  margin: 0 0 calc(0.875rem * var(--cf-font-k, 1));
+  font-family: var(--type-label) !important;
+  font-size: calc(0.9375rem * var(--cf-font-k, 1));
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.24em !important;
+  text-transform: uppercase;
+  color: rgb(125 255 106 / 85%);
+  /* T1's block carries the echo trail (.numbers-trail); not on the label. */
+  text-shadow: none;
+  translate: var(--cf-label-x, 0px) var(--cf-label-y, 0px);
+  opacity: var(--cf-label, 1);
+}
+html:is([lang="ko"], [lang="ja"]) .boilerlab-root.scroll-mode .numbers-block .numbers-label {
+  letter-spacing: 0.08em !important;
+}
+@media (width < 768px) {
+  .boilerlab-root.scroll-mode .numbers-block .numbers-label {
+    font-size: 0.75rem;
+  }
+  /* Phones centre both lines under the sphere: a label offset saved on
+     desktop (numbers.*.label__pos, an inline translate) would push it off
+     centre here. Only the line's own vertical offset is kept, so the label
+     stays right above it. */
+  html[data-company-flow-layout="mobile"] .boilerlab-root.scroll-mode .numbers-block .numbers-label {
+    translate: 0 var(--cf-label-y, 0px) !important;
+  }
+}
+/* Phones (company-flow mobile layout, < 768px): both texts centred under the sphere. */
+@media (width < 768px) {
+  html[data-company-flow-layout="mobile"] .boilerlab-root.scroll-mode :is(#numbers-intro, #numbers-users) .numbers-block {
+    align-items: center;
+    text-align: center;
+  }
+  html[data-company-flow-layout="mobile"] .boilerlab-root.scroll-mode :is([data-key="numbers.intro.signoff"], [data-key="numbers.users.eyebrow"]) {
+    text-align: center;
+  }
+}
+
+/* Contacts: the email / phone / address block sits at the same height in
+   all three languages, two blank lines (2 × its 15.68px line) lower than
+   where the English one used to be. It follows the title in the flow, so a
+   title on fewer lines than the English two (KO/JA on wide screens) pulls
+   it up: each missing line (the saved 109px title × 0.94 line-height) is
+   added back. ContactsSlide measures --contacts-title-lines. `translate`
+   composes with the block's entrance `transform`. Desktop only: on narrow
+   screens the block stays in flow. */
+@media (width > 820px) {
+  .boilerlab-root.scroll-mode .contacts-details {
+    translate: 0 calc(2 * 15.68px + (2 - min(var(--contacts-title-lines, 2), 2)) * 109px * 0.94);
+  }
+}
+/* Same tracking for the address block in every language: the label caps'
+   0.24em made the English lines look like a different style from KO/JA's
+   0.08em. */
+.boilerlab-root.scroll-mode #contacts .contacts-details p {
+  letter-spacing: 0.08em !important;
+}

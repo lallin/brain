@@ -1,0 +1,92 @@
+URL: https://www.braindeck.net/#/solutions/diagnosis-rehabilitation
+
+Solutions
+Voucher
+Company
+Demo
+KO
+BACK TO SOLUTIONS
+Watch Tutorial
+Demo
+medical
+Diagnosis & Rehabilitation Integration
+REVOCAL
+
+Automatically generates a customized rehabilitation program based on voice diagnosis data
+
+PROBLEM & SOLUTION
+What it Solves
+
+After a voice disorder is diagnosed, the design of a rehabilitation program relies heavily on the experience of experts, and it is difficult to customize it for each patient. This solution analyzes diagnostic data to automatically propose an optimal rehabilitation program.
+
+KEY FEATURES
+
+AI-based voice disorder diagnosis assistance
+
+Creation of a personalized rehabilitation program for each patient
+
+Real-time monitoring of rehabilitation progress
+
+Remote rehabilitation session support
+
+Medical staff-patient collaboration dashboard
+
+HOW IT WORKS
+
+The voice analysis AI evaluates the type and severity of the disorder from the patient's voice sample and creates a personalized training plan by matching it with the rehabilitation protocols in the database. It dynamically adjusts the program by tracking progress.
+
+Use Cases
+01
+
+Voice therapy program in the department of rehabilitation medicine
+
+02
+
+Digital transformation of speech therapy rooms
+
+03
+
+Remote voice rehabilitation service
+
+04
+
+Long-term rehabilitation management in nursing homes
+
+Security & Data Handling
+
+Fully compliant with medical data security standards (HIPAA, Personal Information Protection Act). Patient data is stored encrypted, and access logs are recorded.
+
+FAQ
+Frequently Asked Questions
+01
+Can it be used without a medical professional?
+02
+What kind of rehabilitation training does it provide?
+03
+How is progress monitored?
+Contact Us
+Experience this solution firsthand
+
+Test in a real environment for 24 hours after approval and evaluate business suitability
+
+Demo
+Watch Tutorial
+Braindeck
+
+Providing enterprise solutions that innovate the boundary
+between humans and AI with AI technology
+
+© 2026 Braindeck. All rights reserved.
+
+Solutions
+Media & Content
+Health Care
+Industrial AX
+Contact
+braindeck@braindeck.net
++82-2-2088-7522
+2F, 33 Yangjaecheon-ro 11-gil
+Seocho-gu, Seoul, Republic of Korea
+Privacy PolicyTerms of ServiceCookie Policy
+
+Braindeck

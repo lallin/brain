@@ -1,0 +1,296 @@
+{
+ "matched": {
+  "air.intro": {
+   "en": "The core values Braindeck believes in",
+   "key": "about_page.values_intro",
+   "ko": "브레인데크가 생각하는 핵심가치"
+  },
+  "products.atomicbot.name-above": {
+   "en": "Enterprise / Industrial AX",
+   "key": "categories.ax.title",
+   "ko": "AX"
+  },
+  "products.atomicbot.1.name": {
+   "en": "Multimodal Advanced Emotion Recognition",
+   "key": "solutions.emotion-recognition.titleEn",
+   "ko": "멀티센서 기반 고도화 감정 인식 솔루션"
+  },
+  "products.atomicbot.1.headline": {
+   "en": "Multimodal Emotion Recognition",
+   "key": "solutions.emotion-recognition.title",
+   "ko": "Multimodal Emotion Recognition"
+  },
+  "products.atomicbot.1.description": {
+   "en": "A precise emotion prediction solution that integrates speech, facial expressions, and biosignals to minimize uncertainty.",
+   "key": "solutions.emotion-recognition.shortDescription",
+   "ko": "음성, 얼굴, 생체신호를 통합 분석하여 불확실성을 최소화한 정밀 감정 예측 솔루션"
+  },
+  "partners.eyebrow": {
+   "en": "Proof of Our Technology and Trust",
+   "key": "proof.section_title",
+   "ko": "우리의 기술력과 신뢰의 증거"
+  },
+  "inpress.0.author": {
+   "en": "Data Protection Principles",
+   "key": "proof.trustPoints.1.title",
+   "ko": "데이터 보호 원칙"
+  },
+  "inpress.0.quote": {
+   "en": "Customer data is deleted immediately after analysis and is not leaked externally",
+   "key": "proof.trustPoints.1.description",
+   "ko": "고객 데이터는 분석 후 즉시 삭제되며, 외부로 유출되지 않습니다"
+  },
+  "inpress.2.author": {
+   "en": "Enterprise-Grade Security",
+   "key": "proof.trustPoints.0.title",
+   "ko": "엔터프라이즈급 보안"
+  },
+  "inpress.2.quote": {
+   "en": "Supports on-premise deployment, data encryption, and full GDPR compliance",
+   "key": "proof.trustPoints.0.description",
+   "ko": "온프레미스 배포 지원, 데이터 암호화, 완전한 GDPR 준수"
+  },
+  "inpress.4.author": {
+   "en": "Dedicated Support Team",
+   "key": "proof.trustPoints.3.title",
+   "ko": "전담 지원팀"
+  },
+  "inpress.4.quote": {
+   "en": "Provides technical support and consulting throughout the entire process from demo to implementation",
+   "key": "proof.trustPoints.3.description",
+   "ko": "데모부터 도입까지 전 과정 기술 지원 및 컨설팅 제공"
+  },
+  "inpress.5.author": {
+   "en": "Fast Integration",
+   "key": "proof.trustPoints.2.title",
+   "ko": "빠른 통합"
+  },
+  "inpress.5.quote": {
+   "en": "Integration with existing systems within 2 weeks is possible with REST API and SDK",
+   "key": "proof.trustPoints.2.description",
+   "ko": "REST API, SDK 제공으로 기존 시스템에 2주 내 통합 가능"
+  },
+  "contacts.title": {
+   "en": "Experience the demo right now",
+   "key": "final_cta.title",
+   "ko": "지금 바로 데모를 경험해보세요"
+  },
+  "contacts.subtitle": {
+   "en": "You can test Braindeck's AI solution in a real environment for 24 hours after approval",
+   "key": "final_cta.subtitle",
+   "ko": "승인 후 24시간 동안 실제 환경에서 Braindeck의 AI 솔루션을 테스트할 수 있습니다"
+  },
+  "contacts.cta": {
+   "en": "Demo",
+   "key": "hero_cta_demo",
+   "ko": "데모"
+  },
+  "contacts.address.1": {
+   "en": "Immediate use after approval",
+   "key": "final_cta.trust_2",
+   "ko": "승인 후 즉시 사용"
+  },
+  "contacts.address.2": {
+   "en": "Enterprise security standards",
+   "key": "final_cta.trust_3",
+   "ko": "엔터프라이즈 보안 기준"
+  },
+  "footer.nav.mission": {
+   "en": "Mission",
+   "key": "about_page.mission_title",
+   "ko": "미션"
+  },
+  "footer.nav.numbers": {
+   "en": "Company",
+   "key": "header_company",
+   "ko": "브레인데크"
+  },
+  "footer.nav.products": {
+   "en": "Solutions",
+   "key": "header_solutions",
+   "ko": "솔루션"
+  },
+  "products.sigma.0.name": {
+   "en": "Copyright Voucher",
+   "key": "voucher.title",
+   "ko": "저작권 바우처"
+  },
+  "products.sigma.0.headline": {
+   "en": "Leverage Braindeck's AI solutions through the voucher program.",
+   "key": "voucher.subtitle",
+   "ko": "바우처를 통해 Braindeck의 AI 솔루션을 활용하세요."
+  },
+  "products.sigma.name-above": {
+   "en": "Voucher",
+   "key": "header_voucher",
+   "ko": "저작권 바우처"
+  },
+  "products.atomic-mail.0.name": {
+   "en": "Deepfake Music Detection",
+   "key": "solutions.deepfake-music-detection.titleEn",
+   "ko": "딥페이크 음원 탐지"
+  },
+  "products.atomic-mail.0.headline": {
+   "en": "IRIS - 5",
+   "key": "solutions.deepfake-music-detection.title",
+   "ko": "IRIS - 5"
+  },
+  "products.atomic-mail.0.description": {
+   "en": "Protect copyrights by accurately distinguishing between AI-generated music and real music",
+   "key": "solutions.deepfake-music-detection.shortDescription",
+   "ko": "AI로 생성된 음악과 실제 음악을 정밀하게 구분하여 저작권을 보호합니다"
+  },
+  "products.atomic-mail.1.name": {
+   "en": "Deepfake Image/Video Detection",
+   "key": "solutions.deepfake-media-detection.titleEn",
+   "ko": "딥페이크 영상/이미지 탐지"
+  },
+  "products.atomic-mail.1.headline": {
+   "en": "IRIS - 6",
+   "key": "solutions.deepfake-media-detection.title",
+   "ko": "IRIS - 6"
+  },
+  "products.atomic-mail.1.description": {
+   "en": "Prevents the spread of false information by detecting AI-manipulated images and videos in real time",
+   "key": "solutions.deepfake-media-detection.shortDescription",
+   "ko": "AI로 조작된 이미지와 영상을 실시간으로 탐지하여 허위정보 확산을 방지합니다"
+  },
+  "products.atomic-mail.2.name": {
+   "en": "Voice Cloning TTS",
+   "key": "solutions.cloning-tts.titleEn",
+   "ko": "음성 복제 TTS"
+  },
+  "products.atomic-mail.2.headline": {
+   "en": "LUCY - 5",
+   "key": "solutions.cloning-tts.title",
+   "ko": "LUCY - 5"
+  },
+  "products.atomic-mail.2.description": {
+   "en": "Clones a natural voice from a small amount of voice samples for use in various content creation",
+   "key": "solutions.cloning-tts.shortDescription",
+   "ko": "소량의 음성 샘플로 자연스러운 음성을 복제하여 다양한 콘텐츠 제작에 활용합니다"
+  },
+  "products.atomic-mail.3.name": {
+   "en": "AI Music Generation",
+   "key": "solutions.music-generation.titleEn",
+   "ko": "AI 음악 생성"
+  },
+  "products.atomic-mail.3.headline": {
+   "en": "LUCY - 7",
+   "key": "solutions.music-generation.title",
+   "ko": "LUCY - 7"
+  },
+  "products.atomic-mail.3.description": {
+   "en": "Automatically generates music of the desired genre and mood with a text prompt",
+   "key": "solutions.music-generation.shortDescription",
+   "ko": "텍스트 프롬프트로 원하는 장르와 분위기의 음악을 자동 생성합니다"
+  },
+  "products.atomic-mail.name-above": {
+   "en": "Media & Content",
+   "key": "header_solutions_content",
+   "ko": "콘텐츠 (Media & Content)"
+  },
+  "products.aimlapi.0.name": {
+   "en": "AAC Voice Communication",
+   "key": "solutions.aac-voice-communication.titleEn",
+   "ko": "AAC 음성 통신"
+  },
+  "products.aimlapi.0.headline": {
+   "en": "BLINGS (AAC)",
+   "key": "solutions.aac-voice-communication.title",
+   "ko": "BLINGS (AAC)"
+  },
+  "products.aimlapi.0.description": {
+   "en": "Converts disordered speech into normal speech in real time",
+   "key": "solutions.aac-voice-communication.shortDescription",
+   "ko": "장애 음성을 실시간으로 정상 음성으로 변환합니다"
+  },
+  "products.aimlapi.1.name": {
+   "en": "Diagnosis & Rehabilitation Integration",
+   "key": "solutions.diagnosis-rehabilitation.titleEn",
+   "ko": "진단 및 재활 통합"
+  },
+  "products.aimlapi.1.headline": {
+   "en": "Revocal",
+   "key": "solutions.diagnosis-rehabilitation.title",
+   "ko": "Revocal"
+  },
+  "products.aimlapi.1.description": {
+   "en": "Automatically generates a customized rehabilitation program based on voice diagnosis data",
+   "key": "solutions.diagnosis-rehabilitation.shortDescription",
+   "ko": "음성 진단 데이터를 기반으로 맞춤형 재활 프로그램을 자동 생성합니다"
+  },
+  "products.aimlapi.name-above": {
+   "en": "Health Care",
+   "key": "header_solutions_medical",
+   "ko": "헬스케어 (Health Care)"
+  },
+  "products.atomicbot.0.name": {
+   "en": "AI-Powered Zero-Defect Detection for Robot Components",
+   "key": "solutions.robot-defect-detection.titleEn",
+   "ko": "AI 기반 로봇 부품 무결점 보증 솔루션"
+  },
+  "products.atomicbot.0.headline": {
+   "en": "Robot Component Defect Detection",
+   "key": "solutions.robot-defect-detection.title",
+   "ko": "Robot Component Defect Detection"
+  },
+  "products.atomicbot.0.description": {
+   "en": "Real-time detection of micro-defects in robot reducers within 1ms using VIB and Distributional Reinforcement Learning.",
+   "key": "solutions.robot-defect-detection.shortDescription",
+   "ko": "VIB 및 분포 강화 학습 기술을 통해 로봇 감속기의 미세 결함을 1ms 내에 전수 검증합니다."
+  },
+  "free:Demo": {
+   "en": "Demo",
+   "key": "hero_cta_demo",
+   "ko": "데모"
+  },
+  "free:A": {
+   "en": "A",
+   "key": "about_page.values.0.letter",
+   "ko": "A"
+  },
+  "free:I": {
+   "en": "I",
+   "key": "about_page.values.1.letter",
+   "ko": "I"
+  },
+  "free:R": {
+   "en": "R",
+   "key": "about_page.values.2.letter",
+   "ko": "R"
+  }
+ },
+ "unmatched": {
+  "mission.eyebrow": "Inspiring the Next",
+  "mission.subtitle": "Trusted Human-Centered AI",
+  "numbers.intro.signoff": "Trusted Cognitive Augmentation.",
+  "numbers.users.eyebrow": "Redefining the limits of time through cognitive augmentation.",
+  "air.A.name": "uthenticity",
+  "air.A.description": "Genuine, without pretense. We communicate with consistent, trustworthy conduct and live out the values we stand for.",
+  "air.I.name": "nitiative",
+  "air.I.description": "We find and solve problems on our own. We lead new attempts and generate positive energy.",
+  "air.R.name": "espect",
+  "air.R.description": "We respect our colleagues, customers, and partners. We embrace diversity and build a collaborative culture rooted in trust and care.",
+  "products.atomicbot.cta": "Learn more ->",
+  "partners.became": "Proven Excellence",
+  "inpress.title": "A PartnerYou Can Trust",
+  "contacts.address.3": "braindeck@braindeck.net+82-2-2088-7522",
+  "contacts.address.4": "2F, 33 Yangjaecheon-ro 11-gil,Seocho-gu, Seoul, Republic of Korea",
+  "footer.nav.partners": "Excellence",
+  "footer.nav.in-press": "Partner",
+  "footer.nav.contacts": "Contacts",
+  "products.sigma.cta": "Learn more ->",
+  "products.atomic-mail.cta": "Learn more ->",
+  "products.aimlapi.cta": "Learn more ->",
+  "free:Solution": "Solution",
+  "free:About Us": "About Us",
+  "free:EN": "EN",
+  "free:German Innovation Award 2026": "German Innovation Award 2026",
+  "free:CES 2025 Innovation Award": "CES 2025 Innovation Award",
+  "free:EDISON AWARDS": "EDISON AWARDS",
+  "free:Patent": "Patent",
+  "free:ISO 9001": "ISO 9001",
+  "free:●": "●"
+ }
+}
