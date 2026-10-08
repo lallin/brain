@@ -380,6 +380,7 @@ export function SharedMoon({ contactsArriving = false }: { contactsArriving?: bo
           marbleClickable={false}
           wrapClassName="shared-moon-inner"
           colorSource={colorSource}
+          hideOrb
         />
       </motion.div>
       {/* The old `.stars-slide:after` disc, now on the moon: a sibling (not a

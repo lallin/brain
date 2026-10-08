@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import MagicMarble from "@/components/sites/boilerlab-ai-93c3cf36/root-8a5edab2/MagicMarble";
+import ParticleOrb from "@/components/sites/boilerlab-ai-93c3cf36/root-8a5edab2/ParticleOrb";
 import {
   getEditedPosition,
   getEditedWidth,
@@ -178,7 +178,7 @@ export function FerrisSphere({ activeIndex, partIndex, glaze }: FerrisSphereProp
 
   return (
     <div ref={ref} className="ferris-sphere">
-      <MagicMarble palette={[glaze]} core="#000000" sizePercent={78} colorBlend="rgb" kick={kick} />
+      <ParticleOrb palette={[glaze]} core="#000000" sizePercent={78} colorBlend="rgb" kick={kick} />
       {showHandles &&
         createPortal(
           <>

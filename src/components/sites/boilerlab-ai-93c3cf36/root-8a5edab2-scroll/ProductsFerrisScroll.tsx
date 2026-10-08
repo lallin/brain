@@ -10,7 +10,6 @@ import { EditableText } from "@/components/sites/boilerlab-ai-93c3cf36/root-8a5e
 import { DraggableBox } from "@/components/sites/boilerlab-ai-93c3cf36/root-8a5edab2/editable/DraggableBox";
 import { getCategoryHubByProductId } from "@/components/sites/boilerlab-ai-93c3cf36/solutions-data";
 import type { ProductIconName } from "@/types/boilerlab";
-import { FerrisSphere } from "./FerrisSphere";
 import { ferrisSphereHandoff, HANDOFF_VH, measureFerrisHandoff, type FerrisHandoffRange } from "./ferris-handoff";
 
 /**
@@ -389,7 +388,9 @@ export function ProductsFerrisScroll() {
           </div>
         </DraggableBox>
 
-        <FerrisSphere activeIndex={activeIndex} partIndex={card.partIndex} glaze={card.glaze} />
+        {/* Sphere removed (FerrisSphere); the empty box stays so the copy's
+            wrap width and the moon handoff still measure the same spot. */}
+        <div className="ferris-sphere" aria-hidden="true" />
 
         <DraggableBox id="products.stage" className="ferris-stage-drag" scalable>
           <div ref={stageRef} className="ferris-stage-wrap">

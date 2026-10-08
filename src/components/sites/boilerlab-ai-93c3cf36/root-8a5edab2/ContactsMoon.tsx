@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import MagicMarble from "./MagicMarble";
+import ParticleOrb from "@/components/sites/boilerlab-ai-93c3cf36/root-8a5edab2/ParticleOrb";
 import { getEditedPosition, getEditedWidth, setEditedPosition, setEditedWidth } from "./editable/storage";
 import { SITE_EDITING_ENABLED } from "@/components/sites/boilerlab-ai-93c3cf36/root-8a5edab2/editable/config";
 
@@ -54,6 +54,7 @@ export default function ContactsMoon({
   wrapRef,
   wrapClassName,
   colorSource,
+  hideOrb = false,
 }: {
   id?: string;
   interactive?: boolean;
@@ -69,6 +70,9 @@ export default function ContactsMoon({
   wrapClassName?: string;
   /** Passed to MagicMarble: overrides the pigment color every frame. */
   colorSource?: { readonly current: string | null };
+  /** Keep the wrap/marble boxes (other code measures them) but don't draw
+   * the orb. */
+  hideOrb?: boolean;
 }) {
   const moonRef = useRef<HTMLDivElement | null>(null);
   // Reads any saved width override synchronously during render (client
@@ -201,12 +205,14 @@ export default function ContactsMoon({
         }}
         aria-hidden="true"
       >
-        <MagicMarble
-          palette={["#47e520", "#c9ffb8", "#ffffff", "#1a3d1a"]}
-          core="#050806"
-          sizePercent={64}
-          colorSource={colorSource}
-        />
+        {!hideOrb && (
+          <ParticleOrb
+            palette={["#47e520", "#c9ffb8", "#ffffff", "#1a3d1a"]}
+            core="#050806"
+            sizePercent={64}
+            colorSource={colorSource}
+          />
+        )}
       </div>
       {SITE_EDITING_ENABLED && interactive && width != null && (
         <>

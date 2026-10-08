@@ -2,9 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { cancelFrame, frame as frameLoop, useInView, type FrameData } from "framer-motion";
-import { DeepSpace } from "./DeepSpace";
-import { Moonlight } from "./Moonlight";
 import { useLang } from "@/components/sites/boilerlab-ai-93c3cf36/i18n/lang";
+import { OceanBackdrop } from "./OceanBackdrop";
 
 // Korean faces for the "Horizon" type (boilerlab-scroll.css), fetched only
 // once KO is picked: Pretendard as a unicode-range subset, SUIT for titles.
@@ -756,11 +755,11 @@ export function BoilerLabScrollApp() {
 
   return (
     <div className="boilerlab-root scroll-mode" data-loading={loading ? "" : undefined}>
-      {/* Deep-space backdrop, visible through every section (DeepSpace). */}
-      <DeepSpace />
-      {/* Moonlight on the Excellence / Partner card edges. */}
-      <Moonlight />
-      {/* One moon for hero → numbers, scroll-scrubbed (see SharedMoon). */}
+      {/* Cyber Ocean scene behind every section (OceanBackdrop). */}
+      <OceanBackdrop />
+      {/* One moon for hero → numbers, scroll-scrubbed (see SharedMoon). The
+          orb itself is hidden (`hideOrb`); SharedMoon still runs because it
+          drives the Company text flow. */}
       <SharedMoon contactsArriving={contactsArriving} />
       <SiteHeader onNavigate={handleFooterNavigate} />
       <div className="reveal">
